@@ -17,7 +17,10 @@ class AdministradorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name(),
+            'apellido' => $this->faker->lastName(),
+            'rol' => "administrador",
+            'celular' => $this->faker->phoneNumber(),
         ];
     }
 }

@@ -1,4 +1,4 @@
-*****************************************************************
+**************************03/10/22***************************************
 
 composer create-project laravel/laravel htdentshop
 
@@ -53,6 +53,41 @@ git status
 git add .
 git commit -m "Creación de Tabla Administrador y Cliente"
 git push origin 1_Tabla_Administrador_Cliente
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************04/10/22***************************************
+
+->Creamos la ruta Administrador
+->Configurar en RouteServiceProvider
+
+https://spatie.be/docs/laravel-permission/v5/introduction
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+->Relación Permission y Roles con User
+php artisan migrate
+php artisan migrate:fresh --seed
+
+php artisan make:seeder UserSeeder
+
+*****************************************************************
+
+php artisan make:seeder RolSeeder
+php artisan make:controller Administrador/RolController -r
+
+composer require laravelcollective/html
+
+php artisan make:controller Administrador/PermisoController -r
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 2_Roles_Permisos
+git branch
+git status
+
+git add .
+git commit -m "Creación de Roles y Permisos"
+git push origin 2_Roles_Permisos
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

@@ -17,7 +17,11 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name(),
+            'apellido' => $this->faker->lastName(),
+            'rol' => "cliente",
+            'celular' => $this->faker->phoneNumber(),
+            'puntos' => $this->faker->randomElement([0, 20, 50, 70, 80, 100, 500]),
         ];
     }
 }
