@@ -31,6 +31,8 @@ Route::controller(PermisoController::class)->group(function () {
 
 Route::get('administrador', PaginaAdministradorAdministrador::class)->middleware('can:Roles y permisos')->name('administrador.index');
 Route::controller(AdministradorController::class)->middleware('can:Roles y permisos')->group(function () {
+    Route::get('administrador/crear', 'create')->name('administrador.crear');
+    Route::post('administrador/crear', 'store')->name('administrador.store');
     Route::get('administrador/{usuario}/editar', 'edit')->name('administrador.editar');
     Route::put('administrador/{usuario}/editar', 'update')->name('administrador.update');
     Route::delete('administrador/{usuario}', 'destroy')->name('administrador.eliminar');

@@ -116,12 +116,25 @@ php artisan make:livewire Administrador/PaginaAdministradorAdministrador
 php artisan make:controller Administrador/AdministradorController -r
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-git checkout -b 3_Roles_Permisos_Admin
+git checkout -b 4_Roles_Permisos_Admin
 git branch
 git status
 
 git add .
 git commit -m "Agregar Roles y Permisos a Administradores"
-git push origin 3_Roles_Permisos_Admin
+git push origin 4_Roles_Permisos_Admin
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+->Modificar FortifyServiceProvider
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 5_Creando_Administradores
+git branch
+git status
+
+git add .
+git commit -m "Creando Administradores y redirigiendo rutas de los perfiles"
+git push origin 5_Creando_Administradores
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
