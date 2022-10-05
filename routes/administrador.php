@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
 
-Route::get('perfil', PaginaPerfilAdministrador::class)->name('perfil');
+Route::get('perfil', PaginaPerfilAdministrador::class)->middleware('can:Ver panel')->name('perfil');
 
-Route::controller(RolController::class)->group(function () {
+Route::controller(RolController::class)->middleware('can:Roles y permisos')->group(function () {
     Route::get('rol', 'index')->name('rol.index');
     Route::get('rol/crear', 'create')->name('rol.crear');
     Route::post('rol/crear', 'store')->name('rol.store');
