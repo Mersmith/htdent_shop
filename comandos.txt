@@ -91,4 +91,21 @@ git push origin 2_Roles_Permisos
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+**************************04/10/22***************************************
+
+composer install
+npm install
+
+php artisan make:middleware AdministradorMiddleware
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 3_Protegiendo_Rutas
+git branch
+git status
+
+git add .
+git commit -m "Protegiendo Rutas Privadas con Administrador"
+git push origin 3_Protegiendo_Rutas
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *****************************************************************

@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         User::create([
             'email' => 'mersmith14@gmail.com',
             'password' => bcrypt('123456789'),
+            'rol' => 'administrador',
         ])->assignRole('administrador', 'almacen')->{Administrador::factory(1)->create([
             'user_id' => 1,
             'correo' => 'mersmith14@gmail.com',
@@ -28,13 +29,16 @@ class UserSeeder extends Seeder
         User::create([
             'email' => 'sistemas3@digident.com.pe',
             'password' => bcrypt('123456789'),
+            'rol' => 'cliente',
         ])->{Cliente::factory(1)->create([
             'user_id' => 2,
             'correo' => 'sistemas3@digident.com.pe',
         ])};
 
         //Administradores
-        User::factory(5)->create()->each(function (User $usuario) {
+        User::factory(5)->create([
+            'rol' => 'administrador',
+        ])->each(function (User $usuario) {
             Administrador::factory(1)->create([
                 'user_id' => $usuario->id,
                 'correo' => $usuario->email,
@@ -42,7 +46,9 @@ class UserSeeder extends Seeder
         });
 
         //Clientes        
-        User::factory(5)->create()->each(function (User $usuario) {
+        User::factory(5)->create([
+            'rol' => 'cliente',
+        ])->each(function (User $usuario) {
             Cliente::factory(1)->create([
                 'user_id' => $usuario->id,
                 'correo' => $usuario->email,
