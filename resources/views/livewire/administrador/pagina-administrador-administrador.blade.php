@@ -6,6 +6,13 @@
     </div>
     <br>
     <div>
+        <a href="{{ route('administrador.administrador.crear') }}">Crear Administrador</a>
+        @if (session('crear'))
+            <p>{{ session('crear') }}</p>
+        @endif
+    </div>
+    <br>
+    <div>
         <h4>Buscador</h4>
         <input wire:model='buscar' type="text" placeholder="Busca un administrador">
     </div>
@@ -30,8 +37,11 @@
                             <td>{{ $administrador->correo }}</td>
                             <td>{{ $administrador->rol }}</td>
                             <td>
-                                <a
-                                    href="{{ route('administrador.administrador.editar', $administrador->user_id) }}">Editar</a>
+                                <a href="{{ route('administrador.administrador.editar', $administrador->user_id) }}">Editar
+                                </a>
+                                <a wire:click="'eliminarUsuario', '{{ $administrador->user_id }}'">Eliminar
+                                </a>
+
                             </td>
                         </tr>
                     @endforeach
