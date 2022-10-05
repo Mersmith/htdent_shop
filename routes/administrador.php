@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Administrador\AdministradorController;
 use App\Http\Controllers\Administrador\PermisoController;
 use App\Http\Controllers\Administrador\RolController;
+use App\Http\Livewire\Administrador\PaginaAdministradorAdministrador;
 use App\Http\Livewire\Administrador\PaginaPerfilAdministrador;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +28,11 @@ Route::controller(PermisoController::class)->group(function () {
     Route::put('permiso/{permiso}/editar', 'update')->name('permiso.update');
     Route::delete('permiso/{permiso}', 'destroy')->name('permiso.eliminar');
 });
+
+Route::get('administrador', PaginaAdministradorAdministrador::class)->middleware('can:Roles y permisos')->name('administrador.index');
+Route::controller(AdministradorController::class)->middleware('can:Roles y permisos')->group(function () {
+    Route::get('administrador/{usuario}/editar', 'edit')->name('administrador.editar');
+    Route::put('administrador/{usuario}/editar', 'update')->name('administrador.update');
+    Route::delete('administrador/{usuario}', 'destroy')->name('administrador.eliminar');
+});
+
