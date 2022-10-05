@@ -93,6 +93,7 @@ git push origin 2_Roles_Permisos
 
 **************************04/10/22***************************************
 
+PS C:\xampp\htdocs> git clone https://github.com/Mersmith/htdent_shop.git
 composer install
 npm install
 
@@ -108,4 +109,19 @@ git commit -m "Protegiendo Rutas Privadas con Administrador"
 git push origin 3_Protegiendo_Rutas
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*****************************************************************
+**************************05/10/22***************************************
+
+php artisan make:livewire Administrador/PaginaAdministradorAdministrador
+
+php artisan make:controller Administrador/AdministradorController -r
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 3_Roles_Permisos_Admin
+git branch
+git status
+
+git add .
+git commit -m "Agregar Roles y Permisos a Administradores"
+git push origin 3_Roles_Permisos_Admin
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

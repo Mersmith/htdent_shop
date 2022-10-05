@@ -18,7 +18,7 @@ class AdministradorMiddleware
                 return back()->with('rol', 'Acceso denegado');
             }
         } else {
-            return redirect('/login')->with('ingresar', 'Debe iniciar sesión');;
+            return redirect('/login')->with('ingresar', 'Debe iniciar sesión');
         }
     }
 }

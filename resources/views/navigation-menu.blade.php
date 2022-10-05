@@ -17,7 +17,7 @@
                     </x-jet-nav-link>
                     @can('Crear productos')
                         <x-jet-nav-link href="{{ route('administrador.perfil') }}" :active="request()->routeIs('administrador')">
-                            Administrador
+                            Perfil
                         </x-jet-nav-link>
                     @endcan
                     @can('Roles y permisos')
@@ -26,6 +26,9 @@
                         </x-jet-nav-link>
                         <x-jet-nav-link href="{{ route('administrador.permiso.index') }}" :active="request()->routeIs('administrador')">
                             Permisos
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('administrador.administrador.index') }}" :active="request()->routeIs('administrador.index')">
+                            Administradores
                         </x-jet-nav-link>
                     @endcan
                     @can('Ver ordenes')
