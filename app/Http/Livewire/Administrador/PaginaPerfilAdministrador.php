@@ -59,6 +59,6 @@ class PaginaPerfilAdministrador extends Component
 
         $usuario = User::find(Auth::user()->id);
 
-        return view('livewire.administrador.pagina-perfil-administrador', ['usuario' => $usuario]);
+        return view('livewire.administrador.pagina-perfil-administrador', ['usuario' => $usuario])->layout('layouts.administrador.administrador');
     }
 }
