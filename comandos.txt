@@ -138,7 +138,9 @@ git commit -m "Creando Administradores y redirigiendo rutas de los perfiles"
 git push origin 5_Creando_Administradores
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 **************************06/10/22***************************************
+
 php artisan make:controller Frontend/InicioController
 ->Creamos layout de Frontend y Administrador
 
@@ -150,5 +152,24 @@ git status
 git add .
 git commit -m "Creando Layouts de Administrador y Frontend"
 git push origin 6_Layout_Admin_Front
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************06/10/22***************************************
+
+->Crear menu principal
+php artisan make:livewire Frontend/Menu/MenuPrincipal
+php artisan make:livewire Frontend/Menu/MenuCarrito
+
+->https://www.convertsimple.com/convert-javascript-to-json/
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 7_Menu_Principal_1
+git branch
+git status
+
+git add .
+git commit -m "Avance Menu Principal"
+git push origin 7_Menu_Principal_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
