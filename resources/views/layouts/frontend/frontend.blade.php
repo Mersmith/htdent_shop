@@ -23,9 +23,8 @@
     <div class="min-h-screen bg-gray-100">
         {{--@livewire('navigation-menu')--}}
 
-        <div>
-            Menu de navegación
-        </div>
+        @livewire('frontend.menu.menu-principal')
+
 
         <!-- Contenido de páignas-->
         <main>
