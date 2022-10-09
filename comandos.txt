@@ -173,3 +173,16 @@ git commit -m "Avance Menu Principal"
 git push origin 7_Menu_Principal_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************08/10/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 8_Menu_Principal_2
+git branch
+git status
+
+git add .
+git commit -m "Termine de crear el menu principal del frontend con AlpineJS"
+git push origin 8_Menu_Principal_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
