@@ -186,3 +186,61 @@ git commit -m "Termine de crear el menu principal del frontend con AlpineJS"
 git push origin 8_Menu_Principal_2
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************10/10/22***************************************
+php artisan make:model Slider -m
+php artisan migrate
+php artisan make:seeder SliderSeeder
+
+->Crar las migraciones y modelos para productos
+
+->m:migración, s: seeder cantidad de registros, c: controlador, f: factories
+php artisan make:model Categoria -ms
+php artisan make:model Subcategoria -ms
+
+php artisan make:model Marca -mfs
+php artisan make:migration create_categoria_marca_table
+
+->Crea la migración, el modelo y factories
+php artisan make:model Producto -msf
+
+php artisan make:model Color -ms
+php artisan make:migration create_color_producto_table
+
+php artisan make:model Medida -mf
+php artisan make:migration create_color_medida_table
+
+php artisan make:model Imagen -mf
+
+php artisan make:factory CategoriaFactory
+
+php artisan make:factory SubcategoriaFactory
+
+php artisan make:seeder ColorProductoSeeder
+php artisan make:seeder MedidaSeeder
+php artisan make:model ColorMedida
+php artisan make:model ColorProducto
+
+php artisan make:seeder ColorMedidaSeeder
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+public const BASE_URL = 'https://placehold.jp';  // cambie la URL 
+
+curl_setopt($ch, CURLOPT_FILE, $fp); //línea existente
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);//nueva línea
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//nueva línea
+$success = curl_exec($ch) && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;//línea existente
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Frontend/Productos/SliderProducto
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 9_Slider_Migraciones_Productos
+git branch
+git status
+
+git add .
+git commit -m "Termine de crear el slider de pagina Inicio y Migraciones Producto"
+git push origin 9_Slider_Migraciones_Productos
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

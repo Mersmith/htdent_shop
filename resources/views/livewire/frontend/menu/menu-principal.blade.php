@@ -5,8 +5,8 @@
     @endphp
     <nav class="navbar">
         <!-- HAMBURGUESA -->
-        <div x-on:click="abrirSidebar" class="contenedor_hamburguesa icono_hamburguesa">
-            <i class="fa-solid fa-bars"></i>
+        <div x-on:click="abrirSidebar" class="contenedor_hamburguesa">
+            <i class="fa-solid fa-bars" style="color: #666666;"></i>
         </div>
         <!-- LOGO -->
         <div class="contenedor_logo">
@@ -18,7 +18,7 @@
         <div :class="{ 'block': abiertoSidebar, 'block': !abiertoSidebar }" class="contenedor_menu_link">
             <div class="sidebar_logo">
                 <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
-                <i x-on:click="cerrarSidebar" style="cursor: pointer;" class="fa-solid fa-xmark"></i>
+                <i x-on:click="cerrarSidebar" style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
             </div>
             <!-- MENU-PRINCIPAL -->
             <div class="menu_principal" x-on:click.away="seleccionado = null">
