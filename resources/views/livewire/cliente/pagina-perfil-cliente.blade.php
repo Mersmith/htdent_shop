@@ -1,4 +1,5 @@
 <div>
+    @section('tituloPagina', 'Perfil | '.$usuario->cliente->nombre )
     <h2>Cliente - Pagina Perfil </h2>
     <br>
     <div>
@@ -17,7 +18,7 @@
                     <img style="width: 100px; height: 100px;" src="{{ Storage::url($usuario->cliente->imagen_ruta) }}">
                 @else
                     <img style="width: 100px; height: 100px;"
-                        src="{{ asset('storage/imagenes/perfiles/sin_foto_perfil.png') }}">
+                        src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
                 @endif
                 <input type="file" wire:model="nueva_imagen_ruta">
             </div>
@@ -32,7 +33,7 @@
                 <p>Celular: </p> <input type="text" wire:model="celular">
             </label>
             <label>
-                <p>Puntos: </p> <input type="text" disabled value="{{$usuario->cliente->puntos}}">
+                <p>Puntos: </p> <input type="text" disabled value="{{ $usuario->cliente->puntos }}">
             </label>
             <br>
             <br>
