@@ -1,40 +1,40 @@
-const slider = document.querySelector("#slider");
-let sliderSection = document.querySelectorAll(".slider_section");
-let sliderSectionAnterior = sliderSection[sliderSection.length - 1];
+const sliderPrincipal = document.querySelector("#contenedor_slider_items");
+let sliderItemsPrincipal = document.querySelectorAll(".slider_item_principal");
+let sliderPrincipalAnterior = sliderItemsPrincipal[sliderItemsPrincipal.length - 1];
 
-const botonIzquierdo = document.querySelector("#boton_izquierdo");
-const botonDerecho = document.querySelector("#boton_derecho");
+const botonIzquieroSliderPrincipal = document.querySelector("#boton_izquierdo_slider_principal");
+const botonDerechoSliderPrincipal = document.querySelector("#boton_derecho_slider_principal");
 
-slider.insertAdjacentElement('afterbegin', sliderSectionAnterior);
+sliderPrincipal.insertAdjacentElement('afterbegin', sliderPrincipalAnterior);
 
 function Siguiente() {
-    let sliderSectionPrimero = document.querySelectorAll(".slider_section")[0];
-    slider.style.marginLeft = "-200%";
-    slider.style.transition = "all 0.5s";
+    let sliderSectionPrimero = document.querySelectorAll(".slider_item_principal")[0];
+    sliderPrincipal.style.marginLeft = "-200%";
+    sliderPrincipal.style.transition = "all 0.5s";
     setTimeout(function () {
-        slider.style.transition = "none";
-        slider.insertAdjacentElement('beforeend', sliderSectionPrimero);
-        slider.style.marginLeft = "-100%";
+        sliderPrincipal.style.transition = "none";
+        sliderPrincipal.insertAdjacentElement('beforeend', sliderSectionPrimero);
+        sliderPrincipal.style.marginLeft = "-100%";
     }, 500);
 }
 
 function Anterior() {
-    let sliderSection = document.querySelectorAll(".slider_section");
-    let sliderSectionUltimo = sliderSection[sliderSection.length - 1];
-    slider.style.marginLeft = "0";
-    slider.style.transition = "all 0.5s";
+    let sliderItemsPrincipal = document.querySelectorAll(".slider_item_principal");
+    let sliderSectionUltimo = sliderItemsPrincipal[sliderItemsPrincipal.length - 1];
+    sliderPrincipal.style.marginLeft = "0";
+    sliderPrincipal.style.transition = "all 0.5s";
     setTimeout(function () {
-        slider.style.transition = "none";
-        slider.insertAdjacentElement('afterbegin', sliderSectionUltimo);
-        slider.style.marginLeft = "-100%";
+        sliderPrincipal.style.transition = "none";
+        sliderPrincipal.insertAdjacentElement('afterbegin', sliderSectionUltimo);
+        sliderPrincipal.style.marginLeft = "-100%";
     }, 500);
 }
 
-botonDerecho.addEventListener('click', function () {
+botonDerechoSliderPrincipal.addEventListener('click', function () {
     Siguiente();
 });
 
-botonIzquierdo.addEventListener('click', function () {
+botonIzquieroSliderPrincipal.addEventListener('click', function () {
     Anterior();
 });
 
