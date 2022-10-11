@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('tituloPagina')</title>
-    @include('layouts.frontend.componentes.css')
+    @include('layouts.administrador.componentes.css')
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,9 +23,8 @@
     <div class="min-h-screen bg-gray-100">
         {{--@livewire('navigation-menu')--}}
 
-        <div>
-            Menu de navegación Administrador
-        </div>
+        @livewire('administrador.menu.menu-principal')
+
 
         <!-- Contenido de páignas-->
         <main>
@@ -37,7 +36,7 @@
         </div>
     </div>
 
-    @include('layouts.frontend.componentes.js')
+    @include('layouts.administrador.componentes.js')
     @stack('modals')
     @livewireScripts
     @stack('script')

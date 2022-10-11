@@ -244,3 +244,19 @@ git commit -m "Termine de crear el slider de pagina Inicio y Migraciones Product
 git push origin 9_Slider_Migraciones_Productos
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************11/10/22***************************************
+
+php artisan make:livewire Administrador/Menu/MenuPrincipal
+->Slider Producto
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 10_Slider_Producto
+git branch
+git status
+
+git add .
+git commit -m "Termine Slider Producto y un poco de Menu Principal Administrador"
+git push origin 10_Slider_Producto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
