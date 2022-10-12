@@ -1,3 +1,3 @@
-<div>
+<x-administrador-layout>
     <h1>Rol - Mostrar</h1>
-</div>
+</x-administrador-layout>

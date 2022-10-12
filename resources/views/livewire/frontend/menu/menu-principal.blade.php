@@ -20,6 +20,7 @@
                 <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
                 <i x-on:click="cerrarSidebar" style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
             </div>
+            <hr>
             <!-- MENU-PRINCIPAL -->
             <div class="menu_principal" x-on:click.away="seleccionado = null">
                 @foreach ($menuPrincipal as $key => $menu)
@@ -142,9 +143,9 @@
                         </div>
 
                     </div>
-                    <hr>
                 @endforeach
             </div>
+            <hr>
             <!-- FIN MENU-PRINCIPAL -->
         </div>
         <div class="contenedor_iconos">
@@ -155,20 +156,52 @@
                         <x-slot name="trigger">
                             <button
                                 class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                                    alt="{{ Auth::user()->name }}" />
+
+
+
+                                @if (Auth::user()->rol == 'administrador')
+                                    @if (Auth::user()->administrador->imagen_ruta)
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ Storage::url(Auth::user()->administrador->imagen_ruta) }}"
+                                            alt="{{ Auth::user()->administrador->nombre }}" />
+                                    @else
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
+                                    @endif
+                                @else
+                                    @if (Auth::user()->cliente->imagen_ruta)
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ Storage::url(Auth::user()->cliente->imagen_ruta) }}"
+                                            alt="{{ Auth::user()->cliente->nombre }}" />
+                                    @else
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
+                                    @endif
+                                @endif
+
+
                             </button>
                         </x-slot>
 
                         <x-slot name="content">
                             <!-- Menu Cliente -->
-                            <x-jet-dropdown-link href="{{ route('cliente.perfil') }}">
-                                {{ __('Perfil') }}
-                            </x-jet-dropdown-link>
+                            @if (Auth::user()->rol == 'administrador')
+                                <x-jet-dropdown-link href="{{ route('administrador.perfil') }}">
+                                    {{ __('Perfil') }}
+                                </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="#">
-                                {{ __('Ordenes') }}
-                            </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="#">
+                                    {{ __('Ordenes') }}
+                                </x-jet-dropdown-link>
+                            @else
+                                <x-jet-dropdown-link href="{{ route('cliente.perfil') }}">
+                                    {{ __('Perfil') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="#">
+                                    {{ __('Ventas') }}
+                                </x-jet-dropdown-link>
+                            @endif
 
                             <div class="border-t border-gray-100"></div>
 
