@@ -18,8 +18,8 @@
                         src="{{ Storage::url($usuario->administrador->imagen_ruta) }}">
                 @else
                     <img style="width: 100px; height: 100px;"
-                        src="{{ asset('storage/imagenes/perfiles/sin_foto_perfil.png') }}">
-                @endif
+                    src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
+                    @endif
                 <input type="file" wire:model="nueva_imagen_ruta">
             </div>
 

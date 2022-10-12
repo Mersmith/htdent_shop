@@ -1,6 +1,6 @@
 <header class="contenedor_navbar" x-data="sidebar" x-on:click.away="cerrarSidebar()">
     @php
-        $json_menu = file_get_contents('menuFrontend.json');
+        $json_menu = file_get_contents('menuAdministrador.json');
         $menuPrincipal = collect(json_decode($json_menu, true));
     @endphp
     <nav class="navbar">
@@ -10,7 +10,7 @@
         </div>
         <!-- LOGO -->
         <div class="contenedor_logo">
-            <a href="{{ route('inicio') }}">
+            <a href="{{ route('administrador.perfil') }}">
                 <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
             </a>
         </div>
@@ -20,6 +20,43 @@
                 <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
                 <i x-on:click="cerrarSidebar" style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
             </div>
+            <hr>
+            <div class="contenedor_administrador_sidebar">
+                @auth
+
+                    @if (Auth::user()->administrador->imagen_ruta)
+                        <img style="width: 100px; height: 100px;"
+                            src="{{ Storage::url(Auth::user()->administrador->imagen_ruta) }}">
+                    @else
+                        <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
+                    @endif
+                    
+                    <p>{{ Auth::user()->administrador->nombre }}</p>
+                    <span>{{ Auth::user()->email }}</span>
+
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <a href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Cerrar') }}
+                        </a>
+                    </form>
+                @else
+                    <x-jet-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <i class="fa-solid fa-user" style="color: #666666;"></i>
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-jet-dropdown-link href="{{ route('login') }}">
+                                {{ __('Entrar') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('register') }}">
+                                {{ __('Registrar') }}
+                            </x-jet-dropdown-link>
+                        </x-slot>
+                    </x-jet-dropdown>
+                @endauth
+            </div>
+            <hr>
             <!-- MENU-PRINCIPAL -->
             <div class="menu_principal" x-on:click.away="seleccionado = null">
                 @foreach ($menuPrincipal as $key => $menu)
@@ -47,76 +84,20 @@
                                         <div x-on:click="seleccionarSubMenu1({{ $keySub1 }})"
                                             class="menu_icono menu_icono_submenu"
                                             :style="seleccionadoSubMenu1 == {{ $keySub1 }} && { background: '#f3f4f6' }">
-                                            @if (count($subMenu1['subMenu2']))
-                                                <a class="submenu_nombre">{{ $subMenu1['nombreSubMenu1'] }}</a>
-                                                <i class="fa-solid fa-sort-down"></i>
-                                            @else
-                                                <a class="submenu_nombre"
-                                                    href={{ $subMenu1['nombreSubMenu1Url'] }}>{{ $subMenu1['nombreSubMenu1'] }}</a>
-                                            @endif
+                                            <a class="submenu_nombre"
+                                                href={{ $subMenu1['nombreSubMenu1Url'] }}>{{ $subMenu1['nombreSubMenu1'] }}</a>
                                         </div>
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-
                     </div>
-                    <hr>
                 @endforeach
             </div>
+            <hr>
             <!-- FIN MENU-PRINCIPAL -->
         </div>
         <div class="contenedor_iconos">
-            @auth
-                <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button
-                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                                    alt="{{ Auth::user()->name }}" />
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <!-- Menu Cliente -->
-                            <x-jet-dropdown-link href="{{ route('cliente.perfil') }}">
-                                {{ __('Perfil') }}
-                            </x-jet-dropdown-link>
-
-                            <x-jet-dropdown-link href="#">
-                                {{ __('Ordenes') }}
-                            </x-jet-dropdown-link>
-
-                            <div class="border-t border-gray-100"></div>
-
-                            <!-- Cerrar Sesión -->
-                            <form method="POST" action="{{ route('logout') }}" x-data>
-                                @csrf
-
-                                <x-jet-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                                    {{ __('Cerrar') }}
-                                </x-jet-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-jet-dropdown>
-                </div>
-            @else
-                <x-jet-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <i class="fa-solid fa-user" style="color: #666666;"></i>
-                    </x-slot>
-                    <x-slot name="content">
-                        <x-jet-dropdown-link href="{{ route('login') }}">
-                            {{ __('Entrar') }}
-                        </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('register') }}">
-                            {{ __('Registrar') }}
-                        </x-jet-dropdown-link>
-                    </x-slot>
-                </x-jet-dropdown>
-            @endauth
             <i class="fa-solid fa-heart" style="color: #ffa03d;"></i>
         </div>
     </nav>
@@ -149,8 +130,11 @@
                     }
                 },
                 cerrarSidebar() {
-                    this.abiertoSidebar = false;
-                    document.querySelector(".contenedor_menu_link").style.left = "-100%";
+                    let anchoPantalla = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                    if (anchoPantalla < 900) {
+                        this.abiertoSidebar = false;
+                        document.querySelector(".contenedor_menu_link").style.left = "-100%";
+                    }
                 }
             }
         }

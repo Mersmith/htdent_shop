@@ -1,4 +1,4 @@
-<div>
+<x-administrador-layout>
     <h1>Permiso - Editar</h1>
     <br>
     <h3>Editar permiso</h3>
@@ -43,4 +43,4 @@
         {!! Form::close() !!}
     </div>
 
-</div>
+</x-administrador-layout>

@@ -27,7 +27,7 @@
 
 
         <!-- Contenido de páignas-->
-        <main>
+        <main class="contenedor_layout_administrador">
             {{ $slot }}
         </main>
 

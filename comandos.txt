@@ -260,3 +260,16 @@ git commit -m "Termine Slider Producto y un poco de Menu Principal Administrador
 git push origin 10_Slider_Producto
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************12/10/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 11_Slider_Producto_Menu_Administrador
+git branch
+git status
+
+git add .
+git commit -m "Termine Slider Producto y el Menu Administrador"
+git push origin 11_Slider_Producto_Menu_Administrador
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

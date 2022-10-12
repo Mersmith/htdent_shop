@@ -30,6 +30,6 @@ class PaginaAdministradorAdministrador extends Component
         $administradores = Administrador::where('nombre', 'LIKE', '%' . $this->buscar . '%')
             ->orWhere('correo', 'LIKE', '%' . $this->buscar . '%')
             ->paginate(10);
-        return view('livewire.administrador.pagina-administrador-administrador', compact('administradores'));
+        return view('livewire.administrador.pagina-administrador-administrador', compact('administradores'))->layout('layouts.administrador.administrador');
     }
 }

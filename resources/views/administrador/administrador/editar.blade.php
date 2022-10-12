@@ -1,4 +1,4 @@
-<div>
+<x-administrador-layout>
     <h2>Administrador - Pagina Administrador </h2>
     <br>
     <div>
@@ -34,4 +34,4 @@
 
         {!! Form::close() !!}
     </div>
-</div>
+</x-administrador-layout>

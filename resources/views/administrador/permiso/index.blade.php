@@ -1,4 +1,4 @@
-<div>
+<x-administrador-layout>
     <h1>Permisos - Index</h1>
     <br>
     <h3>Lista de Permisos</h3>
@@ -49,4 +49,4 @@
             @endforelse
         </tbody>
     </table>
-</div>
+</x-administrador-layout>
