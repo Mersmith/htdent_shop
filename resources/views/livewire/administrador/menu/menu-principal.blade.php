@@ -11,13 +11,13 @@
         <!-- LOGO -->
         <div class="contenedor_logo">
             <a href="{{ route('administrador.perfil') }}">
-                <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
+                <img src="{{ asset('imagenes/empresa/logo.png') }}" alt="" />
             </a>
         </div>
         <!-- MENU -->
         <div :class="{ 'block': abiertoSidebar, 'block': !abiertoSidebar }" class="contenedor_menu_link">
             <div class="sidebar_logo">
-                <img src="{{ asset('Inicio/imagenes/logo.png') }}" alt="" />
+                <img src="{{ asset('imagenes/empresa/logo.png') }}" alt="" />
                 <i x-on:click="cerrarSidebar" style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
             </div>
             <hr>

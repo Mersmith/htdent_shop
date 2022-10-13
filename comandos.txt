@@ -273,3 +273,24 @@ git commit -m "Termine Slider Producto y el Menu Administrador"
 git push origin 11_Slider_Producto_Menu_Administrador
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************13/10/22***************************************
+->Reordene las carpetas
+
+php artisan make:controller Administrador\CategoriaController
+
+php artisan make:livewire Administrador/Categoria/PaginaCategoriaAdministrador
+
+->Pagina Categorias
+->Slider Testimonios
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 12_Slider_Testimonio_Pagina_Categoria
+git branch
+git status
+
+git add .
+git commit -m "Termine Slider Testimonios y la Pagina Administrador Categorias"
+git push origin 12_Slider_Testimonio_Pagina_Categoria
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

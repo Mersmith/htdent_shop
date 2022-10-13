@@ -1,2 +1,3 @@
-<script src="{{ asset('Inicio/js/slider-principal.js') }}"></script>
-<script src="{{ asset('Inicio/js/slider-producto.js') }}"></script>
+<script src="{{ asset('frontend/inicio/js/slider-principal.js') }}"></script>
+<script src="{{ asset('frontend/inicio/js/slider-producto.js') }}"></script>
+<script src="{{ asset('frontend/inicio/js/slider-testimonio.js') }}"></script>

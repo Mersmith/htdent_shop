@@ -29,32 +29,8 @@
   },
   {
     "id": 3,
-    "nombrePrincipal": "Ventas",
-    "nombrePrincipalUrl": "ventas",
+    "nombrePrincipal": "Categorias",
+    "nombrePrincipalUrl": "categoria",
     "subMenu1": []
-  },
-  {
-    "id": 4,
-    "nombrePrincipal": "Clientes",
-    "nombrePrincipalUrl": "implantes",
-    "subMenu1": [
-      {
-        "id": 1,
-        "nombreSubMenu1": "Todos",
-        "nombreSubMenu1Url": "point-implant"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "nombrePrincipal": "Productos",
-    "nombrePrincipalUrl": "productos",
-    "subMenu1": [
-      {
-        "id": 1,
-        "nombreSubMenu1": "todos",
-        "nombreSubMenu1Url": "todos"
-      }
-    ]
   }
 ]

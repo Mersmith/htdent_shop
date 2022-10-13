@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Cliente\PaginaPerfilCliente;
+use App\Http\Livewire\Cliente\Perfil\PaginaPerfilCliente;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'cliente/perfil');
