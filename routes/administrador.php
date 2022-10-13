@@ -3,8 +3,9 @@
 use App\Http\Controllers\Administrador\AdministradorController;
 use App\Http\Controllers\Administrador\PermisoController;
 use App\Http\Controllers\Administrador\RolController;
-use App\Http\Livewire\Administrador\PaginaAdministradorAdministrador;
-use App\Http\Livewire\Administrador\PaginaPerfilAdministrador;
+use App\Http\Livewire\Administrador\Administrador\PaginaAdministradorAdministrador;
+use App\Http\Livewire\Administrador\Perfil\PaginaPerfilAdministrador;
+use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -37,4 +38,8 @@ Route::controller(AdministradorController::class)->middleware('can:Roles y permi
     Route::put('administrador/{usuario}/editar', 'update')->name('administrador.update');
     Route::delete('administrador/{usuario}', 'destroy')->name('administrador.eliminar');
 });
+
+//Route::get('categoria', [CategoriaController::class, 'index'])->name('categoria.index');
+Route::get('categoria', PaginaCategoriaAdministrador::class)->name('categoria');
+
 
