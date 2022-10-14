@@ -6,8 +6,4 @@
     
     @include('frontend.inicio.slider-testimonio')
 
-
-    <h1>Pagina Inicio</h1>
-    <div>Slider</div>
-    <div>Categorias</div>
 </x-frontend-layout>

@@ -32,5 +32,11 @@
     "nombrePrincipal": "Categorias",
     "nombrePrincipalUrl": "categoria",
     "subMenu1": []
+  },
+  {
+    "id": 4,
+    "nombrePrincipal": "Marca",
+    "nombrePrincipalUrl": "marca",
+    "subMenu1": []
   }
 ]

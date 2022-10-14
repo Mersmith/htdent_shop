@@ -6,6 +6,8 @@ use App\Http\Controllers\Administrador\RolController;
 use App\Http\Livewire\Administrador\Administrador\PaginaAdministradorAdministrador;
 use App\Http\Livewire\Administrador\Perfil\PaginaPerfilAdministrador;
 use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
+use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
+use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -39,7 +41,6 @@ Route::controller(AdministradorController::class)->middleware('can:Roles y permi
     Route::delete('administrador/{usuario}', 'destroy')->name('administrador.eliminar');
 });
 
-//Route::get('categoria', [CategoriaController::class, 'index'])->name('categoria.index');
 Route::get('categoria', PaginaCategoriaAdministrador::class)->name('categoria');
-
-
+Route::get('subcategoria/{categoria}', PaginaSubcategoriaAdministrador::class)->name('subcategoria');
+Route::get('marca', PaginaMarcaAdministrador::class)->name('marca');
