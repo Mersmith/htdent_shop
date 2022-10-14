@@ -107,13 +107,12 @@ class PaginaCategoriaAdministrador extends Component
         $categoria->marcas()->attach($this->crearFormulario['marcas']);
 
         $this->aleatorio = rand();
-
-        $this->reset('crearFormulario');
-
+        
         $this->traerCategorias();
-
+        
         //Emitir eventos a los padres y no a los componentes secundarios o hermanos.
-        $this->emit('crearCategoriaMensaje');
+        $this->emit('crearCategoriaMensaje', $this->crearFormulario['nombre']);
+        $this->reset('crearFormulario');
     }
 
     public function editarCategoria(Categoria $categoria)

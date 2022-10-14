@@ -294,3 +294,19 @@ git commit -m "Termine Slider Testimonios y la Pagina Administrador Categorias"
 git push origin 12_Slider_Testimonio_Pagina_Categoria
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************14/10/22***************************************
+php artisan make:livewire Administrador/Subcategoria/PaginaSubcategoriaAdministrador
+->Subcategoria
+php artisan make:livewire Administrador/Marca/PaginaMarcaAdministrador
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 13_Pagina_administrador_Subcategoria_Marca
+git branch
+git status
+
+git add .
+git commit -m "Termine Pagina Subcategoria y Marca"
+git push origin 13_Pagina_administrador_Subcategoria_Marca
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
