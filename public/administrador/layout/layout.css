@@ -73,6 +73,16 @@
     cursor: pointer;
 }
 
+/*Estilos lista ckeditor5 */
+.ck.ck-content ul,
+.ck.ck-content ul li{
+  list-style-type: inherit;
+}
+
+.ck.ck-content ul {
+  padding-left: 40px;
+}
+/*Fin Estilos lista ckeditor5 */
 
 @media (max-width: 900px) {
     .contenedor_layout_administrador {

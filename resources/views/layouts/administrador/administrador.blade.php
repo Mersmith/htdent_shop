@@ -7,13 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('tituloPagina')</title>
-    @include('layouts.administrador.componentes.css')
-
+    
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    
     <!-- Styles -->
     @livewireStyles
+    @include('layouts.administrador.componentes.css')
 </head>
 
 <body class="font-sans antialiased">
