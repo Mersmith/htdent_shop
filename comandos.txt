@@ -310,3 +310,18 @@ git commit -m "Termine Pagina Subcategoria y Marca"
 git push origin 13_Pagina_administrador_Subcategoria_Marca
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************15/10/22***************************************
+->Producto
+php artisan make:livewire Administrador/Producto/PaginaCrearProductoAdministrador
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 14_Pagina_administrador_Crear_Producto_1
+git branch
+git status
+
+git add .
+git commit -m "Avance de pagina crear producto"
+git push origin 14_Pagina_administrador_Crear_Producto_1
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -38,5 +38,17 @@
     "nombrePrincipal": "Marca",
     "nombrePrincipalUrl": "marca",
     "subMenu1": []
+  },
+  {
+    "id": 5,
+    "nombrePrincipal": "Producto",
+    "nombrePrincipalUrl": "producto",
+    "subMenu1": [
+      {
+        "id": 1,
+        "nombreSubMenu1": "Crear Producto",
+        "nombreSubMenu1Url": "producto/crear"
+      }
+    ]
   }
 ]

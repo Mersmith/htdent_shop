@@ -8,6 +8,7 @@ use App\Http\Livewire\Administrador\Perfil\PaginaPerfilAdministrador;
 use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
+use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -44,3 +45,4 @@ Route::controller(AdministradorController::class)->middleware('can:Roles y permi
 Route::get('categoria', PaginaCategoriaAdministrador::class)->name('categoria');
 Route::get('subcategoria/{categoria}', PaginaSubcategoriaAdministrador::class)->name('subcategoria');
 Route::get('marca', PaginaMarcaAdministrador::class)->name('marca');
+Route::get('producto/crear', PaginaCrearProductoAdministrador::class)->name('producto.crear');
