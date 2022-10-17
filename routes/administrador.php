@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Administrador\AdministradorController;
 use App\Http\Controllers\Administrador\PermisoController;
+use App\Http\Controllers\Administrador\ProductoController;
 use App\Http\Controllers\Administrador\RolController;
 use App\Http\Livewire\Administrador\Administrador\PaginaAdministradorAdministrador;
 use App\Http\Livewire\Administrador\Perfil\PaginaPerfilAdministrador;
@@ -9,6 +10,8 @@ use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
+use App\Http\Livewire\Administrador\Producto\PaginaEditarProductoAdministrador;
+use App\Http\Livewire\Administrador\Producto\PaginaTodosProductoAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -45,4 +48,8 @@ Route::controller(AdministradorController::class)->middleware('can:Roles y permi
 Route::get('categoria', PaginaCategoriaAdministrador::class)->name('categoria');
 Route::get('subcategoria/{categoria}', PaginaSubcategoriaAdministrador::class)->name('subcategoria');
 Route::get('marca', PaginaMarcaAdministrador::class)->name('marca');
+
+Route::get('producto', PaginaTodosProductoAdministrador::class)->name('producto.index');
 Route::get('producto/crear', PaginaCrearProductoAdministrador::class)->name('producto.crear');
+Route::get('producto/{producto}/editar', PaginaEditarProductoAdministrador::class)->name('producto.editar');
+Route::post('producto/{producto}/files', [ProductoController::class, 'files'])->name('producto.files');

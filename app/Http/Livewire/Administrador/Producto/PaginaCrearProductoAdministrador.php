@@ -36,9 +36,13 @@ class PaginaCrearProductoAdministrador extends Component
         'puntos_ganar' => 'required',
         'puntos_tope' => 'required',
         'tiene_detalle' => 'required',
-        'detalle' => 'required',
         'estado' => 'required',
     ];
+    
+    public function mount()
+    {
+        $this->categorias = Categoria::all();
+    }
 
     public function updatedCategoriaId($value)
     {
@@ -54,16 +58,13 @@ class PaginaCrearProductoAdministrador extends Component
     public function updatedNombre($value)
     {
         $this->slug = Str::slug($value);
+        $this->sku = strtoupper(substr($value, 0, 2)) . "-" . "C" . rand(1, 500) . strtoupper(substr($value, -2));
     }
 
+    //Propiedad computada
     public function getSubcategoriaProperty()
     {
         return Subcategoria::find($this->subcategoria_id);
-    }
-
-    public function mount()
-    {
-        $this->categorias = Categoria::all();
     }
 
     public function crearProducto()
@@ -74,6 +75,12 @@ class PaginaCrearProductoAdministrador extends Component
             if (!$this->subcategoria->tiene_color && !$this->subcategoria->medida) {
                 $rules['stock_total'] = 'required';
             }
+        }
+
+        if ($this->tiene_detalle) {
+            $rules['detalle'] = 'required';
+        } else {
+            $this->detalle = null;
         }
 
         $this->validate($rules);
@@ -91,6 +98,7 @@ class PaginaCrearProductoAdministrador extends Component
         $producto->puntos_ganar = $this->puntos_ganar;
         $producto->puntos_tope = $this->puntos_tope;
         $producto->tiene_detalle = $this->tiene_detalle;
+        $producto->detalle = $this->detalle;
         $producto->estado  = $this->estado;
 
         if ($this->subcategoria_id) {
@@ -102,19 +110,17 @@ class PaginaCrearProductoAdministrador extends Component
         $producto->save();
 
         $this->validate([
-            'imagenes.*' => 'image|max:1024', // 1MB Max
+            'imagenes.*' => 'image|max:1024',
         ]);
 
         foreach ($this->imagenes as $imagen) {
-            //$photo->store('photos');
             $urlImagen = Storage::put('productos', $imagen);
 
             $producto->imagenes()->create([
                 'imagen_ruta' => $urlImagen
             ]);
         }
-
-        return $producto;
+        return dump($producto);
 
         //return redirect()->route('admin.productos.editar', $producto);
     }

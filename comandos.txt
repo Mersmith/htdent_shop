@@ -338,3 +338,23 @@ git commit -m "Pie pagina"
 git push origin 15_Pie_Pagina
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Administrador/Producto/PaginaTodosProductoAdministrador
+php artisan make:livewire Administrador/Producto/PaginaEditarProductoAdministrador
+php artisan make:controller Administrador/ProductoController
+
+php artisan make:livewire Administrador/Producto/ComponenteVariaMedida
+php artisan make:livewire Administrador/Producto/ComponenteVariaMedidaColor
+php artisan make:livewire Administrador/Producto/ComponenteVariaColor
+php artisan make:livewire Administrador/Producto/ComponenteEstadoProducto
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 16_Crear_Producto
+git branch
+git status
+
+git add .
+git commit -m "Crear producto, listar"
+git push origin 16_Crear_Producto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
