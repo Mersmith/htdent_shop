@@ -325,3 +325,16 @@ git commit -m "Avance de pagina crear producto"
 git push origin 14_Pagina_administrador_Crear_Producto_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************16/10/22***************************************
+->Pie pagina
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 15_Pie_Pagina
+git branch
+git status
+
+git add .
+git commit -m "Pie pagina"
+git push origin 15_Pie_Pagina
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -147,7 +147,7 @@
             <div class="contenedor_elemento_formulario" wire:ignore>
                 <label for="informacion">Información:</label>
                 <textarea rows="3" wire:model="informacion" id="informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
-                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'numberedList']
+                        toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList']
                     })
                     .then(function(editor) {
                         editor.model.document.on('change:data', () => {
