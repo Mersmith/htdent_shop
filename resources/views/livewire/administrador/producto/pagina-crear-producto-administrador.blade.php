@@ -2,7 +2,7 @@
     <div class="titulo_pagina">
         <h2>Crear Producto</h2>
     </div>
-    <div class="contenedor_formulario">
+    <div class="contenedor_formulario" x-data>
         <form wire:submit.prevent="crearProducto">
             <!--Estado-->
             <div class="contenedor_elemento_formulario">
@@ -190,13 +190,13 @@
                 <div class="estado">
                     <label>
                         <input type="radio" value="1" name="tiene_detalle" wire:model.defer="tiene_detalle"
-                            id="tiene_detalle">
+                            id="tiene_detalle" x-on:click="$wire.tiene_detalle = 1">
                         Si
                     </label>
 
                     <label>
                         <input type="radio" value="0" name="tiene_detalle" wire:model.defer="tiene_detalle"
-                            id="tiene_detalle">
+                            id="tiene_detalle" x-on:click="$wire.tiene_detalle = 0">
                         No
                     </label>
                 </div>
@@ -207,12 +207,12 @@
                 @enderror
             </div>
             <!--Detalle-->
-            <div class="contenedor_elemento_formulario" wire:ignore>
+            <div class="contenedor_elemento_formulario" wire:ignore x-show="$wire.tiene_detalle">
                 <label for="detalle">Detalle:</label>
                 <textarea rows="3" wire:model="detalle" id="detalle" x-data x-init="ClassicEditor.create($refs.miEditor2, {
                         toolbar: ['insertTable', 'bold'],
                         table: {
-                            contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
+                            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
                         }
                     })
                     .then(function(editor2) {
@@ -232,6 +232,7 @@
             </div>
             <!--Tipo de Subcategoria-->
             @if ($subcategoria_id)
+                <!--Propiedad computada-->
                 @if ($this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
                     <p>El producto varia en Color</p>
                 @elseif(!$this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
@@ -240,6 +241,16 @@
                     <p>El producto varia en Color y Medida</p>
                 @else
                     <p>El producto no tiene variación</p>
+                    <!--Stock-->
+                    <div class="contenedor_elemento_formulario">
+                        <label for="stock_total">Stock:</label>
+                        <input type="number" wire:model="stock_total" id="stock_total" step="1">
+                        @error('stock_total')
+                            <span>
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 @endif
             @endif
             <!--Enviar-->
@@ -248,7 +259,4 @@
             </div>
         </form>
     </div>
-
-
-
 </div>

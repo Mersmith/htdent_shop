@@ -46,7 +46,12 @@
     "subMenu1": [
       {
         "id": 1,
-        "nombreSubMenu1": "Crear Producto",
+        "nombreSubMenu1": "Todos los productos",
+        "nombreSubMenu1Url": "producto"
+      },
+      {
+        "id": 2,
+        "nombreSubMenu1": "Crear producto",
         "nombreSubMenu1Url": "producto/crear"
       }
     ]

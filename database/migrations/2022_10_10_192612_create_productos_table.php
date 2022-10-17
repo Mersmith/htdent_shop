@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('puntos_tope')->nullable();
             $table->string('link_video')->nullable();
             $table->boolean('tiene_detalle')->default(false);
+            $table->text('detalle')->nullable();
             $table->enum('estado', [Producto::BORRADOR, Producto::PUBLICADO])->default(Producto::BORRADOR);
 
             $table->foreign('subcategoria_id')->references('id')->on('subcategorias')->onDelete('cascade');
