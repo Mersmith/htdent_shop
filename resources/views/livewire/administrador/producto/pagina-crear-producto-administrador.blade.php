@@ -10,12 +10,12 @@
                 <div class="estado">
                     <label>
                         <input type="radio" value="1" name="estado" wire:model.defer="estado" id="estado">
-                        Si
+                        Publicado
                     </label>
 
                     <label>
-                        <input type="radio" value="0" name="estado" wire:model.defer="estado" id="estado">
-                        No
+                        <input type="radio" value="2" name="estado" wire:model.defer="estado" id="estado">
+                        Borrador
                     </label>
                 </div>
                 @error('estado')
@@ -71,6 +71,18 @@
                         <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
                     @endforeach
                 </select>
+                @if ($subcategoria_id)
+                    <!--Propiedad computada-->
+                    @if ($this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
+                        <code>El producto varia en Color</code>
+                    @elseif(!$this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
+                        <code>El producto varia en Medida</code>
+                    @elseif($this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
+                        <code>El producto varia en Color y Medida</code>
+                    @else
+                        <code>El producto No tiene Variación</code>
+                    @endif
+                @endif
                 @error('subcategoria_id')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -233,14 +245,7 @@
             <!--Tipo de Subcategoria-->
             @if ($subcategoria_id)
                 <!--Propiedad computada-->
-                @if ($this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
-                    <p>El producto varia en Color</p>
-                @elseif(!$this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
-                    <p>El producto varia en Medida</p>
-                @elseif($this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
-                    <p>El producto varia en Color y Medida</p>
-                @else
-                    <p>El producto no tiene variación</p>
+                @if (!$this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
                     <!--Stock-->
                     <div class="contenedor_elemento_formulario">
                         <label for="stock_total">Stock:</label>

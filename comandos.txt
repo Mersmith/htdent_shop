@@ -369,3 +369,14 @@ git commit -m "Llamada acción inicio"
 git push origin 17_Llamada_accion_inicio
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 18_Editar_Producto
+git branch
+git status
+
+git add .
+git commit -m "Termine editar producto y avance de variación de color producto"
+git push origin 18_Editar_Producto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
