@@ -6,15 +6,15 @@ use Livewire\Component;
 
 class ComponenteEstadoProducto extends Component
 {
-    public $producto, $estado;
+    public $productoEstado, $estado;
 
     public function mount(){
-        $this->estado = $this->producto->estado;
+        $this->estado = $this->productoEstado->estado;
     }
 
     public function actualizarEstadoProducto(){
-        $this->producto->estado = $this->estado;
-        $this->producto->save();
+        $this->productoEstado->estado = $this->estado;
+        $this->productoEstado->save();
 
         $this->emit('mensajeProductoEstado');
     }

@@ -58,7 +58,7 @@ class PaginaCrearProductoAdministrador extends Component
     public function updatedNombre($value)
     {
         $this->slug = Str::slug($value);
-        $this->sku = strtoupper(substr($value, 0, 2)) . "-" . "C" . rand(1, 500) . strtoupper(substr($value, -2));
+        $this->sku = trim(strtoupper(substr($value, 0, 2)) . "-" . "S" . rand(1, 500) . strtoupper(substr($value, -2)));
     }
 
     //Propiedad computada

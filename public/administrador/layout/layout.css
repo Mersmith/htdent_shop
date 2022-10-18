@@ -34,6 +34,27 @@
     font-weight: 400;
 }
 
+.contenedor_formulario_imagen {
+    display: flex;
+}
+
+.contenedor_formulario_imagen div {
+    position: relative;
+}
+
+.contenedor_formulario_imagen button {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+.contenedor_formulario_imagen i {
+    color: #666666;
+}
+
+.contenedor_formulario_imagen i:hover {
+    color: #009eff;
+}
+
 .contenedor_formulario_imagen img {
     margin-bottom: 8px;
 }
@@ -69,19 +90,20 @@
     font-weight: 500;
 }
 
-.tabla_controles{
+.tabla_controles {
     cursor: pointer;
 }
 
 /*Estilos lista ckeditor5 */
 .ck.ck-content ul,
-.ck.ck-content ul li{
-  list-style-type: inherit;
+.ck.ck-content ul li {
+    list-style-type: inherit;
 }
 
 .ck.ck-content ul {
-  padding-left: 40px;
+    padding-left: 40px;
 }
+
 /*Fin Estilos lista ckeditor5 */
 
 @media (max-width: 900px) {

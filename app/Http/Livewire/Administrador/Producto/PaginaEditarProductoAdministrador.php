@@ -16,9 +16,10 @@ class PaginaEditarProductoAdministrador extends Component
 {
     protected $listeners = ['dropImagenes', 'eliminarProducto'];
 
-    public $producto, $categorias, $subcategorias, $marcas, $slug, $sku;
+    public $producto, $categorias, $subcategorias, $marcas, $slug, $sku, $tiene_detalle;
     public $categoria_id;
 
+    //toma y sincroniza los valores de $producto
     protected $rules = [
         'categoria_id' => 'required',
         'producto.subcategoria_id' => 'required',
@@ -33,6 +34,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar' => 'numeric',
         'producto.puntos_tope' => 'numeric',
         'producto.tiene_detalle' => 'required',
+        'producto.detalle' => 'required',
     ];
 
     public function mount(Producto $producto)
@@ -46,6 +48,8 @@ class PaginaEditarProductoAdministrador extends Component
         $this->subcategorias = Subcategoria::where('categoria_id', $this->categoria_id)->get();
 
         $this->slug = $this->producto->slug;
+        $this->sku = $this->producto->sku;
+        $this->tiene_detalle = $this->producto->tiene_detalle;
 
         $this->marcas = Marca::whereHas('categorias', function (Builder $query) {
             $query->where('categoria_id', $this->categoria_id);
@@ -60,7 +64,6 @@ class PaginaEditarProductoAdministrador extends Component
             $query->where('categoria_id', $value);
         })->get();
 
-        /* $this->reset(['subcategory_id', 'brand_id']); */
         $this->producto->subcategoria_id  = "";
         $this->producto->marca_id  = "";
     }
@@ -68,14 +71,13 @@ class PaginaEditarProductoAdministrador extends Component
     public function updatedProductoNombre($value)
     {
         $this->slug = Str::slug($value);
-        $this->sku = strtoupper(substr($value, 0, 2)) . "-" . "C" . rand(1, 500) . strtoupper(substr($value, -2));
+        $this->sku = trim(strtoupper(substr($value, 0, 2)) . "-" . "S" . rand(1, 500) . strtoupper(substr($value, -2)));
     }  
 
     public function getSubcategoriaProperty()
     {
         return Subcategoria::find($this->producto->subcategoria_id);
     }
-
 
     public function dropImagenes()
     {
@@ -86,6 +88,7 @@ class PaginaEditarProductoAdministrador extends Component
     {
         $rules = $this->rules;
         $rules['slug'] = 'required|unique:productos,slug,' . $this->producto->id;
+        $rules['sku'] = 'required|unique:productos,sku,' . $this->producto->id;
 
         if ($this->producto->subcategoria_id) {
             if (!$this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida) {
@@ -96,10 +99,11 @@ class PaginaEditarProductoAdministrador extends Component
         $this->validate($rules);
 
         $this->producto->slug = $this->slug;
+        $this->producto->sku = $this->sku;
 
         $this->producto->save();
 
-        $this->emit('mensajeProductoCreado');
+        $this->emit('mensajeProductoActualizado');
     }
 
     public function eliminarImagen(Imagen $imagen)
