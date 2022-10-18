@@ -358,3 +358,14 @@ git commit -m "Crear producto, listar"
 git push origin 16_Crear_Producto
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 17_Llamada_accion_inicio
+git branch
+git status
+
+git add .
+git commit -m "Llamada acción inicio"
+git push origin 17_Llamada_accion_inicio
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
