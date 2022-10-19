@@ -259,7 +259,6 @@
         </form>
 
         <hr>
-
         @if ($this->subcategoria)
             @if ($this->subcategoria->tiene_medida && !$this->subcategoria->tiene_color)
                 @livewire('administrador.producto.componente-varia-medida', ['producto' => $producto], key('producto.componente-varia-medida-' . $producto->id))

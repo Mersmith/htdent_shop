@@ -380,3 +380,16 @@ git commit -m "Termine editar producto y avance de variación de color producto"
 git push origin 18_Editar_Producto
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+php artisan make:livewire Administrador/Producto/VariaMedidaStock
+php artisan make:livewire Administrador/Producto/VariaMedidaColorStock
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 19_Variacion_Producto
+git branch
+git status
+
+git add .
+git commit -m "Termine la variación de producto en color, medida, medidacolor y sin variación."
+git push origin 19_Variacion_Producto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
