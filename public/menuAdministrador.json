@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombrePrincipal": "Perfil",
-    "nombrePrincipalUrl": "perfil",
+    "nombrePrincipalUrl": "administrador.perfil",
     "subMenu1": []
   },
   {
@@ -13,30 +13,30 @@
       {
         "id": 1,
         "nombreSubMenu1": "Roles",
-        "nombreSubMenu1Url": "rol"
+        "nombreSubMenu1Url": "administrador.rol.index"
       },
       {
         "id": 2,
         "nombreSubMenu1": "Permisos",
-        "nombreSubMenu1Url": "permiso"
+        "nombreSubMenu1Url": "administrador.permiso.index"
       },
       {
         "id": 3,
         "nombreSubMenu1": "Administradores",
-        "nombreSubMenu1Url": "administrador"
+        "nombreSubMenu1Url": "administrador.administrador.index"
       }
     ]
   },
   {
     "id": 3,
     "nombrePrincipal": "Categorias",
-    "nombrePrincipalUrl": "categoria",
+    "nombrePrincipalUrl": "administrador.categoria",
     "subMenu1": []
   },
   {
     "id": 4,
     "nombrePrincipal": "Marca",
-    "nombrePrincipalUrl": "marca",
+    "nombrePrincipalUrl": "administrador.marca",
     "subMenu1": []
   },
   {
@@ -47,12 +47,12 @@
       {
         "id": 1,
         "nombreSubMenu1": "Todos los productos",
-        "nombreSubMenu1Url": "producto"
+        "nombreSubMenu1Url": "administrador.producto.index"
       },
       {
         "id": 2,
         "nombreSubMenu1": "Crear producto",
-        "nombreSubMenu1Url": "producto/crear"
+        "nombreSubMenu1Url": "administrador.producto.crear"
       }
     ]
   }

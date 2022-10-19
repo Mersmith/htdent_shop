@@ -30,7 +30,7 @@
                     @else
                         <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
                     @endif
-                    
+
                     <p>{{ Auth::user()->administrador->nombre }}</p>
                     <span>{{ Auth::user()->email }}</span>
 
@@ -69,7 +69,8 @@
                                 <i class="fa-solid fa-sort-down"></i>
                             @else
                                 <a class="menu_nombre"
-                                    href={{ $menu['nombrePrincipalUrl'] }}>{{ $menu['nombrePrincipal'] }}</a>
+                                    href="{{ route($menu['nombrePrincipalUrl']) }}">{{ $menu['nombrePrincipal'] }}</a>
+                                {{-- <a class="menu_nombre" href={{ $menu['nombrePrincipalUrl'] }}>{{ $menu['nombrePrincipal'] }}</a> --}}
                             @endif
                         </div>
                         <!--SubMenu1-->
@@ -85,7 +86,7 @@
                                             class="menu_icono menu_icono_submenu"
                                             :style="seleccionadoSubMenu1 == {{ $keySub1 }} && { background: '#f3f4f6' }">
                                             <a class="submenu_nombre"
-                                                href={{ $subMenu1['nombreSubMenu1Url'] }}>{{ $subMenu1['nombreSubMenu1'] }}</a>
+                                                href="{{ route($subMenu1['nombreSubMenu1Url']) }}">{{ $subMenu1['nombreSubMenu1'] }}</a>
                                         </div>
                                     </div>
                                 @endforeach

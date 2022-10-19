@@ -9,11 +9,6 @@ use Illuminate\Support\Str;
 
 class SubcategoriaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $subcategorias = [
@@ -22,23 +17,25 @@ class SubcategoriaSeeder extends Seeder
                 'categoria_id' => 1,
                 'nombre' => 'Rayos x Portatil',
                 'slug' => Str::slug('Rayos x Portatil'),
-                'tiene_color' => true
             ],
-
             [
                 'categoria_id' => 1,
                 'nombre' => 'Sensor RVG',
                 'slug' => Str::slug('Sensor RVG'),
+                'tiene_medida' => true
             ],
-
             [
                 'categoria_id' => 1,
                 'nombre' => 'Digitalizador Intraoral',
                 'slug' => Str::slug('Digitalizador Intraoral'),
             ],
+            [
+                'categoria_id' => 1,
+                'nombre' => 'Escaneador Intraoral',
+                'slug' => Str::slug('Escaneador Intraoral'),
+            ],
 
             /* Equipos extraorales */
-
             [
                 'categoria_id' => 2,
                 'nombre' => 'Vatech',
@@ -62,26 +59,23 @@ class SubcategoriaSeeder extends Seeder
             /* Implantes */
             [
                 'categoria_id' => 4,
-                'nombre' => 'Point Implant ',
-                'slug' => Str::slug('Point Implant '),
+                'nombre' => 'Point Implant',
+                'slug' => Str::slug('Point Implant'),
+                'tiene_medida' => true
             ],
-
             [
                 'categoria_id' => 4,
                 'nombre' => 'Megagen',
                 'slug' => Str::slug('Megagen'),
+                'tiene_medida' => true
             ],
-
             [
                 'categoria_id' => 4,
                 'nombre' => 'Kuwotech',
                 'slug' => Str::slug('Kuwotech'),
+                'tiene_medida' => true
             ],
-
-
-
         ];
-
 
         foreach ($subcategorias as $subcategoria) {
             Subcategoria::factory(1)->create($subcategoria);

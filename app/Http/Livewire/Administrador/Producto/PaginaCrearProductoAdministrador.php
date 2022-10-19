@@ -120,9 +120,8 @@ class PaginaCrearProductoAdministrador extends Component
                 'imagen_ruta' => $urlImagen
             ]);
         }
-        return dump($producto);
 
-        //return redirect()->route('admin.productos.editar', $producto);
+        return redirect()->route('administrador.producto.editar', $producto);
     }
 
     public function render()

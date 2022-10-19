@@ -47,14 +47,14 @@
             "subMenu3": [
               {
                 "id": 1,
-                "nombreSubMenu3": "1,5",
+                "nombreSubMenu3": "1.5",
                 "nombreSubMenu3Url": "1-5",
                 "subMenu4": []
               },
               {
                 "id": 2,
-                "nombreSubMenu3": "2",
-                "nombreSubMenu3Url": "2",
+                "nombreSubMenu3": "2.0",
+                "nombreSubMenu3Url": "2-0",
                 "subMenu4": []
               }
             ]
@@ -66,14 +66,14 @@
             "subMenu3": [
               {
                 "id": 1,
-                "nombreSubMenu3": "1,5",
-                "nombreSubMenu3Url": "1-5",
+                "nombreSubMenu3": "1.0",
+                "nombreSubMenu3Url": "1-0",
                 "subMenu4": []
               },
               {
                 "id": 2,
-                "nombreSubMenu3": "2",
-                "nombreSubMenu3Url": "2",
+                "nombreSubMenu3": "2.0",
+                "nombreSubMenu3Url": "2.0",
                 "subMenu4": []
               }
             ]
@@ -85,17 +85,55 @@
             "subMenu3": [
               {
                 "id": 1,
-                "nombreSubMenu3": "1,5",
-                "nombreSubMenu3Url": "1-5",
+                "nombreSubMenu3": "1.0",
+                "nombreSubMenu3Url": "1-0",
                 "subMenu4": []
               },
               {
                 "id": 2,
-                "nombreSubMenu3": "2",
-                "nombreSubMenu3Url": "2",
+                "nombreSubMenu3": "1.0",
+                "nombreSubMenu3Url": "2.0",
                 "subMenu4": []
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nombreSubMenu1": "Digitalizador Intraoral",
+        "nombreSubMenu1Url": "digitalizador-intraoral",
+        "subMenu2": [
+          {
+            "id": 1,
+            "nombreSubMenu2": "Cruxcan",
+            "nombreSubMenu2Url": "cruxcan",
+            "subMenu3": []
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "nombreSubMenu1": "Escaneador Intraoral",
+        "nombreSubMenu1Url": "escaneador-intraoral",
+        "subMenu2": [
+          {
+            "id": 1,
+            "nombreSubMenu2": "EzScan",
+            "nombreSubMenu2Url": "ezscan",
+            "subMenu3": []
+          },
+          {
+            "id": 2,
+            "nombreSubMenu2": "I500",
+            "nombreSubMenu2Url": "i500",
+            "subMenu3": []
+          },
+          {
+            "id": 3,
+            "nombreSubMenu2": "I700",
+            "nombreSubMenu2Url": "i700",
+            "subMenu3": []
           }
         ]
       }
@@ -104,8 +142,111 @@
   {
     "id": 3,
     "nombrePrincipal": "Equipos extraorales",
-    "nombrePrincipalUrl": "equiupos-extraorales",
-    "subMenu1": []
+    "nombrePrincipalUrl": "equipos-extraorales",
+    "subMenu1": [
+      {
+        "id": 1,
+        "nombreSubMenu1": "Vatech",
+        "nombreSubMenu1Url": "vatech",
+        "subMenu2": [
+          {
+            "id": 1,
+            "nombreSubMenu2": "2D",
+            "nombreSubMenu2Url": "2d",
+            "subMenu3": [
+              {
+                "id": 1,
+                "nombreSubMenu3": "Pax - i SC",
+                "nombreSubMenu3Url": "pax-i-sc",
+                "subMenu4": []
+              },
+              {
+                "id": 2,
+                "nombreSubMenu3": "Pax-i",
+                "nombreSubMenu3Url": "pax-i",
+                "subMenu4": []
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "nombreSubMenu2": "3D",
+            "nombreSubMenu2Url": "3d",
+            "subMenu3": [
+              {
+                "id": 1,
+                "nombreSubMenu3": "New Pax I 3D Smart Plus",
+                "nombreSubMenu3Url": "new-pax-i-3d-smart-plus",
+                "subMenu4": []
+              },
+              {
+                "id": 2,
+                "nombreSubMenu3": "A9",
+                "nombreSubMenu3Url": "a9",
+                "subMenu4": []
+              },
+              {
+                "id": 3,
+                "nombreSubMenu3": "Green X",
+                "nombreSubMenu3Url": "green-x",
+                "subMenu4": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "nombreSubMenu1": "Pointnix",
+        "nombreSubMenu1Url": "pointnix",
+        "subMenu2": [
+          {
+            "id": 1,
+            "nombreSubMenu2": "2D",
+            "nombreSubMenu2Url": "2d",
+            "subMenu3": [
+              {
+                "id": 1,
+                "nombreSubMenu3": "Pax - i SC",
+                "nombreSubMenu3Url": "pax-i-sc",
+                "subMenu4": []
+              },
+              {
+                "id": 2,
+                "nombreSubMenu3": "Pax-i",
+                "nombreSubMenu3Url": "pax-i",
+                "subMenu4": []
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "nombreSubMenu2": "3D",
+            "nombreSubMenu2Url": "3d",
+            "subMenu3": [
+              {
+                "id": 1,
+                "nombreSubMenu3": "New Pax I 3D Smart Plus",
+                "nombreSubMenu3Url": "new-pax-i-3d-smart-plus",
+                "subMenu4": []
+              },
+              {
+                "id": 2,
+                "nombreSubMenu3": "A9",
+                "nombreSubMenu3Url": "a9",
+                "subMenu4": []
+              },
+              {
+                "id": 3,
+                "nombreSubMenu3": "Green X",
+                "nombreSubMenu3Url": "green-x",
+                "subMenu4": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 4,

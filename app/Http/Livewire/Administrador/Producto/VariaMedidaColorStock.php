@@ -4,11 +4,11 @@ namespace App\Http\Livewire\Administrador\Producto;
 
 use App\Models\Color;
 use Livewire\Component;
-use App\Models\ColorProducto as Pivot;
+use App\Models\ColorMedida as Pivot;
 
-class ComponenteVariaColor extends Component
+class VariaMedidaColorStock extends Component
 {
-    public $producto, $colores, $color_id, $stock, $abierto = false;
+    public $medida, $colores, $color_id, $stock, $abierto = false;
 
     public $pivot, $pivot_color_id, $pivot_stock;
 
@@ -24,37 +24,36 @@ class ComponenteVariaColor extends Component
         $this->colores = Color::all();
     }
 
-    public function guardarColor()
+    public function guardarPivot()
     {
         $this->validate();
-        
+
         $pivot = Pivot::where('color_id', $this->color_id)
-            ->where('producto_id', $this->producto->id)
+            ->where('medida_id', $this->medida->id)
             ->first();
 
         if ($pivot) {
             $pivot->stock = $pivot->stock + $this->stock;
             $pivot->save();
         } else {
-            //Atach para registrar un registro en una tabla intermedia
-            $this->producto->colores()->attach([
+            $this->medida->colores()->attach([
                 $this->color_id => [
                     'stock' => $this->stock
                 ]
             ]);
         }
 
-        $this->reset(['color_id', 'stock']);
+        $this->reset(['stock']);
 
-        $this->emit('mensajeGuardarColor');
+        $this->emit('mensajeGuardarMedidaColor');
 
-        //Consulta nuevamente a la base de datos
-        $this->producto = $this->producto->fresh();
+        $this->medida = $this->medida->fresh();
     }
 
     public function editarPivot(Pivot $pivot)
     {
         $this->abierto = true;
+
         $this->pivot = $pivot;
         $this->pivot_color_id = $pivot->color_id;
         $this->pivot_stock = $pivot->stock;
@@ -62,26 +61,30 @@ class ComponenteVariaColor extends Component
 
     public function actualizarPivot()
     {
+        $this->validate([
+            'pivot_color_id' => 'required',
+            'pivot_stock' => 'required',
+        ]);
+
         $this->pivot->color_id = $this->pivot_color_id;
         $this->pivot->stock = $this->pivot_stock;
 
         $this->pivot->save();
 
-        $this->producto = $this->producto->fresh();
+        $this->medida = $this->medida->fresh();
 
-        $this->abierto = false;
+        $this->reset('abierto');
     }
 
     public function eliminarPivot(Pivot $pivot)
     {
         $pivot->delete();
-        $this->producto = $this->producto->fresh();
+        $this->medida = $this->medida->fresh();
     }
-
     public function render()
     {
-        $producto_colores = $this->producto->colores;
+        $medida_colores = $this->medida->colores;
 
-        return view('livewire.administrador.producto.componente-varia-color', compact('producto_colores'));
+        return view('livewire.administrador.producto.varia-medida-color-stock', compact('medida_colores'));
     }
 }
