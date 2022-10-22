@@ -50,6 +50,7 @@ class ComponenteVariaColor extends Component
 
         //Consulta nuevamente a la base de datos
         $this->producto = $this->producto->fresh();
+        $this->emit('mensajeCreado', "El color fué creado.");
     }
 
     public function editarPivot(Pivot $pivot)
@@ -70,6 +71,7 @@ class ComponenteVariaColor extends Component
         $this->producto = $this->producto->fresh();
 
         $this->abierto = false;
+        $this->emit('mensajeEditado', "El color fué editado.");
     }
 
     public function eliminarPivot(Pivot $pivot)

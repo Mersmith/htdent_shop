@@ -1,6 +1,14 @@
 <div class="contenedor_pagina_administrador">
+    @section('tituloPagina', 'Producto | Editar')
+
     <div class="titulo_pagina">
         <h2>Actualizar Producto</h2>
+    </div>
+
+    <div>
+        <button wire:click="$emit('eliminarProductoModal')">
+            Eliminar
+        </button>
     </div>
 
     <div class="contenedor_formulario" x-data>
@@ -11,7 +19,7 @@
         </div>
         <div class="contenedor_elemento_formulario">
             <label for="nombre">Imagenes:</label>
-            <div class="contenedor_formulario_imagen">
+            <div class="contenedor_formulario_imagen" style="display: flex;">
                 @if ($producto->imagenes->count())
                     @foreach ($producto->imagenes as $imagen)
                         <div wire:key="imagen-{{ $imagen->id }}">
@@ -259,12 +267,22 @@
         </form>
 
         <hr>
+        <br>
         @if ($this->subcategoria)
             @if ($this->subcategoria->tiene_medida && !$this->subcategoria->tiene_color)
+                <div class="titulo_pagina">
+                    <h2>Variación en medida</h2>
+                </div>
                 @livewire('administrador.producto.componente-varia-medida', ['producto' => $producto], key('producto.componente-varia-medida-' . $producto->id))
             @elseif ($this->subcategoria->tiene_color && $this->subcategoria->tiene_medida)
+                <div class="titulo_pagina">
+                    <h2>Variación en medida y color</h2>
+                </div>
                 @livewire('administrador.producto.componente-varia-medida-color', ['producto' => $producto], key('producto.componente-varia-medida-color-' . $producto->id))
             @elseif($this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
+                <div class="titulo_pagina">
+                    <h2>Variación en color</h2>
+                </div>
                 @livewire('administrador.producto.componente-varia-color', ['producto' => $producto], key('producto.componente-varia-color-' . $producto->id))
             @endif
         @endif
@@ -287,5 +305,52 @@
                 Livewire.emit('dropImagenes');
             }
         };
+
+        Livewire.on('eliminarProductoModal', () => {
+            Swal.fire({
+                title: '¿Quieres eliminar?',
+                text: "No podrás recupar este producto.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emitTo('administrador.producto.pagina-editar-producto-administrador',
+                        'eliminarProducto');
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'Eliminaste correctamente.',
+                        'success'
+                    )
+                }
+            })
+
+        })
+
+        Livewire.on('eliminarMedidaModal', medidaId => {
+            Swal.fire({
+                title: '¿Quieres eliminar?',
+                text: "No podrás recupar esta medida.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emitTo('administrador.producto.componente-varia-medida',
+                        'eliminarMedida', medidaId);
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'Eliminaste correctamente.',
+                        'success'
+                    )
+                }
+            })
+        })
     </script>
 @endpush

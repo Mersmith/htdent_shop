@@ -1,7 +1,19 @@
 <div class="contenedor_pagina_administrador">
+    @section('tituloPagina', 'Productos')
+
     <div class="titulo_pagina">
         <h2>Productos</h2>
     </div>
+
+    <div class="contenedor_formulario">
+        <!--Nombre-->
+        <div class="contenedor_elemento_formulario">
+            <input type="text" wire:model="buscarProducto"
+                placeholder="Ingrese el nombre del procucto que quiere buscar.">
+        </div>
+    </div>
+
+
     <!--Contenedor tabla-->
     @if ($productos->count())
         <div class="py-4 overflow-x-auto">
@@ -78,15 +90,10 @@
                                     {{ $producto->precio }} USD
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                    <a href="#">
-                                        <span><i class="fa-solid fa-eye" style="color: #009eff;"></i></span>
-                                        Ver
-                                    </a>
-                                    |
                                     <a href="{{ route('administrador.producto.editar', $producto) }}">
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
                                         Editar</a> |
-                                    <a>
+                                    <a wire:click="$emit('eliminarProductoModal', '{{ $producto->slug }}')">
                                         <span><i class="fa-solid fa-trash" style="color: red;"></i></span>
                                         Eliminar</a>
                                 </td>
@@ -107,3 +114,30 @@
         </div>
     @endif
 </div>
+
+@push('script')
+    <script>
+        Livewire.on('eliminarProductoModal', productoId => {
+            Swal.fire({
+                title: '¿Quieres eliminar?',
+                text: "No podrás recupar este producto.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emitTo('administrador.producto.pagina-todos-producto-administrador',
+                        'eliminarProducto', productoId);
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'Eliminaste correctamente.',
+                        'success'
+                    );
+                }
+            })
+        })
+    </script>
+@endpush

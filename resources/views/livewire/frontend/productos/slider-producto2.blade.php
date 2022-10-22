@@ -1,11 +1,11 @@
 <div class="centrar_contenedor_slider_producto">
-    <div id="contenedor_slider_producto">
-        <h1 class="slider_producto_titulo">Equipos Odontológicos más vendidos </h1>
+    <div id="contenedor_slider_producto2">
+        <h1 class="slider_producto_titulo">Nuevos equipos</h1>
 
-        <div id="slider_producto">
+        <div id="slider_producto2">
 
             @foreach ($productos as $key => $producto)
-                <div class="item_slider_producto">
+                <div class="item_slider_producto2">
                     <div class="slider_producto_imagen">
                         @if ($producto->imagenes->count())
                             <img class="slider_imagen" src="{{ Storage::url($producto->imagenes->first()->imagen_ruta) }}"
@@ -33,10 +33,10 @@
 
         </div>
 
-        <span id="boton_siguiente_producto" class="boton_slider_producto">
+        <span id="boton_siguiente_producto2" class="boton_slider_producto2">
             <i class="fa-solid fa-angle-left"></i>
         </span>
-        <span id="boton_retroceder_producto" class="boton_slider_producto">
+        <span id="boton_retroceder_producto2" class="boton_slider_producto2">
             <i class="fa-solid fa-angle-right"></i>
         </span>
 

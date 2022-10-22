@@ -68,7 +68,7 @@
                     <label class="formulario_boton_imagen">
                         <input type="file" wire:model="crearFormulario.imagen_ruta" style="display: none"
                             id="crearFormulario.imagen_ruta">
-                        <a>Subir Imagen</a>
+                        Subir Imagen
                     </label>
                 </div>
 
@@ -84,7 +84,9 @@
             </div>
         </form>
     </div>
+    <hr>
     <!--Cotenedor tabla-->
+    <br>
     <div class="titulo_pagina">
         <h2>Categorias</h2>
     </div>
@@ -148,20 +150,24 @@
     <x-jet-dialog-modal wire:model="editarFormulario.abierto">
         <!--Titulo Modal-->
         <x-slot name="title">
-            <div class="contenedor_modal">
-                <h2>Editar categoría</h2>
-                <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
-                    x
-                </button>
+            <div class="contenedor_titulo_modal">
+                <div>
+                    <h2 style="font-weight: bold">Editar categoría</h2>
+                </div>
+                <div>
+                    <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
+                        <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-            <div class="contenedor_formulario_modal">
+            <div class="contenedor_formulario">
                 <!--Imagen-->
-                <div>
+                <div class="contenedor_elemento_formulario">
                     <label for="editarFormulario.imagen_ruta">Imagen:</label>
-                    <div>
+                    <div class="contenedor_formulario_imagen">
                         @if ($editarImagen)
                             <img class="w-full h-64 object-cover object-center"
                                 src="{{ $editarImagen->temporaryUrl() }}" alt="">
@@ -169,16 +175,20 @@
                             <img style="width: 100px; height: 100px;"
                                 src="{{ $editarFormulario['imagen_ruta'] ? Storage::url($editarFormulario['imagen_ruta']) : '' }}">
                         @endif
+                        <label class="formulario_boton_imagen">
+                            <input type="file" wire:model="editarImagen" id="editarImagen" style="display: none">
+                            Subir Imagen
+                        </label>
                     </div>
-                    <input type="file" wire:model="editarImagen" id="editarFormulario.imagen_ruta">
-                    @error('editarFormulario.imagen_ruta')
+
+                    @error('editarImagen')
                         <span>
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <!--Nombre-->
-                <div>
+                <div class="contenedor_elemento_formulario">
                     <label for="editarFormulario.nombre">Nombre:</label>
                     <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
                     @error('editarFormulario.nombre')
@@ -188,7 +198,7 @@
                     @enderror
                 </div>
                 <!--Ruta-->
-                <div>
+                <div class="contenedor_elemento_formulario">
                     <label for="editarFormulario.slug">Ruta:</label>
                     <input type="text" wire:model="editarFormulario.slug" id="editarFormulario.slug">
                     @error('editarFormulario.slug')
@@ -198,7 +208,7 @@
                     @enderror
                 </div>
                 <!--Icono-->
-                <div>
+                <div class="contenedor_elemento_formulario">
                     <label for="editarFormulario.icono">Icono:</label>
                     <code>
                         <?php print htmlentities('<i class="fa-brands fa-facebook"></i>'); ?>
@@ -211,15 +221,17 @@
                     @enderror
                 </div>
                 <!--Marcas-->
-                <div>
+                <div class="contenedor_elemento_formulario">
                     <label for="editarFormulario.marcas">Marcas:</label>
-                    @foreach ($marcas as $marca)
-                        <div>
-                            <input type="checkbox" name="marcas[]" wire:model.defer="editarFormulario.marcas"
-                                value="{{ $marca->id }}" id="editarFormulario.marcas">
-                            {{ $marca->nombre }}
-                        </div>
-                    @endforeach
+                    <div class="contenedor_formulario_checkbox">
+                        @foreach ($marcas as $marca)
+                            <label>
+                                <input type="checkbox" name="marcas[]" wire:model.defer="editarFormulario.marcas"
+                                    value="{{ $marca->id }}" id="editarFormulario.marcas">
+                                {{ $marca->nombre }}
+                            </label>
+                        @endforeach
+                    </div>
                     @error('editarFormulario.marcas')
                         <span>
                             <strong>{{ $message }}</strong>
@@ -229,11 +241,13 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <button wire:click="actualizarCategoria" wire:loading.attr="disabled"
-                wire:target="editarImagen, actualizarCategoria" style="border: 1px solid #000; padding: 5px"
-                type="submit">Editar</button>
-            <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled"
-                type="submit">Cancelar</button>
+            <div class="contenedor_pie_modal">
+                <button style="background-color: #009eff;" wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled"
+                    type="submit">Cancelar</button>
+
+                <button style="background-color: #ffa03d;" wire:click="actualizarCategoria" wire:loading.attr="disabled"
+                    wire:target="editarImagen, actualizarCategoria" type="submit">Editar</button>
+            </div>
         </x-slot>
     </x-jet-dialog-modal>
 </div>
@@ -262,14 +276,5 @@
                 }
             })
         });
-
-        Livewire.on('crearCategoriaMensaje', nombreCategoria => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Categoria ' + nombreCategoria + ' creado correctamente.',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        })
     </script>
 @endpush

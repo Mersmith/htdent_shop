@@ -70,7 +70,7 @@ class PaginaSubcategoriaAdministrador extends Component
         $this->categoria->subcategorias()->create($this->crearFormulario);
         $this->traerSubcategorias();
 
-        $this->emit('crearSubcategoriaMensaje', $this->crearFormulario['nombre']);
+        $this->emit('mensajeCreado', "Subcategoria agregada.");
         $this->reset('crearFormulario');
     }
 
@@ -101,6 +101,8 @@ class PaginaSubcategoriaAdministrador extends Component
 
         $this->traerSubcategorias();
         $this->reset('editarFormulario');
+
+        $this->emit('mensajeActualizado', "La subcategoria ha sido actualizada.");
     }
 
     public function eliminarSubcategoria(Subcategoria $subcategoria)

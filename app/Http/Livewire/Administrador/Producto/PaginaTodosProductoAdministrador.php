@@ -9,12 +9,20 @@ use Livewire\WithPagination;
 class PaginaTodosProductoAdministrador extends Component
 {
     use WithPagination;
-
     public $buscarProducto;
+    protected $paginate = 10;
+    protected $listeners = ['eliminarProducto'];
 
     public function updatingBuscarProducto()
     {
         $this->resetPage();
+    }
+
+    public function eliminarProducto(Producto $producto)
+    {
+        $producto->delete();
+
+        //$this->traerCategorias();
     }
 
     public function render()

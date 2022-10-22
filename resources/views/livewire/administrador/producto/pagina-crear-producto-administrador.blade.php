@@ -1,4 +1,6 @@
 <div class="contenedor_pagina_administrador">
+    @section('tituloPagina', 'Producto | Crear')
+
     <div class="titulo_pagina">
         <h2>Crear Producto</h2>
     </div>

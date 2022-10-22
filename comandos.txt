@@ -393,3 +393,14 @@ git commit -m "Termine la variación de producto en color, medida, medidacolor y
 git push origin 19_Variacion_Producto
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 20_Modales_alertas_CRUD
+git branch
+git status
+
+git add .
+git commit -m "Modales de alertas"
+git push origin 20_Modales_alertas_CRUD
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

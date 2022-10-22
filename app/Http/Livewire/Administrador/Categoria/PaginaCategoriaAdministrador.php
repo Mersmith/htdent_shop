@@ -111,7 +111,7 @@ class PaginaCategoriaAdministrador extends Component
         $this->traerCategorias();
         
         //Emitir eventos a los padres y no a los componentes secundarios o hermanos.
-        $this->emit('crearCategoriaMensaje', $this->crearFormulario['nombre']);
+        $this->emit('mensajeCreado', "Categoria agregado.");
         $this->reset('crearFormulario');
     }
 
@@ -159,6 +159,8 @@ class PaginaCategoriaAdministrador extends Component
         $this->reset(['editarFormulario', 'editarImagen']);
 
         $this->traerCategorias();
+
+        $this->emit('mensajeActualizado', "La categoria ha sido actualizada.");
     }
 
 

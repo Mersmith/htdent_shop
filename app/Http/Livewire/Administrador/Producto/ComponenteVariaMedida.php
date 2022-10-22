@@ -36,6 +36,7 @@ class ComponenteVariaMedida extends Component
         $this->reset('nombre');
 
         $this->producto = $this->producto->fresh();
+        $this->emit('mensajeCreado', "La medida fué creada.");
     }
 
     public function editarMedida(Medida $medida)
@@ -57,6 +58,7 @@ class ComponenteVariaMedida extends Component
         $this->producto = $this->producto->fresh();
 
         $this->abierto = false;
+        $this->emit('mensajeEditado', "La medida fué editada.");
     }
 
 
@@ -69,7 +71,6 @@ class ComponenteVariaMedida extends Component
     public function render()
     {
         $medidas = $this->producto->medidas;
-
         return view('livewire.administrador.producto.componente-varia-medida', compact('medidas'));
     }
 }
