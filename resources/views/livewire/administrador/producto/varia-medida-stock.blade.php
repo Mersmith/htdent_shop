@@ -1,21 +1,25 @@
-<div>
+<div class="contenedor_variacion_medida_color">
     <!--Formulario-->
-    <form wire:submit.prevent="guardarPivot">
-        <!--Stock-->
-        <div class="contenedor_elemento_formulario">
-            <label for="stock">Stock por medida:</label>
-            <input type="number" wire:model.defer="stock" id="stock" step="1" placeholder="Ingrese el stock.">
-            @error('stock')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-        <!--Enviar-->
-        <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
-            <input type="submit" value="Agregar stock">
-        </div>
-    </form>
+    @if (!$medida_colores->count())
+        <form wire:submit.prevent="guardarPivot">
+            <!--Stock-->
+            <div class="contenedor_elemento_formulario">
+                <label for="stock">Stock por medida:</label>
+                <input type="number" wire:model.defer="stock" id="stock" step="1"
+                    placeholder="Ingrese el stock.">
+                @error('stock')
+                    <span>
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <!--Enviar-->
+            <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
+                <input type="submit" value="Agregar stock">
+            </div>
+        </form>
+    @endif
+
     <!--Tabla-->
     @if ($medida_colores->count())
         <div class="py-4 overflow-x-auto">
@@ -44,22 +48,19 @@
                                     {{ $medida_color->pivot->stock }} unidad(es)
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                    <button wire:click="editarPivot({{ $medida_color->pivot->id }})"
+                                    <button wire:click="editarPivotModal({{ $medida_color->pivot->id }})"
                                         wire:loading.attr="disabled"
-                                        wire:target="editarPivot({{ $medida_color->pivot->id }})">
+                                        wire:target="editarPivotModal({{ $medida_color->pivot->id }})">
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>Editar
                                     </button>
                                     |
-                                    <button wire:click="$emit('eliminarPivot', {{ $medida_color->pivot->id }})">
+                                    <button wire:click="eliminarPivotMedida({{ $medida_color->pivot->id }})">
                                         <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar
                                     </button>
-
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-
-
                 </table>
             </div>
         </div>
@@ -69,16 +70,19 @@
     <x-jet-dialog-modal wire:model="abierto">
         <!--Titulo Modal-->
         <x-slot name="title">
-            <div class="contenedor_modal">
-                <h2>Editar Color</h2>
-                <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
-                    x
-                </button>
+            <div class="contenedor_titulo_modal">
+                <div>
+                    <h2 style="font-weight: bold">Editar stock</h2>
+                </div>
+                <div>
+                    <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
+                        <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-
             <!--Stock-->
             <div class="contenedor_elemento_formulario">
                 <label for="pivot_stock">Stock por medida:</label>
@@ -90,16 +94,16 @@
                     </span>
                 @enderror
             </div>
-
         </x-slot>
-
+        <!--Pie Modal-->
         <x-slot name="footer">
-            <button wire:click="actualizarPivot" wire:loading.attr="disabled" wire:target="actualizarPivot"
-                type="submit">
-                Actualizar
-            </button>
-            <button wire:click="$set('abierto', false)" wire:loading.attr="disabled" type="submit">Cancelar</button>
+            <div class="contenedor_pie_modal">
+                <button style="background-color: #009eff;" wire:click="$set('abierto', false)"
+                    wire:loading.attr="disabled" type="submit">Cancelar</button>
+
+                <button style="background-color: #ffa03d;" wire:click="actualizarPivot" wire:loading.attr="disabled"
+                    wire:target="actualizarPivot" type="submit">Editar</button>
+            </div>
         </x-slot>
     </x-jet-dialog-modal>
-
 </div>

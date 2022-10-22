@@ -9,6 +9,7 @@
     font-weight: 600;
 }
 
+/*FORMULARIO*/
 .contenedor_formulario {
     padding: 10px 0px;
 }
@@ -34,9 +35,9 @@
     font-weight: 400;
 }
 
-.contenedor_formulario_imagen {
+/*.contenedor_formulario_imagen {
     display: flex;
-}
+}*/
 
 .contenedor_formulario_imagen div {
     position: relative;
@@ -47,6 +48,7 @@
     right: 2px;
     top: 2px;
 }
+
 .contenedor_formulario_imagen i {
     color: #666666;
 }
@@ -77,21 +79,39 @@
 }
 
 .formulario_boton_enviar {
+    display: flex;
+    align-items: center;
+}
+
+.formulario_boton_enviar input {
+    cursor: pointer;
+    font-weight: 500;
     margin: 8px 0px;
     background-color: #ffa03d;
     color: white;
     cursor: pointer;
     padding: 8px 8px;
     border-radius: 50px;
+    width: 200px;
 }
 
-.formulario_boton_enviar input {
-    cursor: pointer;
-    font-weight: 500;
+.formulario_boton_enviar input:hover {
+    background-color: #009eff;
 }
+
+/*FIN FORMULARIO*/
 
 .tabla_controles {
     cursor: pointer;
+}
+
+.contenedor_variacion {
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.contenedor_variacion_medida_color {
+    padding: 5px 20px;
 }
 
 /*Estilos lista ckeditor5 */
@@ -105,6 +125,30 @@
 }
 
 /*Fin Estilos lista ckeditor5 */
+
+/*MODALES*/
+.contenedor_titulo_modal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contenedor_pie_modal {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.contenedor_pie_modal button {
+    font-weight: 500;
+    margin: 8px 0px;
+    color: white;
+    cursor: pointer;
+    padding: 4px 24px;
+    border-radius: 50px;
+}
+
+/*FIN MODALES*/
+
 
 @media (max-width: 900px) {
     .contenedor_layout_administrador {

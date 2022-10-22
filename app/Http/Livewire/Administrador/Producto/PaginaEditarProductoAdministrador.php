@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class PaginaEditarProductoAdministrador extends Component
 {
-    protected $listeners = ['dropImagenes', 'eliminarProducto'];
+    protected $listeners = ['dropImagenes', 'eliminarProducto', 'editarProducto'];
 
     public $producto, $categorias, $subcategorias, $marcas, $slug, $sku, $tiene_detalle;
     public $categoria_id;
@@ -34,7 +34,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar' => 'numeric',
         'producto.puntos_tope' => 'numeric',
         'producto.tiene_detalle' => 'required',
-        'producto.detalle' => 'required',
+        //'producto.detalle' => 'required',
     ];
 
     public function mount(Producto $producto)
@@ -55,7 +55,7 @@ class PaginaEditarProductoAdministrador extends Component
             $query->where('categoria_id', $this->categoria_id);
         })->get();
     }
-  
+
     public function updatedCategoriaId($value)
     {
         $this->subcategorias = Subcategoria::where('categoria_id', $value)->get();
@@ -72,7 +72,7 @@ class PaginaEditarProductoAdministrador extends Component
     {
         $this->slug = Str::slug($value);
         $this->sku = trim(strtoupper(substr($value, 0, 2)) . "-" . "S" . rand(1, 500) . strtoupper(substr($value, -2)));
-    }  
+    }
 
     public function getSubcategoriaProperty()
     {
@@ -103,7 +103,7 @@ class PaginaEditarProductoAdministrador extends Component
 
         $this->producto->save();
 
-        $this->emit('mensajeProductoActualizado');
+        $this->emit('mensajeActualizado', "El producto ha sido actualizado.");
     }
 
     public function eliminarImagen(Imagen $imagen)
@@ -112,9 +112,11 @@ class PaginaEditarProductoAdministrador extends Component
         $imagen->delete();
 
         $this->producto = $this->producto->fresh();
+        $this->emit('mensajeEliminado', "La imagen fue eliminada.");
     }
 
-    public function eliminarProducto(){
+    public function eliminarProducto()
+    {
 
         $imagenes = $this->producto->imagenes;
 

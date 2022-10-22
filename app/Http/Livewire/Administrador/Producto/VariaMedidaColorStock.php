@@ -44,10 +44,10 @@ class VariaMedidaColorStock extends Component
         }
 
         $this->reset(['stock']);
-
-        $this->emit('mensajeGuardarMedidaColor');
-
+        
         $this->medida = $this->medida->fresh();
+        
+        $this->emit('mensajeCreado', "Stock agregado.");
     }
 
     public function editarPivot(Pivot $pivot)
@@ -74,6 +74,7 @@ class VariaMedidaColorStock extends Component
         $this->medida = $this->medida->fresh();
 
         $this->reset('abierto');
+        $this->emit('mensajeActualizado', "Stock actualizado.");
     }
 
     public function eliminarPivot(Pivot $pivot)

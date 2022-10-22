@@ -46,9 +46,9 @@
                                 {{ $marca->nombre }}
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                <a wire:click="editarMarca('{{$marca->id}}')"><span><i class="fa-solid fa-pencil"
+                                <a wire:click="editarMarca('{{ $marca->id }}')"><span><i class="fa-solid fa-pencil"
                                             style="color: green;"></i></span>Editar</a> |
-                                <a wire:click="$emit('eliminarMarcaModal', '{{$marca->id}}')">
+                                <a wire:click="$emit('eliminarMarcaModal', '{{ $marca->id }}')">
                                     <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar</a>
                             </td>
                         </tr>
@@ -58,18 +58,24 @@
         </div>
     </div>
     <!--Modal editar -->
-    <x-jet-dialog-modal wire:model="editarFomulario.abierto">
+    <x-jet-dialog-modal wire:model="editarFormulario.abierto">
+        <!--Titulo Modal-->
         <x-slot name="title">
-            <div class="contenedor_modal">
-                <h2>Editar categoría</h2>
-                <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
-                    x
-                </button>
+            <div class="contenedor_titulo_modal">
+                <div>
+                    <h2 style="font-weight: bold">Editar marca</h2>
+                </div>
+                <div>
+                    <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
+                        <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
         </x-slot>
+        <!--Contenido Modal-->
         <x-slot name="content">
             <!--Nombre-->
-            <div>
+            <div class="contenedor_elemento_formulario">
                 <label for="editarFormulario.nombre">Nombre:</label>
                 <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
                 @error('editarFormulario.nombre')
@@ -79,15 +85,15 @@
                 @enderror
             </div>
         </x-slot>
-
         <x-slot name="footer">
-            <button wire:click="actualizarMarca" wire:loading.attr="disabled"
-                wire:target="actualizarMarca" style="border: 1px solid #000; padding: 5px"
-                type="submit">Editar</button>
-            <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled"
-                type="submit">Cancelar</button>
-        </x-slot>
+            <div class="contenedor_pie_modal">
+                <button style="background-color: #009eff;" wire:click="$set('editarFormulario.abierto', false)"
+                    wire:loading.attr="disabled" type="submit">Cancelar</button>
 
+                <button style="background-color: #ffa03d;" wire:click="actualizarMarca" wire:loading.attr="disabled"
+                    wire:target="actualizarMarca" type="submit">Editar</button>
+            </div>
+        </x-slot>
     </x-jet-dialog-modal>
 </div>
 
@@ -115,14 +121,5 @@
                 }
             })
         });
-
-        Livewire.on('crearMarcaMensaje', nombreMarca => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Marca ' + nombreMarca + ' creado correctamente.',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        })
     </script>
 @endpush

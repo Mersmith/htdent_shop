@@ -1,4 +1,4 @@
-<div>
+<div class="contenedor_variacion_medida_color">
     <!--Formulario-->
     <form wire:submit.prevent="guardarPivot">
         <!--Colores-->
@@ -37,6 +37,7 @@
             <input type="submit" value="Agregar stock">
         </div>
     </form>
+
     <!--Tabla-->
     @if ($medida_colores->count())
         <div class="py-4 overflow-x-auto">
@@ -74,13 +75,10 @@
                                     <button wire:click="$emit('eliminarPivot', {{ $medida_color->pivot->id }})">
                                         <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar
                                     </button>
-
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-
-
                 </table>
             </div>
         </div>
@@ -90,16 +88,20 @@
     <x-jet-dialog-modal wire:model="abierto" wire:key="modal-medida-color-{{ $medida->id }}">
         <!--Titulo Modal-->
         <x-slot name="title">
-            <div class="contenedor_modal">
-                <h2>Editar Color</h2>
-                <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
-                    x
-                </button>
+
+            <div class="contenedor_titulo_modal">
+                <div>
+                    <h2 style="font-weight: bold">Editar stock</h2>
+                </div>
+                <div>
+                    <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
+                        <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
             </div>
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-
             <!--Colores-->
             {{-- <div class="contenedor_elemento_formulario">
                 <label for="pivot_color_id">Colores:</label>
@@ -128,15 +130,16 @@
                     </span>
                 @enderror
             </div>
-
         </x-slot>
 
         <x-slot name="footer">
-            <button wire:click="actualizarPivot" wire:loading.attr="disabled" wire:target="actualizarPivot"
-                type="submit">
-                Actualizar
-            </button>
-            <button wire:click="$set('abierto', false)" wire:loading.attr="disabled" type="submit">Cancelar</button>
+            <div class="contenedor_pie_modal">
+                <button style="background-color: #009eff;" wire:click="$set('abierto', false)"
+                    wire:loading.attr="disabled" type="submit">Cancelar</button>
+
+                <button style="background-color: #ffa03d;" wire:click="actualizarPivot" wire:loading.attr="disabled"
+                    wire:target="actualizarPivot" type="submit">Editar</button>
+            </div>
         </x-slot>
     </x-jet-dialog-modal>
 

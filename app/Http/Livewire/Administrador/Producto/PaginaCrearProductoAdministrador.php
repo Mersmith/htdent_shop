@@ -121,6 +121,8 @@ class PaginaCrearProductoAdministrador extends Component
             ]);
         }
 
+        $this->emit('mensajeCreado', "El producto fué creado.");
+
         return redirect()->route('administrador.producto.editar', $producto);
     }
 

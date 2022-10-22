@@ -7,10 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('tituloPagina')</title>
-    
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- Styles -->
     @livewireStyles
     @include('layouts.administrador.componentes.css')
@@ -20,26 +20,49 @@
     {{-- Sirve para crear los flash.banner --}}
     <x-jet-banner />
 
-    <div class="min-h-screen bg-gray-100">
-        {{--@livewire('navigation-menu')--}}
+    <div class="min-h-screen">
+        {{-- @livewire('navigation-menu') --}}
 
         @livewire('administrador.menu.menu-principal')
 
-
-        <!-- Contenido de páignas-->
+        <!-- Contenido de páginas-->
         <main class="contenedor_layout_administrador">
             {{ $slot }}
         </main>
-
-        <div>
-            Pie de pagina Administrador
-        </div>
     </div>
 
     @include('layouts.administrador.componentes.js')
     @stack('modals')
     @livewireScripts
     @stack('script')
+    <script>
+        Livewire.on('mensajeCreado', mensaje => {
+            Swal.fire({
+                icon: 'success',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+
+        Livewire.on('mensajeActualizado', mensaje => {
+            Swal.fire({
+                icon: 'success',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+
+        Livewire.on('mensajeEliminado', mensaje => {
+            Swal.fire({
+                icon: 'error',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+    </script>
 </body>
 
 </html>

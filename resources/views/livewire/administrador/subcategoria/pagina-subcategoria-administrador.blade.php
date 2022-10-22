@@ -114,86 +114,89 @@
     <!--Modal editar categoria -->
     <x-jet-dialog-modal wire:model="editarFormulario.abierto">
         <x-slot name="title">
-            Editar subcategoría
-
-            <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
-                x
-            </button>
+            <div class="contenedor_titulo_modal">
+                <div>
+                    <h2 style="font-weight: bold">Editar subcategoría</h2>
+                </div>
+                <div>
+                    <button wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled">
+                        <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
         </x-slot>
         <x-slot name="content">
-            <label>
-                <p>Nombre: </p> <input type="text" wire:model="editarFormulario.nombre">
-                @error('editarFormulario.nombre')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </label>
-            <label>
-                <p>Ruta: </p> <input type="text" wire:model="editarFormulario.slug">
-                @error('editarFormulario.slug')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </label>
-
-            <div>
-                <div>
-                    <p>¿Está subcategoría necesita especifiquemos color?</p>
-
-                    <div>
+            <div class="contenedor_formulario">
+                <!--Nombre-->
+                <div class="contenedor_elemento_formulario">
+                    <label for="editarFormulario.nombre">Nombre:</label>
+                    <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
+                    @error('editarFormulario.nombre')
+                        <span>
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <!--Ruta-->
+                <div class="contenedor_elemento_formulario">
+                    <label for="editarFormulario.slug">Ruta:</label>
+                    <input type="text" wire:model="editarFormulario.slug" id="editarFormulario.slug">
+                    @error('editarFormulario.slug')
+                        <span>
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <!--Color-->
+                <div class="contenedor_elemento_formulario">
+                    <label for="editarFormulario.tiene_color">¿Tiene color?:</label>
+                    <div class="contenedor_formulario_checkbox">
                         <label>
-                            <input type="radio" value="1" name="tiene_color"
-                                wire:model.defer="editarFormulario.tiene_color">
+                            <input type="radio" value="1" name="editarFormulario.tiene_color" wire:model.defer="editarFormulario.tiene_color">
                             Si
                         </label>
 
                         <label>
-                            <input type="radio" value="0" name="tiene_color"
-                                wire:model.defer="editarFormulario.tiene_color">
+                            <input type="radio" value="0" name="editarFormulario.tiene_color" wire:model.defer="editarFormulario.tiene_color">
                             No
                         </label>
                     </div>
+                    @error('editarFormulario.tiene_color')
+                        <span>
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-
-                @error('editarFormulario.tiene_color')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div>
-                <div>
-                    <p>¿Está subcategoría necesita especifiquemos medida?</p>
-
-                    <div>
+                <!--Medida-->
+                <div class="contenedor_elemento_formulario">
+                    <label for="editarFormulario.tiene_medida">¿Tiene medida?:</label>
+                    <div class="contenedor_formulario_checkbox">
                         <label>
-                            <input type="radio" value="1" name="tiene_medida"
-                                wire:model.defer="editarFormulario.tiene_medida">
+                            <input type="radio" value="1" name="editarFormulario.tiene_medida" wire:model.defer="editarFormulario.tiene_medida">
                             Si
                         </label>
 
                         <label>
-                            <input type="radio" value="0" name="tiene_medida"
-                                wire:model.defer="editarFormulario.tiene_medida">
+                            <input type="radio" value="0" name="editarFormulario.tiene_medida" wire:model.defer="editarFormulario.tiene_medida">
                             No
                         </label>
                     </div>
+                    @error('editarFormulario.tiene_medida')
+                        <span>
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-
-                @error('editarFormulario.tiene_medida')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
-
         </x-slot>
         <x-slot name="footer">
-            <button wire:click="actualizarSubcategoria" wire:loading.attr="disabled" wire:target="actualizarCategoria"
-                style="border: 1px solid #000; padding: 5px" type="submit">Editar</button>
+            <div class="contenedor_pie_modal">
+                <button style="background-color: #009eff;" wire:click="$set('editarFormulario.abierto', false)"
+                    wire:loading.attr="disabled" type="submit">Cancelar</button>
+
+                <button style="background-color: #ffa03d;" wire:click="actualizarSubcategoria"
+                    wire:loading.attr="disabled" wire:target="actualizarCategoria" type="submit">Editar</button>
+            </div>
         </x-slot>
 
     </x-jet-dialog-modal>
@@ -213,26 +216,15 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-
                     Livewire.emitTo('administrador.subcategoria.pagina-subcategoria-administrador',
-                        'eliminarSubcategoria', subcategoriaId)
-
+                        'eliminarSubcategoria', subcategoriaId);
                     Swal.fire(
                         '¡Eliminado!',
                         'Eliminaste correctamente.',
                         'success'
-                    )
+                    );
                 }
             })
         });
-
-        Livewire.on('crearSubcategoriaMensaje', nombreSubcategoria => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Subcategoria ' + nombreSubcategoria + ' creado correctamente.',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        })
     </script>
 @endpush

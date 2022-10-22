@@ -15,7 +15,7 @@ class PaginaMarcaAdministrador extends Component
         'nombre' => null
     ];
 
-    public $editarFomulario = [
+    public $editarFormulario = [
         'abierto' => false,
         'nombre' => null
     ];
@@ -26,7 +26,7 @@ class PaginaMarcaAdministrador extends Component
 
     protected $validationAttributes = [
         'crearFormulario.nombre' => 'nombre',
-        'editarFomulario.nombre' => 'nombre'
+        'editarFormulario.nombre' => 'nombre'
     ];
 
     public function mount()
@@ -46,7 +46,7 @@ class PaginaMarcaAdministrador extends Component
         Marca::create($this->crearFormulario);
         $this->traerMarcas();
 
-        $this->emit('crearMarcaMensaje', $this->crearFormulario['nombre']);
+        $this->emit('mensajeCreado', "Marca creada.");
         $this->reset('crearFormulario');
 
     }
@@ -54,20 +54,21 @@ class PaginaMarcaAdministrador extends Component
     {
         $this->marca = $marca;
 
-        $this->editarFomulario['abierto'] = true;
-        $this->editarFomulario['nombre'] = $marca->nombre;
+        $this->editarFormulario['abierto'] = true;
+        $this->editarFormulario['nombre'] = $marca->nombre;
     }
 
     public function actualizarMarca()
     {
         $this->validate([
-            'editarFomulario.nombre' => 'required'
+            'editarFormulario.nombre' => 'required'
         ]);
 
-        $this->marca->update($this->editarFomulario);
+        $this->marca->update($this->editarFormulario);
         
         $this->traerMarcas();
-        $this->reset('editarFomulario');
+        $this->reset('editarFormulario');
+        $this->emit('mensajeActualizado', "Marca actualizada.");
     }
 
     public function eliminarMarca(Marca $marca)

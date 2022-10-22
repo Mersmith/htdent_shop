@@ -36,6 +36,7 @@ class ComponenteVariaMedidaColor extends Component
         $this->reset('nombre');
 
         $this->producto = $this->producto->fresh();
+        $this->emit('mensajeCreado', "La medida fué creada.");
     }
 
     public function editarMedida(Medida $medida)
@@ -57,6 +58,7 @@ class ComponenteVariaMedidaColor extends Component
         $this->producto = $this->producto->fresh();
 
         $this->abierto = false;
+        $this->emit('mensajeEditado', "La medida fué editada.");
     }
 
     public function eliminarMedida(Medida $medida)

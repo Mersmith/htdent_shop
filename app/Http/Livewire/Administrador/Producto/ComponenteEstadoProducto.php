@@ -16,7 +16,7 @@ class ComponenteEstadoProducto extends Component
         $this->productoEstado->estado = $this->estado;
         $this->productoEstado->save();
 
-        $this->emit('mensajeProductoEstado');
+        $this->emit('mensajeActualizado', "Estado actualizado.");
     }
 
     public function render()
