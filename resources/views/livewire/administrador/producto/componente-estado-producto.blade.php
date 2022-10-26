@@ -1,16 +1,17 @@
-<form wire:submit.prevent="actualizarEstadoProducto">
+<div>
+    <!--<form wire:submit.prevent="actualizarEstadoProducto">-->
     <!--Estado-->
     <div class="contenedor_elemento_formulario">
-        <label for="estado">Estado del Producto:</label>
+        <label>Estado del Producto:</label>
         <div class="estado">
             <label>
-                <input type="radio" value="1" name="estado" wire:model.defer="estado" id="estado">
-                Publicado
+                <input type="radio" value="1" name="estado" wire:model.defer="estado">
+                Borrador
             </label>
 
             <label>
-                <input type="radio" value="2" name="estado" wire:model.defer="estado" id="estado">
-                Borrador
+                <input type="radio" value="2" name="estado" wire:model.defer="estado">
+                Publicado
             </label>
         </div>
         @error('estado')
@@ -21,6 +22,10 @@
     </div>
     <!--Enviar-->
     <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
-        <input type="submit" value="Actualizar estado">
+        <!--<input type="submit" value="Actualizar estado">-->
+        <x-jet-button wire:click="actualizarEstadoProducto" wire:loading.attr="disabled"
+            wire:target="actualizarEstadoProducto">
+            Actualizar estado
+        </x-jet-button>
     </div>
-</form>
+</div>

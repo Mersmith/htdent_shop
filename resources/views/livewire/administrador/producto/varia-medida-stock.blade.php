@@ -1,12 +1,12 @@
 <div class="contenedor_variacion_medida_color">
     <!--Formulario-->
     @if (!$medida_colores->count())
-        <form wire:submit.prevent="guardarPivot">
+        <div>
+            <!--<form wire:submit.prevent="guardarPivot">-->
             <!--Stock-->
             <div class="contenedor_elemento_formulario">
-                <label for="stock">Stock por medida:</label>
-                <input type="number" wire:model.defer="stock" id="stock" step="1"
-                    placeholder="Ingrese el stock.">
+                <label>Stock por medida:</label>
+                <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese el stock.">
                 @error('stock')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -15,9 +15,12 @@
             </div>
             <!--Enviar-->
             <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
-                <input type="submit" value="Agregar stock">
+                <!--<input type="submit" value="Agregar stock">-->
+                <x-jet-button wire:loading.attr="disabled" wire:target="guardarPivot" wire:click="guardarPivot">
+                    Agregar stock
+                </x-jet-button>
             </div>
-        </form>
+        </div>
     @endif
 
     <!--Tabla-->
@@ -54,7 +57,7 @@
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>Editar
                                     </button>
                                     |
-                                    <button wire:click="eliminarPivotMedida({{ $medida_color->pivot->id }})">
+                                    <button wire:click="eliminarVariaMedida({{ $medida_color->pivot->id }})">
                                         <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar
                                     </button>
                                 </td>
@@ -67,7 +70,7 @@
     @endif
 
     <!--Modal editar -->
-    <x-jet-dialog-modal wire:model="abierto">
+    <x-jet-dialog-modal wire:model="abierto" wire:key="modal-varia-medida-{{ $medida->id }}">
         <!--Titulo Modal-->
         <x-slot name="title">
             <div class="contenedor_titulo_modal">
@@ -85,9 +88,8 @@
         <x-slot name="content">
             <!--Stock-->
             <div class="contenedor_elemento_formulario">
-                <label for="pivot_stock">Stock por medida:</label>
-                <input type="number" wire:model="pivot_stock" id="pivot_stock" step="1"
-                    placeholder="Ingrese el stock.">
+                <label>Stock por medida:</label>
+                <input type="number" wire:model="pivot_stock" step="1" placeholder="Ingrese el stock.">
                 @error('pivot_stock')
                     <span>
                         <strong>{{ $message }}</strong>

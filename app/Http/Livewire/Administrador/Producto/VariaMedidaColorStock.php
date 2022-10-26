@@ -12,7 +12,7 @@ class VariaMedidaColorStock extends Component
 
     public $pivot, $pivot_color_id, $pivot_stock;
 
-    protected $listeners = ['eliminarPivot'];
+    //protected $listeners = ['eliminarVariaMedidaColor'];
 
     protected $rules = [
         'color_id' => 'required',
@@ -44,9 +44,9 @@ class VariaMedidaColorStock extends Component
         }
 
         $this->reset(['stock']);
-        
+
         $this->medida = $this->medida->fresh();
-        
+
         $this->emit('mensajeCreado', "Stock agregado.");
     }
 
@@ -77,10 +77,11 @@ class VariaMedidaColorStock extends Component
         $this->emit('mensajeActualizado', "Stock actualizado.");
     }
 
-    public function eliminarPivot(Pivot $pivot)
+    public function eliminarVariaMedidaColor(Pivot $variaMedidaColorId)
     {
-        $pivot->delete();
+        $variaMedidaColorId->delete();
         $this->medida = $this->medida->fresh();
+        $this->emit('mensajeEliminado', "Color eliminado.");
     }
     public function render()
     {

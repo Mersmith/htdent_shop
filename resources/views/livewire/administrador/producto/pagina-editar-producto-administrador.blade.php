@@ -6,9 +6,9 @@
     </div>
 
     <div>
-        <button wire:click="$emit('eliminarProductoModal')">
-            Eliminar
-        </button>
+        <x-jet-danger-button wire:click="$emit('eliminarProductoModal')">
+            Eliminar producto
+        </x-jet-danger-button>
     </div>
 
     <div class="contenedor_formulario" x-data>
@@ -17,36 +17,37 @@
             <form action="{{ route('administrador.producto.files', $producto) }}" method="POST" class="dropzone"
                 id="my-awesome-dropzone"></form>
         </div>
-        <div class="contenedor_elemento_formulario">
-            <label for="nombre">Imagenes:</label>
-            <div class="contenedor_formulario_imagen" style="display: flex;">
-                @if ($producto->imagenes->count())
+
+        @if ($producto->imagenes->count())
+            <div class="contenedor_elemento_formulario">
+                <label for="nombre">Imagenes:</label>
+                <div class="contenedor_formulario_imagen" style="display: flex;">
                     @foreach ($producto->imagenes as $imagen)
                         <div wire:key="imagen-{{ $imagen->id }}">
                             <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
-                            <button wire:click="eliminarImagen({{ $imagen->id }})" wire:loading.attr="disabled"
-                                wire:target="eliminarImagen({{ $imagen->id }})">
+                            <x-jet-danger-button wire:click="eliminarImagen({{ $imagen->id }})"
+                                wire:loading.attr="disabled" wire:target="eliminarImagen({{ $imagen->id }})">
                                 <i class="fa-solid fa-xmark"></i>
-                            </button>
+                            </x-jet-danger-button>
                         </div>
                     @endforeach
-                @endif
+                </div>
             </div>
-        </div>
+        @endif
 
         <hr>
 
-        @livewire('administrador.producto.componente-estado-producto', ['productoEstado' => $producto])
+        @livewire('administrador.producto.componente-estado-producto', ['productoEstado' => $producto], key('componente-estado-producto-' . $producto->id))
 
         <hr>
 
-        <form wire:submit.prevent="editarProducto">
+        <div>
+            <!--<form wire:submit.prevent="editarProducto">-->
             <!--Categorias-->
             <div class="contenedor_elemento_formulario">
-                <label for="categoria_id">Categorias:</label>
-                <select wire:model="categoria_id" id="categoria_id">
+                <label>Categorias:</label>
+                <select wire:model="categoria_id">
                     <option value="" selected disabled>Seleccione una categoría</option>
-
                     @foreach ($categorias as $categoria)
                         <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                     @endforeach
@@ -59,10 +60,9 @@
             </div>
             <!--Subcategorias-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.subcategoria_id">Subcategorias:</label>
-                <select wire:model="producto.subcategoria_id" id="producto.subcategoria_id">
+                <label>Subcategorias:</label>
+                <select wire:model="producto.subcategoria_id">
                     <option value="" selected disabled>Seleccione una subcategoría</option>
-
                     @foreach ($subcategorias as $subcategoria)
                         <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
                     @endforeach
@@ -79,7 +79,6 @@
                         <code>El producto No tiene Variación</code>
                     @endif
                 @endif
-
                 @error('producto.subcategoria_id')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -88,10 +87,9 @@
             </div>
             <!--Marcas-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.marca_id">Marcas:</label>
-                <select wire:model="producto.marca_id" id="producto.marca_id">
+                <label>Marcas:</label>
+                <select wire:model="producto.marca_id">
                     <option value="" selected disabled>Seleccione una marca</option>
-
                     @foreach ($marcas as $marca)
                         <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
                     @endforeach
@@ -104,8 +102,8 @@
             </div>
             <!--Nombre-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.nombre">Nombre:</label>
-                <input type="text" wire:model="producto.nombre" id="producto.nombre">
+                <label>Nombre:</label>
+                <input type="text" wire:model="producto.nombre">
                 @error('producto.nombre')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -114,8 +112,8 @@
             </div>
             <!--Ruta-->
             <div class="contenedor_elemento_formulario">
-                <label for="slug">Ruta:</label>
-                <input type="text" wire:model="slug" id="slug">
+                <label>Ruta:</label>
+                <input type="text" wire:model="slug">
                 @error('slug')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -124,8 +122,8 @@
             </div>
             <!--Sku-->
             <div class="contenedor_elemento_formulario">
-                <label for="sku">SKU:</label>
-                <input type="text" wire:model="sku" id="sku">
+                <label>SKU:</label>
+                <input type="text" wire:model="sku">
                 @error('sku')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -134,8 +132,8 @@
             </div>
             <!--Precio-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.precio">Precio:</label>
-                <input type="number" wire:model="producto.precio" id="producto.precio" step="0.01">
+                <label>Precio:</label>
+                <input type="number" wire:model="producto.precio" step="0.01">
                 @error('producto.precio')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -144,8 +142,8 @@
             </div>
             <!--Descripcion Corta-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.descripcion">Descripcion Corta:</label>
-                <textarea rows="3" wire:model="producto.descripcion" id="producto.descripcion"></textarea>
+                <label>Descripcion Corta:</label>
+                <textarea rows="3" wire:model="producto.descripcion"></textarea>
                 @error('producto.descripcion')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -154,8 +152,8 @@
             </div>
             <!--Informacion-->
             <div class="contenedor_elemento_formulario" wire:ignore>
-                <label for="producto.informacion">Información:</label>
-                <textarea rows="3" wire:model="producto.informacion" id="producto.informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
+                <label>Información:</label>
+                <textarea rows="3" wire:model="producto.informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
                         toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList']
                     })
                     .then(function(editor) {
@@ -165,8 +163,7 @@
                     })
                     .catch(error => {
                         console.error(error);
-                    });"
-                    x-ref="miEditor">
+                    });" x-ref="miEditor">
                 </textarea>
                 @error('producto.informacion')
                     <span>
@@ -176,8 +173,8 @@
             </div>
             <!--Puntos a ganar-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.puntos_ganar">Puntos a ganar:</label>
-                <input type="number" wire:model="producto.puntos_ganar" id="producto.puntos_ganar" step="1">
+                <label>Puntos a ganar:</label>
+                <input type="number" wire:model="producto.puntos_ganar" step="1">
                 @error('producto.puntos_ganar')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -186,8 +183,8 @@
             </div>
             <!--Puntos tope canjeo-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.puntos_tope">Puntos tope canjeo:</label>
-                <input type="number" wire:model="producto.puntos_tope" id="producto.puntos_tope" step="1">
+                <label>Puntos tope canjeo:</label>
+                <input type="number" wire:model="producto.puntos_tope" step="1">
                 @error('producto.puntos_tope')
                     <span>
                         <strong>{{ $message }}</strong>
@@ -196,19 +193,17 @@
             </div>
             <!--Tiene Detalle-->
             <div class="contenedor_elemento_formulario">
-                <label for="producto.tiene_detalle">¿Tienes detalle?</label>
+                <label>¿Tienes detalle?</label>
                 <div class="estado">
                     <label>
                         <input type="radio" value="1" name="producto.tiene_detalle"
-                            wire:model.defer="producto.tiene_detalle" id="producto.tiene_detalle"
-                            x-on:click="$wire.tiene_detalle = 1">
+                            wire:model.defer="producto.tiene_detalle" x-on:click="$wire.tiene_detalle = 1">
                         Si
                     </label>
 
                     <label>
                         <input type="radio" value="0" name="producto.tiene_detalle"
-                            wire:model.defer="producto.tiene_detalle" id="producto.tiene_detalle"
-                            x-on:click="$wire.tiene_detalle = 0">
+                            wire:model.defer="producto.tiene_detalle" x-on:click="$wire.tiene_detalle = 0">
                         No
                     </label>
                 </div>
@@ -220,8 +215,8 @@
             </div>
             <!--Detalle-->
             <div class="contenedor_elemento_formulario" wire:ignore x-show="$wire.tiene_detalle">
-                <label for="producto.detalle">Detalle:</label>
-                <textarea rows="3" wire:model="producto.detalle" id="producto.detalle" x-data x-init="ClassicEditor.create($refs.miEditor2, {
+                <label>Detalle:</label>
+                <textarea rows="3" wire:model="producto.detalle" x-data x-init="ClassicEditor.create($refs.miEditor2, {
                         toolbar: ['insertTable', 'bold'],
                         table: {
                             contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
@@ -234,8 +229,7 @@
                     })
                     .catch(error => {
                         console.error(error);
-                    });"
-                    x-ref="miEditor2">
+                    });" x-ref="miEditor2">
                 </textarea>
                 @error('producto.detalle')
                     <span>
@@ -249,9 +243,8 @@
                 @if (!$this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida)
                     <!--Stock-->
                     <div class="contenedor_elemento_formulario">
-                        <label for="producto.stock_total">Stock:</label>
-                        <input type="number" wire:model="producto.stock_total" id="producto.stock_total"
-                            step="1">
+                        <label>Stock:</label>
+                        <input type="number" wire:model="producto.stock_total" step="1">
                         @error('producto.stock_total')
                             <span>
                                 <strong>{{ $message }}</strong>
@@ -262,12 +255,16 @@
             @endif
             <!--Enviar-->
             <div class="contenedor_elemento_formulario formulario_boton_enviar">
-                <input type="submit" value="Actualizar Producto">
+                <!--<input type="submit" value="Actualizar Producto">-->
+                <x-jet-button wire:loading.attr="disabled" wire:target="editarProducto" wire:click="editarProducto">
+                    Actualizar producto
+                </x-jet-button>
             </div>
-        </form>
+        </div>
 
         <hr>
         <br>
+
         @if ($this->subcategoria)
             @if ($this->subcategoria->tiene_medida && !$this->subcategoria->tiene_color)
                 <div class="titulo_pagina">
@@ -287,70 +284,163 @@
             @endif
         @endif
     </div>
+    @push('script')
+        <script>
+            Dropzone.options.myAwesomeDropzone = {
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                dictDefaultMessage: "Arrastre una imagen al recuadro.",
+                acceptedFiles: 'image/*',
+                paramName: "file",
+                maxFilesize: 2,
+                complete: function(file) {
+                    this.removeFile(file);
+                },
+                queuecomplete: function() {
+                    Livewire.emit('dropImagenes');
+                }
+            };
+
+            Livewire.on('eliminarProductoModal', () => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar este producto.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('administrador.producto.pagina-editar-producto-administrador',
+                            'eliminarProducto');
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+
+            })
+
+            Livewire.on('eliminarPivotColorModal', colorPivotId => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar esta medida.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('administrador.producto.componente-varia-color',
+                            'eliminarPivotColor', colorPivotId);
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+            })
+
+            Livewire.on('eliminarPivotMedidaModal', medidaPivotId => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar esta medida.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('administrador.producto.componente-varia-medida',
+                            'eliminarPivotMedida', medidaPivotId);
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+            })
+
+            Livewire.on('eliminarPivotMedidaColorModal', medidaColorPivotId => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar esta medida.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('administrador.producto.componente-varia-medida-color',
+                            'eliminarPivotMedidaColor', medidaColorPivotId);
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+            })
+
+            //Modales de Variación
+            /*Livewire.on('eliminarVariaMedidaModal', variaMedidaId => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar esta medida.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //Livewire.emit('administrador.producto.varia-medida-stock', 'eliminarVariaMedida', variaMedidaId);
+                        Livewire.emit('eliminarVariaMedida', variaMedidaId);
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+            })
+
+            Livewire.on('eliminarVariaMedidaColorModal', variaMedidaColorId => {
+                Swal.fire({
+                    title: '¿Quieres eliminar?',
+                    text: "No podrás recupar esta medida.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //Livewire.emitTo('administrador.producto.varia-medida-color-stock', 'eliminarVariaMedidaColor', variaMedidaColorId);
+                        Livewire.emit('eliminarVariaMedidaColor', variaMedidaColorId);
+                        Swal.fire(
+                            '¡Eliminado!',
+                            'Eliminaste correctamente.',
+                            'success'
+                        )
+                    }
+                })
+            })*/
+        </script>
+    @endpush
 </div>
-@push('script')
-    <script>
-        Dropzone.options.myAwesomeDropzone = {
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            dictDefaultMessage: "Arrastre una imagen al recuadro.",
-            acceptedFiles: 'image/*',
-            paramName: "file",
-            maxFilesize: 2,
-            complete: function(file) {
-                this.removeFile(file);
-            },
-            queuecomplete: function() {
-                Livewire.emit('dropImagenes');
-            }
-        };
-
-        Livewire.on('eliminarProductoModal', () => {
-            Swal.fire({
-                title: '¿Quieres eliminar?',
-                text: "No podrás recupar este producto.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '¡Sí, eliminar!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Livewire.emitTo('administrador.producto.pagina-editar-producto-administrador',
-                        'eliminarProducto');
-                    Swal.fire(
-                        '¡Eliminado!',
-                        'Eliminaste correctamente.',
-                        'success'
-                    )
-                }
-            })
-
-        })
-
-        Livewire.on('eliminarMedidaModal', medidaId => {
-            Swal.fire({
-                title: '¿Quieres eliminar?',
-                text: "No podrás recupar esta medida.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '¡Sí, eliminar!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Livewire.emitTo('administrador.producto.componente-varia-medida',
-                        'eliminarMedida', medidaId);
-                    Swal.fire(
-                        '¡Eliminado!',
-                        'Eliminaste correctamente.',
-                        'success'
-                    )
-                }
-            })
-        })
-    </script>
-@endpush

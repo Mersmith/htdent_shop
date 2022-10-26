@@ -34,7 +34,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar' => 'numeric',
         'producto.puntos_tope' => 'numeric',
         'producto.tiene_detalle' => 'required',
-        //'producto.detalle' => 'required',
+        'producto.detalle' => 'required',
     ];
 
     public function mount(Producto $producto)

@@ -1,14 +1,14 @@
 <div class="contenedor_variacion_medida_color">
     <!--Formulario-->
-    <form wire:submit.prevent="guardarPivot">
+    <div>
+        <!--<form wire:submit.prevent="guardarPivot">-->
         <!--Colores-->
         <div class="contenedor_elemento_formulario">
-            <label for="color_id">Colores:</label>
+            <label>Colores:</label>
             <div>
-                @foreach ($colores as $color)
-                    <label>
-                        <input type="radio" id="color_id" name="color_id" wire:model.defer="color_id"
-                            value="{{ $color->id }}">
+                @foreach ($colores as $key => $color)
+                    <label style="display: {{ $key == 0 ? 'none' : '' }};">
+                        <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
                         <span>
                             {{ $color->nombre }}
                         </span>
@@ -23,9 +23,8 @@
         </div>
         <!--Stock-->
         <div class="contenedor_elemento_formulario">
-            <label for="stock">Stock por medida y color:</label>
-            <input type="number" wire:model.defer="stock" id="stock" step="1"
-                placeholder="Ingrese el stock.">
+            <label>Stock por medida y color:</label>
+            <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese el stock.">
             @error('stock')
                 <span>
                     <strong>{{ $message }}</strong>
@@ -34,9 +33,12 @@
         </div>
         <!--Enviar-->
         <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
-            <input type="submit" value="Agregar stock">
+            <!--<input type="submit" value="Agregar stock">-->
+            <x-jet-button wire:loading.attr="disabled" wire:target="guardarPivot" wire:click="guardarPivot">
+                Agregar stock
+            </x-jet-button>
         </div>
-    </form>
+    </div>
 
     <!--Tabla-->
     @if ($medida_colores->count())
@@ -72,7 +74,7 @@
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>Editar
                                     </button>
                                     |
-                                    <button wire:click="$emit('eliminarPivot', {{ $medida_color->pivot->id }})">
+                                    <button wire:click="eliminarVariaMedidaColor({{ $medida_color->pivot->id }})">
                                         <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar
                                     </button>
                                 </td>
@@ -85,7 +87,7 @@
     @endif
 
     <!--Modal editar -->
-    <x-jet-dialog-modal wire:model="abierto" wire:key="modal-medida-color-{{ $medida->id }}">
+    <x-jet-dialog-modal wire:model="abierto" wire:key="modal-varia-medida-color-{{ $medida->id }}">
         <!--Titulo Modal-->
         <x-slot name="title">
 
@@ -102,23 +104,6 @@
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-            <!--Colores-->
-            {{-- <div class="contenedor_elemento_formulario">
-                <label for="pivot_color_id">Colores:</label>
-
-                <select wire:model="pivot_color_id" id="pivot_color_id">
-                    <option value="" selected disabled>Seleccione un color</option>
-                    @foreach ($colores as $color)
-                        <option value="{{ $color->id }}">{{ $color->nombre }}</option>
-                    @endforeach
-                </select>
-
-                @error('pivot_color_id')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div> --}}
             <!--Stock-->
             <div class="contenedor_elemento_formulario">
                 <label for="pivot_stock">Stock por medida:</label>
@@ -142,5 +127,4 @@
             </div>
         </x-slot>
     </x-jet-dialog-modal>
-
 </div>

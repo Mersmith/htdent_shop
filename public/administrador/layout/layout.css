@@ -50,12 +50,13 @@
 }
 
 .contenedor_formulario_imagen i {
-    color: #666666;
+    color: white;
 }
 
-.contenedor_formulario_imagen i:hover {
+/*
+.contenedor_formulario_imagen button:hover i {
     color: #009eff;
-}
+}*/
 
 .contenedor_formulario_imagen img {
     margin-bottom: 8px;

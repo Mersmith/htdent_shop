@@ -12,6 +12,8 @@ class VariaMedidaStock extends Component
 
     public $pivot, $pivot_color_id, $pivot_stock;
 
+    //protected $listeners = ['eliminarVariaMedida'];
+
     protected $rules = [
         'color_id' => 'required',
         'stock' => 'required|numeric'
@@ -75,9 +77,9 @@ class VariaMedidaStock extends Component
         $this->emit('mensajeActualizado', "Stock actualizado.");
     }
 
-    public function eliminarPivotMedida(Pivot $pivotId)
+    public function eliminarVariaMedida(Pivot $variaMedidaId)
     {
-        $pivotId->delete();
+        $variaMedidaId->delete();
         $this->medida = $this->medida->fresh();
         $this->emit('mensajeEliminado', "Stock eliminado.");
     }
