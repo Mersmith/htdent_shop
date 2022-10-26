@@ -20,8 +20,8 @@
     {{-- Sirve para crear los flash.banner --}}
     <x-jet-banner />
 
-    <div class="min-h-screen bg-gray-100">
-        {{--@livewire('navigation-menu')--}}
+    <div class="min-h-screen">
+        {{-- @livewire('navigation-menu') --}}
 
         @livewire('frontend.menu.menu-principal')
 

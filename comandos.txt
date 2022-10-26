@@ -404,3 +404,35 @@ git commit -m "Modales de alertas"
 git push origin 20_Modales_alertas_CRUD
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************16/10/22***************************************
+->Crear ruta de categorias y producto
+php artisan make:controller Frontend/CategoriaController
+php artisan make:controller Frontend/ProductoController
+
+**************************25/10/22***************************************
+php artisan make:livewire Frontend/ProductoSolo/AgregarCarritoSinVariacion
+php artisan make:livewire Frontend/ProductoSolo/AgregarCarritoVariacionMedida
+php artisan make:livewire Frontend/ProductoSolo/AgregarCarritoVariacionMedidaColor
+php artisan make:livewire Frontend/ProductoSolo/AgregarCarritoVariacionColor
+
+composer require bumbummen99/shoppingcart
+-> crear la carpeta helpers y crear funciones
+-> en coposer json "files": [
+            "app/Helpers/Helpers.php"
+        ]
+
+->composer dump-autoload
+
+**************************26/10/22***************************************
+php artisan make:livewire Frontend/Carrito/CarritoCompras
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 21_Variacion_Producto_Frontend
+git branch
+git status
+
+git add .
+git commit -m "Variacion producto en el frontend"
+git push origin 21_Variacion_Producto_Frontend
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

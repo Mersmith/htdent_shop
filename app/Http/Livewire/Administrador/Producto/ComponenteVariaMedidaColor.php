@@ -11,7 +11,7 @@ class ComponenteVariaMedidaColor extends Component
 
     public $medida, $nombre_editado;
 
-    protected $listeners = ['eliminarMedida'];
+    protected $listeners = ['eliminarPivotMedidaColor'];
 
     protected $rules = [
         'nombre' => 'required'
@@ -26,17 +26,17 @@ class ComponenteVariaMedidaColor extends Component
             ->first();
 
         if ($medida) {
-            $this->emit('errorMedida', 'Esa Medida ya existe');
+            $this->emit('mensajeError', 'Esa Medida ya existe');
         } else {
             $this->producto->medidas()->create([
                 'nombre' => $this->nombre
             ]);
+            $this->emit('mensajeCreado', "La medida fué creada.");
         }
 
         $this->reset('nombre');
 
         $this->producto = $this->producto->fresh();
-        $this->emit('mensajeCreado', "La medida fué creada.");
     }
 
     public function editarMedida(Medida $medida)
@@ -61,9 +61,9 @@ class ComponenteVariaMedidaColor extends Component
         $this->emit('mensajeEditado', "La medida fué editada.");
     }
 
-    public function eliminarMedida(Medida $medida)
+    public function eliminarPivotMedidaColor(Medida $medidaColorPivotId)
     {
-        $medida->delete();
+        $medidaColorPivotId->delete();
         $this->producto = $this->producto->fresh();
     }
 

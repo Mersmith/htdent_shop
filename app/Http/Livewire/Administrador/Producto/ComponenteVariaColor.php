@@ -12,7 +12,7 @@ class ComponenteVariaColor extends Component
 
     public $pivot, $pivot_color_id, $pivot_stock;
 
-    protected $listeners = ['eliminarPivot'];
+    protected $listeners = ['eliminarPivotColor'];
 
     protected $rules = [
         'color_id' => 'required',
@@ -74,9 +74,9 @@ class ComponenteVariaColor extends Component
         $this->emit('mensajeEditado', "El color fué editado.");
     }
 
-    public function eliminarPivot(Pivot $pivot)
+    public function eliminarPivotColor(Pivot $colorPivotId)
     {
-        $pivot->delete();
+        $colorPivotId->delete();
         $this->producto = $this->producto->fresh();
     }
 

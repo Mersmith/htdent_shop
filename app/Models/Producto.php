@@ -54,6 +54,7 @@ class Producto extends Model
     {
         return $this->belongsToMany(Color::class)->withPivot('stock', 'id');
     }
+    
 
     //Relación uno a muchos polimoefica
     //Metodo de su modelo

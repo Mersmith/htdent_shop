@@ -62,6 +62,16 @@
                 timer: 2500
             })
         })
+
+        Livewire.on('mensajeError', mensaje => {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Alto!',
+                text: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
     </script>
 </body>
 

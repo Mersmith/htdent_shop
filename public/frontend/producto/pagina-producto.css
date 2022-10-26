@@ -1,0 +1,109 @@
+.contenedor_pagina_producto {
+    padding: 20px;
+}
+
+.contenedor_info_producto {
+    display: grid;
+    grid-template-areas: "contenedor_producto_imagen  contenedor_producto_info";
+    grid-template-rows: auto;
+    grid-template-columns: 40% 60%;
+}
+
+/*Estilos imagen*/
+.contenedor_producto_imagen {
+    padding: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.contenedor_imagen_producto_principal {
+    border: 2px solid #e7e7e7;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.contenedor_imagen_producto_principal img {
+    object-fit: cover;
+    /*height: 100%;*/
+}
+
+.contenedor_imagen_producto_principal span {
+    position: absolute;
+    top: 0px;
+    font-size: 30px;
+    right: 5px;
+}
+
+.contenedor_imagen_producto_pie {
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+}
+
+.contenedor_imagen_producto_pie .contenedor_imagen_producto_item {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor_imagen_producto_pie .contenedor_imagen_producto_item div {
+    display: flex;
+    height: 100px;
+    border: 2px solid #e7e7e7;
+    margin-left: 2px;
+}
+
+.contenedor_imagen_producto_pie .contenedor_imagen_producto_item img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.contenedor_imagen_producto_principal .contenedor_imagen_pie_controles {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor_imagen_pie_izquierdo {
+    left: 10px;
+}
+
+.contenedor_imagen_pie_derecho {
+    right: 10px;
+}
+
+/*Fin imagen*/
+
+/*Estilos info producto*/
+/*.contenedor_producto_info{
+    background-color: #e7e7e7;
+}
+*/
+.tabla_infoproducto table td{
+    border: 1px solid #ddd;
+}
+
+
+
+
+@media (max-width: 900px) {
+    .contenedor_info_producto {
+        grid-template-areas:
+            "contenedor_producto_imagen"
+            "contenedor_producto_info";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+}

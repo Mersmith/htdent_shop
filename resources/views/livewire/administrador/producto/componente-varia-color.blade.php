@@ -1,14 +1,14 @@
 <div>
     <!--Formulario-->
-    <form wire:submit.prevent="guardarColor">
+    <div>
+        <!--<form wire:submit.prevent="guardarColor">-->
         <!--Colores-->
         <div class="contenedor_elemento_formulario">
-            <label for="color_id">Colores:</label>
+            <label>Colores:</label>
             <div>
-                @foreach ($colores as $color)
-                    <label>
-                        <input type="radio" id="color_id" name="color_id" wire:model.defer="color_id"
-                            value="{{ $color->id }}">
+                @foreach ($colores as $key => $color)
+                    <label style="display: {{ $key == 0 ? 'none' : '' }};">
+                        <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
                         <span>
                             {{ $color->nombre }}
                         </span>
@@ -23,8 +23,8 @@
         </div>
         <!--Stock-->
         <div class="contenedor_elemento_formulario">
-            <label for="stock">Stock por color:</label>
-            <input type="number" wire:model.defer="stock" id="stock" step="1">
+            <label>Stock por color:</label>
+            <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese stock.">
             @error('stock')
                 <span>
                     <strong>{{ $message }}</strong>
@@ -33,9 +33,12 @@
         </div>
         <!--Enviar-->
         <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
-            <input type="submit" value="Agregar Color">
+            <!--<input type="submit" value="Agregar Color">-->
+            <x-jet-button wire:loading.attr="disabled" wire:target="guardarColor" wire:click="guardarColor">
+                Agregar color
+            </x-jet-button>
         </div>
-    </form>
+    </div>
     <!--Tabla-->
     @if ($producto_colores->count())
         <div class="py-4 overflow-x-auto">
@@ -64,76 +67,61 @@
                                     {{ $producto_color->pivot->stock }} unidad(es)
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                    <a wire:click="editarPivot({{ $producto_color->pivot->id }})"
+                                    <button wire:click="editarPivot({{ $producto_color->pivot->id }})"
                                         wire:loading.attr="disabled"
                                         wire:target="editarPivot({{ $producto_color->pivot->id }})"><span><i
-                                                class="fa-solid fa-pencil" style="color: green;"></i></span>Editar</a> |
-                                    <a wire:click="$emit('eliminarPivot', {{ $producto_color->pivot->id }})">
-                                        <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar</a>
+                                                class="fa-solid fa-pencil"
+                                                style="color: green;"></i></span>Editar</button> |
+                                    <button
+                                        wire:click="$emit('eliminarPivotColorModal', {{ $producto_color->pivot->id }})">
+                                        <span><i class="fa-solid fa-trash"
+                                                style="color: red;"></i></span>Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-
-
                 </table>
             </div>
         </div>
+
+        <!--Modal editar -->
+        <x-jet-dialog-modal wire:model="abierto" wire:key="modal-componente-color-{{ $producto->id }}">
+            <!--Titulo Modal-->
+            <x-slot name="title">
+                <div class="contenedor_titulo_modal">
+                    <div>
+                        <h2 style="font-weight: bold">Editar color</h2>
+                    </div>
+                    <div>
+                        <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
+                            <i style="cursor: pointer; color: #666666;" class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </x-slot>
+            <!--Contenido Modal-->
+            <x-slot name="content">
+                <!--Stock-->
+                <div class="contenedor_elemento_formulario">
+                    <label>Stock por color:</label>
+                    <input type="number" wire:model="pivot_stock" step="1" placeholder="Ingrese el stock.">
+                    @error('pivot_stock')
+                        <span>
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </x-slot>
+            <!--Pie Modal-->
+            <x-slot name="footer">
+                <div class="contenedor_pie_modal">
+                    <button style="background-color: #009eff;" wire:click="$set('abierto', false)"
+                        wire:loading.attr="disabled" type="submit">Cancelar</button>
+
+                    <button style="background-color: #ffa03d;" wire:click="actualizarPivot" wire:loading.attr="disabled"
+                        wire:target="actualizarPivot" type="submit">Editar</button>
+                </div>
+            </x-slot>
+        </x-jet-dialog-modal>
     @endif
-    <!--Modal editar -->
-    <x-jet-dialog-modal wire:model="abierto">
-        <!--Titulo Modal-->
-        <x-slot name="title">
-            <div class="contenedor_modal">
-                <h2>Editar Color</h2>
-                <button wire:click="$set('abierto', false)" wire:loading.attr="disabled">
-                    x
-                </button>
-            </div>
-        </x-slot>
-        <!--Contenido Modal-->
-        <x-slot name="content">
-
-            <!--Colores-->
-            {{-- <div class="contenedor_elemento_formulario">
-                <label for="pivot_color_id">Colores:</label>
-
-                <select wire:model="pivot_color_id" id="pivot_color_id">
-                    <option value="" selected disabled>Seleccione un color</option>
-                    @foreach ($colores as $color)
-                        <option value="{{ $color->id }}">{{ $color->nombre }}</option>
-                    @endforeach
-                </select>
-
-                @error('pivot_color_id')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div> --}}
-
-            <!--Stock-->
-            <div class="contenedor_elemento_formulario">
-                <label for="pivot_stock">Stock por color:</label>
-
-                <input type="number" wire:model="pivot_stock" id="pivot_stock" step="1"
-                    placeholder="Ingrese el stock.">
-
-                @error('pivot_stock')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-        </x-slot>
-        <x-slot name="footer">
-            <button wire:click="actualizarPivot" wire:loading.attr="disabled" wire:target="actualizarPivot"
-                type="submit">
-                Actualizar
-            </button>
-
-            <button wire:click="$set('abierto', false)" wire:loading.attr="disabled" type="submit">Cancelar</button>
-        </x-slot>
-    </x-jet-dialog-modal>
 </div>

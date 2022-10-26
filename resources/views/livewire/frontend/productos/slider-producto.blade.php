@@ -23,7 +23,7 @@
                     <div style="text-align: center;">
                         <p class="slider_producto_precio">${{ $producto->precio }}</p>
                         <button class="slider_producto_boton">
-                            <a href="#">
+                            <a  href="{{ route('producto.index', $producto) }}">
                                 Ver más
                             </a>
                         </button>
