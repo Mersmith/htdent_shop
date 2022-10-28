@@ -1,36 +1,37 @@
-<div x-data>
-    <h2>
-        PRODUCTO COLOR
-    </h2>
+<div x-data class="contenedor_producto_variacion_sin">
+    <p>Seleccione color:</p>
     <select wire:model="color_id">
-        <option value="" selected disabled>Primero selccione el color</option>
+        <option value="" selected disabled>Seleccione color</option>
         @foreach ($colores as $colorItem)
             <option value="{{ $colorItem->id }}">{{ $colorItem->nombre }}</option>
         @endforeach
     </select>
-    <div>
-        @if ($color_id)
-            <p>Stock disponible:
+    @if ($color_id)
+        <div>
+            <p><strong>Stock disponible:</strong>
                 @if ($stockProducto)
                     {{ $stockProducto }}
                 @else
                     0
                 @endif
             </p>
-        @endif
-        <x-jet-secondary-button disabled x-bind:disabled="$wire.cantidadCarrito <= 1" wire:loading.attr="disabled"
-            wire:target="disminuir" wire:click="disminuir">-
-        </x-jet-secondary-button>
-        <span>{{ $cantidadCarrito }} </span>
-        <x-jet-secondary-button x-bind:disabled="$wire.cantidadCarrito >= $wire.stockProducto"
-            wire:loading.attr="disabled" wire:target="aumentar" wire:click="aumentar">+
-        </x-jet-secondary-button>
-    </div>
-    <div>
+        </div>
+    @endif
+    <br>
+    <div class="contenedor_producto_variacion_controles_sin">
+        <div>
+            <x-jet-secondary-button disabled x-bind:disabled="$wire.cantidadCarrito <= 1" wire:loading.attr="disabled"
+                wire:target="disminuir" wire:click="disminuir">-
+            </x-jet-secondary-button>
+            <span>{{ $cantidadCarrito }} </span>
+            <x-jet-secondary-button x-bind:disabled="$wire.cantidadCarrito >= $wire.stockProducto"
+                wire:loading.attr="disabled" wire:target="aumentar" wire:click="aumentar">+
+            </x-jet-secondary-button>
+        </div>
         <button x-bind:disabled="$wire.cantidadCarrito > $wire.stockProducto" x-bind:disabled="!$wire.stockProducto"
-            wire:click="agregarProducto" wire:loading.attr="disabled" wire:target="agregarProducto" color="orange">
+            wire:click="agregarProducto" wire:loading.attr="disabled" wire:target="agregarProducto"
+            class="contenedor_producto_variacion_boton">
             Agregar al carrito
         </button>
     </div>
-
 </div>

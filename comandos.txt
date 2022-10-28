@@ -436,3 +436,15 @@ git commit -m "Variacion producto en el frontend"
 git push origin 21_Variacion_Producto_Frontend
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************27/10/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 22_Variacion_Producto_Frontend_Estilos
+git branch
+git status
+
+git add .
+git commit -m "Variacion producto en el frontend estilos"
+git push origin 22_Variacion_Producto_Frontend_Estilos
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

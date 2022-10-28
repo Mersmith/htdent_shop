@@ -31,6 +31,7 @@ class AgregarCarritoVariacionColor extends Component
         $this->opciones["color_id"] = $color->id;
         $this->opciones["color"] = $color->nombre;
         $this->opciones["cantidad"] = calculandoStockProductos($this->producto->id, $color->id);
+        $this->reset('cantidadCarrito');
     }
 
     public function disminuir()

@@ -1,24 +1,26 @@
-<div x-data>
-    <p>PRODUCTO SOLO</p>
+<div x-data class="contenedor_producto_variacion_sin">
     <div>
-        <p>Stock disponible:
+        <p><strong>Stock disponible:</strong>
             @if ($stockProducto)
                 {{ $stockProducto }}
             @else
                 0
             @endif
         </p>
-        <x-jet-secondary-button disabled x-bind:disabled="$wire.cantidadCarrito <= 1" wire:loading.attr="disabled"
-            wire:target="disminuir" wire:click="disminuir">-
-        </x-jet-secondary-button>
-        <span>{{ $cantidadCarrito }} </span>
-        <x-jet-secondary-button x-bind:disabled="$wire.cantidadCarrito >= $wire.stockProducto"
-            wire:loading.attr="disabled" wire:target="aumentar" wire:click="aumentar">+
-        </x-jet-secondary-button>
     </div>
-    <div>
+    <br>
+    <div class="contenedor_producto_variacion_controles_sin">
+        <div>
+            <x-jet-secondary-button disabled x-bind:disabled="$wire.cantidadCarrito <= 1" wire:loading.attr="disabled"
+                wire:target="disminuir" wire:click="disminuir">-
+            </x-jet-secondary-button>
+            <span>{{ $cantidadCarrito }} </span>
+            <x-jet-secondary-button x-bind:disabled="$wire.cantidadCarrito >= $wire.stockProducto"
+                wire:loading.attr="disabled" wire:target="aumentar" wire:click="aumentar">+
+            </x-jet-secondary-button>
+        </div>
         <button x-bind:disabled="$wire.cantidadCarrito > $wire.stockProducto" wire:click="agregarProducto"
-            wire:loading.attr="disabled" wire:target="agregarProducto">
+            wire:loading.attr="disabled" wire:target="agregarProducto" class="contenedor_producto_variacion_boton">
             Agregar al carrito
         </button>
     </div>
