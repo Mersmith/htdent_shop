@@ -145,7 +145,7 @@
                     </div>
                 @endforeach
             </div>
-            <hr>
+            <!-- <hr> -->
             <!-- FIN MENU-PRINCIPAL -->
         </div>
         <div class="contenedor_iconos">

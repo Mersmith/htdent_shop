@@ -10,6 +10,8 @@ class ProductoController extends Controller
 {
     public function mostrar(Producto $producto)
     {
-        return view('frontend.producto.pagina-producto', compact('producto'));
+        $productos = Producto::limit(10)->get();
+
+        return view('frontend.producto.pagina-producto', compact('producto', 'productos'));
     }
 }
