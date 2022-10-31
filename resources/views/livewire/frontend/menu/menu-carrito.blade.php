@@ -39,9 +39,9 @@
                     <p>Total: USD {{ Cart::subtotal() }} </p>
                 </div>
                 <div>
-                    <button href="#">
+                    <a href="{{ route('carrito-compras') }}">
                         Ir al carrito
-                    </button>
+                    </a>
                 </div>
             @endif
         </x-slot>

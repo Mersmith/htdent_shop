@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\InicioController;
 use App\Http\Controllers\Frontend\ProductoController;
+use App\Http\Livewire\Frontend\Carrito\CarritoCompras;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 require_once __DIR__ . '/fortify.php';
@@ -18,6 +19,9 @@ Route::get('producto/{producto}', [ProductoController::class, 'mostrar'])->name(
 Route::get('eliminar-carrito', function () {
     Cart::destroy();
 });
+
+Route::get('carrito-compras', CarritoCompras::class)->name('carrito-compras');
+
 
 /*Route::middleware([
     'auth:sanctum',
