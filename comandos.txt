@@ -448,3 +448,15 @@ git commit -m "Variacion producto en el frontend estilos"
 git push origin 22_Variacion_Producto_Frontend_Estilos
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************31/10/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 23_Diseño_Carrito_Compra
+git branch
+git status
+
+git add .
+git commit -m "Diseño carrito compra"
+git push origin 23_Diseño_Carrito_Compra
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

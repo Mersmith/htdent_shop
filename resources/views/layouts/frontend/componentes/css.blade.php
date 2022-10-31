@@ -14,4 +14,6 @@
 <link rel="stylesheet" href="{{ asset('frontend/inicio/css/slider-metodo-pago.css') }}">
 <!-- Styles Producto -->
 <link rel="stylesheet" href="{{ asset('frontend/producto/pagina-producto.css') }}">
+<!-- Styles Carrito -->
+<link rel="stylesheet" href="{{ asset('frontend/carrito/carrito.css') }}">
 
