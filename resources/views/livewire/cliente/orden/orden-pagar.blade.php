@@ -39,7 +39,7 @@
     }
     
     $preference->back_urls = [
-        'success' => route('cliente.orden.pagar', $orden),
+        'success' => route('cliente.orden.comprar.mercadopago', $orden),
         'failure' => 'http://www.tu-sitio/failure',
         'pending' => 'http://www.tu-sitio/pending',
     ];
@@ -51,6 +51,7 @@
 
     <div>
         <h1>Pagar</h1>
+        <a href="{{ route('cliente.orden.comprar.paypal', $orden) }}">Pagar con Paypal</a>
 
         <div class="bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex items-center">
 
@@ -192,6 +193,7 @@
             <p> Puntos en Dolares:{{ $orden->puntos_canjeados * 1.5 }} </p>
             <p> Total:{{ $orden->total }} USD </p>
             <div class="cho-container"></div>
+            <div id="paypal-button-container"></div>
         </div>
     </div>
 
@@ -212,5 +214,32 @@
             }
         });
     </script>
+    {{-- SDK Paypal --}}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.cliente') }}"></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // This function sets up the details of the transaction, including the amount and line item details.
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: "{{ $orden->total }}"
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // This function captures the funds from the transaction.
+                return actions.order.capture().then(function(details) {
+                    // This function shows a transaction success message to your buyer.
+                    //alert('Transaction completed by ' + details.payer.name.given_name);
+
+                    window.location.href = '{{ route('cliente.orden.comprar.paypal', $orden) }}';
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+
 
 </div>

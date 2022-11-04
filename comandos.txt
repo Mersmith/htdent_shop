@@ -498,3 +498,23 @@ git push origin 24_Compra_Mercadopago
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+**************************04/11/22***************************************
+->PayPal
+->Crear cuentas de comprador y vendedor
+
+https://github.com/paypal/PayPal-PHP-SDK
+composer require paypal/rest-api-sdk-php:*
+composer remove paypal/rest-api-sdk-php
+->Checkout PAYPAL
+https://developer.paypal.com/sdk/js/reference/
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 25_Compra_PayPal
+git branch
+git status
+
+git add .
+git commit -m "Compra con PayPal"
+git push origin 25_Compra_PayPal
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
