@@ -7,6 +7,9 @@ use App\Http\Controllers\Administrador\RolController;
 use App\Http\Livewire\Administrador\Administrador\PaginaAdministradorAdministrador;
 use App\Http\Livewire\Administrador\Perfil\PaginaPerfilAdministrador;
 use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
+use App\Http\Livewire\Administrador\Cupon\AgregarCupones;
+use App\Http\Livewire\Administrador\Cupon\EditarCupones;
+use App\Http\Livewire\Administrador\Cupon\MostrarCupones;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
@@ -53,3 +56,8 @@ Route::get('producto', PaginaTodosProductoAdministrador::class)->name('producto.
 Route::get('producto/crear', PaginaCrearProductoAdministrador::class)->name('producto.crear');
 Route::get('producto/{producto}/editar', PaginaEditarProductoAdministrador::class)->name('producto.editar');
 Route::post('producto/{producto}/files', [ProductoController::class, 'files'])->name('producto.files');
+
+Route::get('cupones', MostrarCupones::class)->name('cupones.index');
+Route::get('cupones/crear', AgregarCupones::class)->name('cupones.crear');
+Route::get('cupones/{cupon}/editar', EditarCupones::class)->name('cupones.editar');
+

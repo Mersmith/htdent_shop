@@ -55,5 +55,11 @@
         "nombreSubMenu1Url": "administrador.producto.crear"
       }
     ]
+  },
+  {
+    "id": 6,
+    "nombrePrincipal": "Cupones",
+    "nombrePrincipalUrl": "administrador.cupones.index",
+    "subMenu1": []
   }
 ]
