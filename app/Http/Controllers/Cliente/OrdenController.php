@@ -32,7 +32,7 @@ class OrdenController extends Controller
     //Mostrar un Orden
     public function mostrar(Orden $orden)
     {
-       // $this->authorize('autor', $orden);
+        // $this->authorize('autor', $orden);
 
         $envio = json_decode($orden->envio);
         $productosCarrito = json_decode($orden->contenido);
@@ -41,7 +41,7 @@ class OrdenController extends Controller
     }
 
     //Orden comprado
-    public function compra(Orden $orden, Request $request)
+    public function comprarMercadoPago(Orden $orden, Request $request)
     {
         //$this->authorize('autor', $orden);
 
@@ -54,6 +54,13 @@ class OrdenController extends Controller
             $orden->estado = 2;
             $orden->save();
         }
+        return redirect()->route('cliente.orden.mostrar', $orden);
+    }
+
+    public function comprarPaypal(Orden $orden, Request $request)
+    {
+        $orden->estado = 2;
+        $orden->save();
         return redirect()->route('cliente.orden.mostrar', $orden);
     }
 }
