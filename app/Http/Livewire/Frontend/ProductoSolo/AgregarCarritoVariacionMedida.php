@@ -25,12 +25,13 @@ class AgregarCarritoVariacionMedida extends Component
     public function updatedMedidaId($value)
     {
         $dataMedida = Medida::find($value);
-        $this->opciones['medida_id'] = $dataMedida->id;
-        $this->opciones['medida'] = $dataMedida->nombre;
         $this->stockProducto = calculandoProductosDisponibles($this->producto->id, 1, $dataMedida->id);
-
         $this->opciones["color_id"] = 1;
         $this->opciones['color'] = "ninguno";
+        $this->opciones['medida_id'] = $dataMedida->id;
+        $this->opciones['medida'] = $dataMedida->nombre;
+        $this->opciones["cantidad"] = calculandoStockProductos($this->producto->id, 1, $dataMedida->id);
+
         $this->reset('cantidadCarrito');
     }
 

@@ -15,12 +15,17 @@ Route::get('categoria/{categoria}', [CategoriaController::class, 'mostrar'])->na
 
 Route::get('producto/{producto}', [ProductoController::class, 'mostrar'])->name('producto.index');
 
+
+Route::middleware(['auth'])->group(
+    function () {
+        Route::get('carrito-compras', CarritoCompras::class)->name('carrito-compras');
+    }
+);
+
 //Eliminar el carrito
 Route::get('eliminar-carrito', function () {
     Cart::destroy();
 });
-
-Route::get('carrito-compras', CarritoCompras::class)->name('carrito-compras');
 
 
 /*Route::middleware([

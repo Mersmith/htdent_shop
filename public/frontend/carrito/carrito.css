@@ -20,6 +20,20 @@
 
 .grid_elementos_carrito {
     grid-area: grid_elementos_carrito;
+}
+
+.grid_elementos_carrito .contenedor_carrito {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.grid_elementos_carrito .contenedor_contacto {
+    margin-top: 30px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,7 +45,16 @@
 
 .grid_metodo_pago {
     grid-area: grid_metodo_pago;
+}
 
+.grid_metodo_pago .contenedor_pago_resumen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
 }
 
 /*Estilos grid_elementos_carrito*/
@@ -108,17 +131,6 @@
 /*Fin estilos grid_elementos_carrito*/
 
 /*Estilos grid_metodo_pago*/
-
-.grid_metodo_pago .contenedor_pago_resumen {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    background-color: white;
-}
-
 .grid_metodo_pago .contenedor_pago {
     display: flex;
     justify-content: space-between;
@@ -155,12 +167,26 @@
     font-weight: 600;
 }
 
-.grid_metodo_pago .contenedor_pago form button:hover  {
+.grid_metodo_pago .contenedor_pago form button:hover {
     background-color: #1fe06f;
 }
 
 .grid_metodo_pago .contenedor_boton_pagar button:hover {
     background-color: #009eff;
+}
+
+/*Estilos contenedor_contacto*/
+.contenedor_contacto .contenedor_elemento_formulario {
+    margin: 10px 0px;
+}
+
+.contenedor_contacto .contenedor_elemento_formulario label{
+    font-weight: 500;
+}
+
+.contenedor_contacto .contenedor_elemento_formulario input[type=text],
+.contenedor_contacto .contenedor_elemento_formulario select {
+    width: 100%;
 }
 
 

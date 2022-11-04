@@ -191,15 +191,15 @@
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="#">
-                                    {{ __('Ordenes') }}
+                                    {{ __('Ventas') }}
                                 </x-jet-dropdown-link>
                             @else
                                 <x-jet-dropdown-link href="{{ route('cliente.perfil') }}">
                                     {{ __('Perfil') }}
                                 </x-jet-dropdown-link>
 
-                                <x-jet-dropdown-link href="#">
-                                    {{ __('Ventas') }}
+                                <x-jet-dropdown-link href="{{ route('cliente.orden.index') }}">
+                                    {{ __('Ordenes') }}
                                 </x-jet-dropdown-link>
                             @endif
 

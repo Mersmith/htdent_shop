@@ -7,13 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('tituloPagina')</title>
-    @include('layouts.frontend.componentes.css')
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
+    @include('layouts.frontend.componentes.css')
 </head>
 
 <body class="font-sans antialiased">
@@ -25,8 +25,7 @@
 
         @livewire('frontend.menu.menu-principal')
 
-
-        <!-- Contenido de páignas-->
+        <!-- Contenido de páginas-->
         <main>
             {{ $slot }}
         </main>
@@ -39,6 +38,44 @@
     @stack('modals')
     @livewireScripts
     @stack('script')
+    <script>
+        Livewire.on('mensajeCreado', mensaje => {
+            Swal.fire({
+                icon: 'success',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+
+        Livewire.on('mensajeActualizado', mensaje => {
+            Swal.fire({
+                icon: 'success',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+
+        Livewire.on('mensajeEliminado', mensaje => {
+            Swal.fire({
+                icon: 'error',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+
+        Livewire.on('mensajeError', mensaje => {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Alto!',
+                text: mensaje,
+                showConfirmButton: false,
+                timer: 2500
+            })
+        })
+    </script>
 </body>
 
 </html>

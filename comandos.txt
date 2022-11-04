@@ -460,3 +460,41 @@ git commit -m "Diseño carrito compra"
 git push origin 23_Diseño_Carrito_Compra
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************02/11/22***************************************
+
+php artisan make:livewire Frontend/Carrito/ActualizarCantidadSinVariacion
+php artisan make:livewire Frontend/Carrito/ActualizarCantidadVariacionColor
+php artisan make:livewire Frontend/Carrito/ActualizarCantidadVariacionMedida
+
+php artisan make:model Departamento -mfs
+php artisan make:model Ciudad -mfs
+php artisan make:model Distrito -mfs
+php artisan make:model Orden -m
+
+php artisan make:model Cupon -m
+php artisan make:livewire Administrador\Cupon\mostrar-cupones
+php artisan make:livewire Administrador\Cupon\agregar-cupones
+php artisan make:livewire Administrador\Cupon\editar-cupones
+
+php artisan make:livewire Cliente\Orden\OrdenPagar
+php artisan make:livewire Cliente\Orden\OrdenMostrar
+
+https://www.mercadopago.com.pe/developers/es
+https://www.mercadopago.com.pe/developers/panel
+->Crear aplicacion
+->Elige el producto que vas a integrar: Checkout Pro
+https://packagist.org/packages/mercadopago/dx-php
+
+php artisan make:controller Cliente/OrdenController
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 24_Compra_Mercadopago
+git branch
+git status
+
+git add .
+git commit -m "Compra con Mercado Pago"
+git push origin 24_Compra_Mercadopago
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
