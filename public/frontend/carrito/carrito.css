@@ -140,16 +140,43 @@
 .grid_metodo_pago .contenedor_boton_pagar {
     margin-top: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-.grid_metodo_pago .contenedor_boton_pagar button {
-    background-color: #ff8809;
+.grid_metodo_pago .contenedor_boton_pagar div {
+    margin-bottom: 10px;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar .boton_mercadopago {
+    display: flex;
+    background-color: #3aaaf5;
+    font-size: 16px;
     padding: 10px 0px;
     border-radius: 5px;
     color: white;
     font-weight: 600;
     width: 100%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar .boton_mercadopago:hover {
+    background-color: #2d97dd;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar button {
+    background-color: #ff8809;
+    font-size: 16px;
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .grid_metodo_pago .contenedor_pago form {
@@ -180,7 +207,7 @@
     margin: 10px 0px;
 }
 
-.contenedor_contacto .contenedor_elemento_formulario label{
+.contenedor_contacto .contenedor_elemento_formulario label {
     font-weight: 500;
 }
 
@@ -188,7 +215,6 @@
 .contenedor_contacto .contenedor_elemento_formulario select {
     width: 100%;
 }
-
 
 @media (max-width: 1200px) {
     .grid_carrito_compras {

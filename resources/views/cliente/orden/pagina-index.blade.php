@@ -72,7 +72,8 @@
                 <ul>
                     @foreach ($ordenes as $orden)
                         <li>
-                            <a href="{{ route('cliente.orden.mostrar', $orden) }}"
+                            {{--<a href="{{ route('cliente.orden.mostrar', $orden) }}"--}}
+                            <a href="{{ $orden->estado == 1 ? route('cliente.orden.pagar', $orden)  : route('cliente.orden.mostrar', $orden) }}"
                                 class="flex items-center py-2 px-4 hover:bg-gray-100">
                                 <span class="w-12 text-center">
                                     @switch($orden->estado)

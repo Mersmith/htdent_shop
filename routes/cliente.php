@@ -10,8 +10,8 @@ Route::redirect('', 'cliente/perfil');
 
 Route::get('perfil', PaginaPerfilCliente::class)->name('perfil');
 
-Route::get('orden/{orden}/pagar', OrdenPagar::class)->name('orden.pagar');
-Route::get('ordenes', [OrdenController::class, 'index'])->name('orden.index');
-Route::get('orden/{orden}', [OrdenController::class, 'mostrar'])->name('orden.mostrar');
+Route::get('mi-orden/{orden}/pagar', OrdenPagar::class)->name('orden.pagar');
+Route::get('mis-ordenes', [OrdenController::class, 'index'])->name('orden.index');
+Route::get('mi-orden/{orden}', [OrdenController::class, 'mostrar'])->name('orden.mostrar');
 Route::get('orden/{orden}/compra-mercadopago', [OrdenController::class, 'comprarMercadoPago'])->name('orden.comprar.mercadopago');
 Route::get('orden/{orden}/compra-paypal', [OrdenController::class, 'comprarPaypal'])->name('orden.comprar.paypal');

@@ -1,145 +1,244 @@
 <x-frontend-layout>
-    @section('tituloPagina', 'Mi Orden')
-    <div>
-        Orden
-    </div>
-    <div>
+    @section('tituloPagina', 'Mi Orden | N° 00000-' . $orden->id)
 
-        <div class="bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex items-center">
-
-            <div class="relative">
+    <div class="contenedor_pagina_carrito">
+        <!--Estado producto-->
+        <div class="contenedor_estado_producto">
+            <div style="text-align: center">
+                <h1 style="margin-bottom: 5px;">Orden: N° 00000-{{ $orden->id }} </h1>
+                {{-- @if ($orden->estado == 1)
+                    <a class="boton_ir_pagar" href="{{ route('cliente.orden.pagar', $orden) }}">
+                        Ir a pagar
+                    </a>
+                @endif --}}
+            </div>
+            <br>
+            <div class="flex items-center">
+                <!--Recibido-->
+                <div class="relative">
+                    <div
+                        class="{{ !$orden->estado == 1 || $orden->estado >= 2 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
+                        <i class="fa-solid fa-dollar-sign text-white"></i>
+                    </div>
+                    <div class="absolute -left-1.5 mt-0.5">
+                        <p>Pagado</p>
+                    </div>
+                </div>
                 <div
-                    class="{{ $orden->estado >= 2 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-check text-white"></i>
+                    class="{{ $orden->estado >= 2 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
-
-                <div class="absolute -left-1.5 mt-0.5">
-                    <p>Recibido</p>
+                <!--Ordenado-->
+                <div class="relative">
+                    <div
+                        class="{{ $orden->estado >= 2 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
+                        <i class="fa-solid fa-list-check  text-white"></i>
+                    </div>
+                    <div class="absolute -left-1.5 mt-0.5">
+                        <p>Alistado</p>
+                    </div>
                 </div>
-            </div>
-
-            <div
-                class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
-            </div>
-
-            <div class="relative">
                 <div
-                    class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-truck text-white"></i>
+                    class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
-
-                <div class="absolute -left-1 mt-0.5">
-                    <p>Enviado</p>
+                <!--Enviado-->
+                <div class="relative">
+                    <div
+                        class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
+                        <i class="fas fa-truck text-white"></i>
+                    </div>
+                    <div class="absolute -left-1 mt-0.5">
+                        <p>Enviado</p>
+                    </div>
                 </div>
-            </div>
-
-            <div
-                class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
-            </div>
-
-            <div class="relative">
                 <div
-                    class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-check text-white"></i>
+                    class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
                 </div>
-
-                <div class="absolute -left-2 mt-0.5">
-                    <p>Entregado</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 flex items-center">
-            <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden:</span>
-                Orden-{{ $orden->id }}</p>
-
-            @if ($orden->estado == 1)
-                <a class="ml-auto" href="{{ route('cliente.orden.pagar', $orden) }}">
-                    Ir a pagar
-                </a>
-            @endif
-        </div>
-
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <div class="grid grid-cols-2 gap-6 text-gray-700">
-                <div>
-                    <p class="text-lg font-semibold uppercase">Envío</p>
-
-                    @if ($orden->tipo_envio == 1)
-                        <p class="text-sm">Los productos deben ser recogidos en tienda</p>
-                        <p class="text-sm">Calle falsa 123</p>
-                    @else
-                        <p class="text-sm">Los productos Serán enviados a:</p>
-                        <p class="text-sm">{{ $envio->direccion }}</p>
-                        <p>{{ $envio->departamento }} - {{ $envio->ciudad }} - {{ $envio->distrito }}
-                        </p>
-                    @endif
-
-
-                </div>
-
-                <div>
-                    <p class="text-lg font-semibold uppercase">Datos de contacto</p>
-
-                    <p class="text-sm">Persona que recibirá el producto: {{ $orden->contacto }}</p>
-                    <p class="text-sm">Teléfono de contacto: {{ $orden->celular }}</p>
+                <!--Entregado-->
+                <div class="relative">
+                    <div
+                        class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
+                        <i class="fa-solid fa-box-open text-white"></i>
+                    </div>
+                    <div class="absolute -left-2 mt-0.5">
+                        <p>Entregado</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <!--Resumen producto-->
+        <div class="contenedor_centrar_pagina">
+            <!--Carrito-->
+            <div class="grid_carrito_compras">
+                <!--Carrito-->
+                <div class="grid_elementos_carrito">
+                    <!--Carrito-->
+                    <div class="contenedor_carrito">
+                        <h1>Resumen de Compra</h1>
+                        <hr>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
 
-        <div class="bg-white rounded-lg shadow-lg p-6 text-gray-700 mb-6">
-            <p class="text-xl font-semibold mb-4">Resumen</p>
+                                    </th>
+                                    <th style="text-align: left">
+                                        Producto
+                                    </th>
+                                    <th>
+                                        Precio
+                                    </th>
+                                    <th>
+                                        Cantidad
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($productosCarrito as $item)
+                                    <tr>
+                                        <td class="imagen_producto_datos_tabla">
+                                            <img src="{{ $item->options->imagen }}" alt="">
+                                        </td>
+                                        <td class="datos_producto_datos_tabla" style="vertical-align: top;">
+                                            <div>
+                                                <p class="titulo_tabla_producto">{{ $item->name }}</p>
+                                                <div>
+                                                    @if ($item->options->color_id)
+                                                        @if ($item->options->color !== 'ninguno')
+                                                            <p><span>Color: </span>{{ $item->options->color }}</p>
+                                                        @endif
+                                                    @endif
+                                                    @if ($item->options->medida_id)
+                                                        <p><span>Medida: </span>{{ $item->options->medida }}</p>
+                                                    @endif
 
-            <table class="table-auto w-full">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Precio</th>
-                        <th>Cant</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
+                                                    <p><span>Puntos:
+                                                        </span>{{ $item->options->puntos_ganar * $item->qty }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <div>
+                                                <span>USD {{ number_format($item->price, 2) }}</span>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <div>
+                                                {{ $item->qty }}
 
-                <tbody class="divide-y divide-gray-200">
-                    @foreach ($productosCarrito as $item)
-                        <tr>
-                            <td>
-                                <div class="flex">
-                                    <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->imagen }}"
-                                        alt="">
-                                    <article>
-                                        <h1 class="font-bold">{{ $item->name }}</h1>
-                                        <div class="flex text-xs">
-
-                                            @isset($item->options->color)
-                                                Color: {{ __($item->options->color) }}
-                                            @endisset
-
-                                            @isset($item->options->medida)
-                                                - {{ $item->options->medida }}
-                                            @endisset
-                                        </div>
-                                    </article>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <div>
+                                                USD {{ number_format($item->price * $item->qty, 2) }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--Contacto-->
+                    <div class="contenedor_contacto">
+                        <h1>Resumen de Envio</h1>
+                        <hr>
+                        <!--Nombre-->
+                        <div class="contenedor_elemento_formulario">
+                            <label>Nombre de contácto:</label>
+                            <p>{{ $orden->contacto }}</p>
+                        </div>
+                        <!--Celular-->
+                        <div class="contenedor_elemento_formulario">
+                            <label>Teléfono de contácto:</label>
+                            <p>{{ $orden->celular }}</p>
+                        </div>
+                        {{-- tipo_envio: Es una variable de alpine --}}
+                        {{-- entangle: Toma la variable del livewire --}}
+                        <label>Recogerá su producto en:</label>
+                        <div class="contenedor_elemento_formulario">
+                            @if ($orden->tipo_envio == 1)
+                                <label>Departamento:</label>
+                                <p>Recojo en tienda (Calle Pablo Usandizaga 683, San Borja, Lima, Perú)</p>
+                            @else
+                                <label>Departamento:</label>
+                                <p>{{ $envio->departamento }}</p>
+                                <label>Ciudad:</label>
+                                <p>{{ $envio->ciudad }}</p>
+                                <label>Distrito:</label>
+                                <p>{{ $envio->distrito }}</p>
+                                <label>Dirección:</label>
+                                <p>{{ $envio->direccion }}</p>
+                                <label>Referencia:</label>
+                                <p>{{ $envio->referencia }}</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <!--Pago-->
+                <div class="grid_metodo_pago">
+                    <div class="contenedor_pago_resumen">
+                        <h1>Resumen de pago</h1>
+                        <hr>
+                        <!--SUBTOTAL-->
+                        <div class="contenedor_pago">
+                            <div>SUBTOTAL: </div>
+                            <div>
+                                ${{ number_format($orden->total - $orden->costo_envio + (float) $orden->cupon_precio + (float) $orden->puntos_canjeados * 1.5, 2) }}
+                            </div>
+                        </div>
+                        <!--ENVIO-->
+                        <div class="contenedor_pago">
+                            <div>ENVIO: </div>
+                            <div>
+                                @if ($orden->tipo_envio == 1)
+                                    Gratis
+                                @else
+                                    ${{ number_format($orden->costo_envio, 2) }}
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
+                        <!--CUPON-->
+                        @if ($orden->cupon_descuento)
+                            <div class="contenedor_pago">
+                                <div>Cupón: </div>
+                                <div>
+                                    <span>
+                                        -${{ number_format($orden->cupon_precio, 2) }}
+                                    </span>
                                 </div>
-                            </td>
-
-                            <td class="text-center">
-                                {{ $item->price }} USD
-                            </td>
-
-                            <td class="text-center">
-                                {{ $item->qty }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ $item->price * $item->qty }} USD
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                            </div>
+                            <hr>
+                        @endif
+                        <!--PUNTOS-->
+                        @if ($orden->puntos_canjeados)
+                            <div class="contenedor_pago">
+                                <div>Puntos: </div>
+                                <div>
+                                    <span>
+                                        -${{ number_format($orden->puntos_canjeados * 1.5, 2) }}
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                        @endif
+                        <!--TOTAL-->
+                        <div class="contenedor_pago" style="font-size: 20px">
+                            <div>
+                                <span style="font-weight: 600;">TOTAL:</span>
+                            </div>
+                            <div>
+                                {{ number_format($orden->total, 2) }}
+                            </div>
+                        </div>
+                        <!--<div class="contenedor_boton_pagar">
+                            <button class="mt-6 mb-4">Comprar</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
 </x-frontend-layout>

@@ -1,0 +1,35 @@
+.contenedor_estado_producto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+    padding-bottom: 45px;
+}
+
+.contenedor_estado_producto .boton_ir_pagar {
+    background-color: #ff8809;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.contenedor_estado_producto p {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.contenedor_estado_producto .boton_ir_pagar:hover {
+    background-color: #009eff;
+}
+
+/*Estilos grid_elementos_carrito*/
+.contenedor_estado_producto h1 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    padding: 10px 0px;
+}

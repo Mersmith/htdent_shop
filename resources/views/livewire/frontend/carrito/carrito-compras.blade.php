@@ -57,14 +57,14 @@
                                                     <a wire:click="eliminarProducto('{{ $item->rowId }}')"
                                                         wire:loading.class="text-red-600 opacity-25"
                                                         wire:target="eliminarProducto('{{ $item->rowId }}')">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="fas fa-trash"></i>Eliminar Producto
                                                     </a>
                                                 </div>
                                             </td>
 
                                             <td style="text-align: center;">
                                                 <div>
-                                                    <span>USD {{ $item->price }}</span>
+                                                    <span>USD {{ number_format($item->price, 2) }}</span>
                                                 </div>
                                             </td>
                                             <td style="text-align: center;">
@@ -80,7 +80,7 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 <div>
-                                                    USD {{ $item->price * $item->qty }}
+                                                    USD {{ number_format($item->price * $item->qty, 2) }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -229,7 +229,7 @@
                             <!--SUBTOTAL-->
                             <div class="contenedor_pago">
                                 <div>SUBTOTAL: </div>
-                                <div>${{ Cart::subTotal() }}</div>
+                                <div>${{ Cart::subTotal(2, '.', '') }}</div>
                             </div>
                             <!--ENVIO-->
                             <div class="contenedor_pago">
@@ -238,7 +238,7 @@
                                     @if ($tipo_envio == 1 || $costo_envio == 0)
                                         Gratis
                                     @else
-                                        ${{ $costo_envio }}
+                                        ${{ number_format($costo_envio, 2) }}
                                     @endif
                                 </div>
                             </div>
@@ -293,7 +293,7 @@
                                                 class="fa-solid fa-xmark"></i></span>
                                         @if ($tipoCupon == 'fijo')
                                             <span>
-                                                -${{ $cupon_descuento }}
+                                                -${{ number_format($cupon_descuento, 2) }}
                                             </span>
                                         @else
                                             <span>
@@ -338,7 +338,7 @@
                                         <span wire:click.prevent="eliminarPuntos"><i
                                                 class="fa-solid fa-xmark"></i></span>
                                         <span>
-                                            -${{ $puntos_descuento }}
+                                            -${{ number_format($puntos_descuento, 2) }}
                                         </span>
                                     </div>
                                 </div>
@@ -352,18 +352,20 @@
                                 <div>
                                     @if ($tipo_envio == 1)
                                         @if ($tipoCupon == 'fijo')
-                                            ${{ (float) Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento }}
+                                            ${{ number_format(Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento, 2) }}
                                         @else
-                                            ${{ (float) Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento - ($cupon_descuento * Cart::subtotal()) / 100 }}
+                                            ${{ number_format(Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento - ($cupon_descuento * Cart::subtotal()) / 100, 2) }}
                                         @endif
                                     @else
-                                        ${{ (float) Cart::subtotal(2, '.', '') + $costo_envio - $cupon_descuento - $puntos_descuento }}
+                                        ${{ number_format(Cart::subtotal(2, '.', '') + $costo_envio - $cupon_descuento - $puntos_descuento, 2) }}
                                     @endif
                                 </div>
                             </div>
                             <div class="contenedor_boton_pagar">
                                 <button wire:loading.attr="disabled" wire:target="crearOrden" class="mt-6 mb-4"
-                                    wire:click="crearOrden">Comprar</button>
+                                    wire:click="crearOrden">Generar Orden de Compra <i
+                                        class="fa-solid fa-forward text-white"
+                                        style="margin-left: 5px; margin-top: 2px;"></i></button>
                             </div>
                         </div>
                     </div>
