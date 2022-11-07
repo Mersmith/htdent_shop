@@ -518,3 +518,16 @@ git commit -m "Compra con PayPal"
 git push origin 25_Compra_PayPal
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************07/11/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 26_Estilos_Paginas_Orden
+git branch
+git status
+
+git add .
+git commit -m "Estilos en las paginas de Orden, Carrito y Menu"
+git push origin 26_Estilos_Paginas_Orden
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

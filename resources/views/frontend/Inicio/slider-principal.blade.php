@@ -2,7 +2,7 @@
     <div class="contenedor_slider_items" id="contenedor_slider_items">
         @foreach ($sliders as $slider)
             <div class="slider_item_principal">
-                <a href="{{$slider->link}}">
+                <a>
                     <img src="{{ asset("$slider->imagen_ruta") }}" class="slider_principal_imagen">
                 </a>
             </div>

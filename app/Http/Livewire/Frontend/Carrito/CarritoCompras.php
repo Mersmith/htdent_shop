@@ -151,6 +151,17 @@ class CarritoCompras extends Component
         $orden->cupon_precio = $this->cupon_descuento;
         $orden->puntos_canjeados = $this->puntosCanje;
 
+        if ($this->tipo_envio == 2) {
+            $orden->costo_envio = $this->costo_envio;
+            $orden->envio = json_encode([
+                'departamento' => Departamento::find($this->departamento_id)->nombre,
+                'ciudad' => Ciudad::find($this->ciudad_id)->nombre,
+                'distrito' => Distrito::find($this->distrito_id)->nombre,
+                'direccion' => $this->direccion,
+                'referencia' => $this->referencia
+            ]);
+        }
+
         $orden->save();
 
         Cart::destroy();

@@ -16,4 +16,5 @@
 <link rel="stylesheet" href="{{ asset('frontend/producto/pagina-producto.css') }}">
 <!-- Styles Carrito -->
 <link rel="stylesheet" href="{{ asset('frontend/carrito/carrito.css') }}">
-
+<!-- Styles Orden -->
+<link rel="stylesheet" href="{{ asset('cliente/orden/orden.css') }}">
