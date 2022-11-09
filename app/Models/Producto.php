@@ -37,6 +37,11 @@ class Producto extends Model
         return $this->hasMany(Medida::class);
     }
 
+    public function resenas()
+    {
+        return $this->hasMany(Resena::class)->whereNull('padre_id');
+    }
+
     //Relación uno a muchos inversa
     public function marca()
     {
@@ -55,7 +60,6 @@ class Producto extends Model
         return $this->belongsToMany(Color::class)->withPivot('stock', 'id');
     }
     
-
     //Relación uno a muchos polimoefica
     //Metodo de su modelo
     public function imagenes()

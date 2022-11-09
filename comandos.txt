@@ -531,3 +531,15 @@ git commit -m "Estilos en las paginas de Orden, Carrito y Menu"
 git push origin 26_Estilos_Paginas_Orden
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************08/11/22***************************************
+php artisan make:model Resena -mc
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 27_Resenas_Comentarios
+git branch
+git status
+
+git add .
+git commit -m "El cliente podrá dejar comentarios y reseñas."
+git push origin 27_Resenas_Comentarios
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\InicioController;
 use App\Http\Controllers\Frontend\ProductoController;
+use App\Http\Controllers\Frontend\ResenaController;
 use App\Http\Livewire\Frontend\Carrito\CarritoCompras;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -26,6 +27,10 @@ Route::middleware(['auth'])->group(
 Route::get('eliminar-carrito', function () {
     Cart::destroy();
 });
+
+Route::post('resenas/{producto}', [ResenaController::class, 'store'])->name('resenas.store');
+Route::post('resenas/{producto}/{comentario}', [ResenaController::class, 'respuesta'])->name('resenas.respuesta');
+
 
 
 /*Route::middleware([

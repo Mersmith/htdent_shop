@@ -17,4 +17,8 @@ class Cliente extends Model
     {
         return $this->hasMany(Orden::class);
     }
+
+    public function resenas(){
+        return $this->hasMany(Resena::class);
+    }
 }
