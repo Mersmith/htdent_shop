@@ -16,47 +16,49 @@
             <div class="flex items-center">
                 <!--Recibido-->
                 <div class="relative">
-                    <div
-                        class="{{ !$orden->estado == 1 || $orden->estado >= 2 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
-                        <i class="fa-solid fa-dollar-sign text-white"></i>
+                    <div class="rounded-full h-11 w-11 flex items-center justify-center"
+                        style="background-color: {{ !$orden->estado == 1 || $orden->estado >= 2 ? 'rgb(245, 171, 11)' : '#9CA3AF' }}">
+                        <i class="fa-solid
+                        fa-dollar-sign text-white"></i>
                     </div>
                     <div class="absolute -left-1.5 mt-0.5">
                         <p>Pagado</p>
                     </div>
                 </div>
-                <div
-                    class="{{ $orden->estado >= 2 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
+                <div class="h-1 flex-1 mx-2"
+                    style="background-color: {{ $orden->estado >= 2 && $orden->estado != 5 ? 'rgb(245, 171, 11)' : '#9CA3AF' }}">
                 </div>
                 <!--Ordenado-->
                 <div class="relative">
-                    <div
-                        class="{{ $orden->estado >= 2 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
+                    <div class="rounded-full h-11 w-11 flex items-center justify-center"
+                        style="background-color: {{ $orden->estado >= 2 && $orden->estado != 5 ? 'rgb(13, 235, 87)' : '#9CA3AF' }}">
+
                         <i class="fa-solid fa-list-check  text-white"></i>
                     </div>
                     <div class="absolute -left-1.5 mt-0.5">
                         <p>Alistado</p>
                     </div>
                 </div>
-                <div
-                    class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
+                <div class="h-1 flex-1 mx-2"
+                    style="background-color: {{ $orden->estado >= 3 && $orden->estado != 5 ? 'rgb(13, 235, 87)' : '#9CA3AF' }}">
                 </div>
                 <!--Enviado-->
                 <div class="relative">
-                    <div
-                        class="{{ $orden->estado >= 3 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
+                    <div class="rounded-full h-11 w-11 flex items-center justify-center"
+                        style="background-color: {{ $orden->estado >= 3 && $orden->estado != 5 ? 'rgb(13, 191, 235)' : '#9CA3AF' }}">
                         <i class="fas fa-truck text-white"></i>
                     </div>
                     <div class="absolute -left-1 mt-0.5">
                         <p>Enviado</p>
                     </div>
                 </div>
-                <div
-                    class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
+                <div class="h-1 flex-1 mx-2"
+                    style="background-color: {{ $orden->estado >= 4 && $orden->estado != 5 ? 'rgb(13, 191, 235)' : '#9CA3AF' }}">
                 </div>
                 <!--Entregado-->
                 <div class="relative">
-                    <div
-                        class="{{ $orden->estado >= 4 && $orden->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
+                    <div class="rounded-full h-11 w-11 flex items-center justify-center"
+                        style="background-color: {{ $orden->estado >= 4 && $orden->estado != 5 ? 'rgb(223, 13, 195)' : '#9CA3AF' }}">
                         <i class="fa-solid fa-box-open text-white"></i>
                     </div>
                     <div class="absolute -left-2 mt-0.5">
@@ -230,7 +232,7 @@
                                 <span style="font-weight: 600;">TOTAL:</span>
                             </div>
                             <div>
-                                {{ number_format($orden->total, 2) }}
+                                ${{ number_format($orden->total, 2) }}
                             </div>
                         </div>
                         <!--<div class="contenedor_boton_pagar">

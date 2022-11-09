@@ -14,7 +14,8 @@
                                     <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
                                         x-show="current == {{ $key }}">
                                 @endforeach
-                                <span class="agregar_favorito"> <i class="fa-solid fa-heart" style="color: #ffa03d; cursor: pointer;"></i>
+                                <span class="agregar_favorito"> <i class="fa-solid fa-heart"
+                                        style="color: #ffa03d; cursor: pointer;"></i>
                                 </span>
 
                                 <div class="contenedor_imagen_pie_controles contenedor_imagen_pie_izquierdo">
@@ -31,8 +32,8 @@
                             <div class="contenedor_imagen_producto_pie">
                                 <div class="contenedor_imagen_producto_item">
                                     @foreach ($producto->imagenes as $key => $imagen)
-                                            <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
-                                                @click="current = {{ $key }}, open = true">
+                                        <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
+                                            @click="current = {{ $key }}, open = true">
                                     @endforeach
                                 </div>
                             </div>
@@ -107,18 +108,130 @@
                             allowfullscreen></iframe>
                     </div>
                 @endif
+                <!--Comentarios-->
+                @if ($producto->resenas->isNotEmpty())
+                    <div x-data="{ seleccionado: null }" class="contenedor_comentarios">
+                        <!--Dejar comentario-->
+                        @include('frontend.producto.formularioResena')
+
+                        <h2>Todas las Reseñas</h2>
+                        @foreach ($producto->resenas as $key => $resena)
+                            <div>
+                                <div class="contenedor_resena_comentada">
+                                    <div class="resena_comentada_datos">
+                                        @if ($resena->user->cliente->imagen_ruta)
+                                            <img class="h-12 w-12 rounded-full object-cover" style="margin-right: 12px"
+                                                src="{{ Storage::url($resena->user->cliente->imagen_ruta) }}"
+                                                alt="{{ $resena->user->cliente->nombre }}" />
+                                        @else
+                                            <img class="h-12 w-12 rounded-full object-cover" style="margin-right: 12px"
+                                                src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
+                                        @endif
+                                        <div>
+                                            <p><strong>{{ $resena->user->cliente->nombre }}</strong></p>
+                                            @for ($i = 0; $i < $resena->puntaje; $i++)
+                                                <i class="fas fa-star text-yellow-500"></i>
+                                            @endfor
+                                            <p>{{ $resena->created_at->diffForHumans() }}</p>
+                                            <span
+                                                @click="seleccionado !== {{ $key }} ? seleccionado = {{ $key }} : seleccionado = null"
+                                                style="cursor: pointer; color: red;">Responder</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p>
+                                        {!! $resena->comentario !!}
+                                    </p>
+                                </div>
+                                @if (Auth::user())
+                                    <div x-show="seleccionado == {{ $key }}"
+                                        class="contenedor_resena_respondida" style="margin-left: 25px;">
+                                        <div style="display: flex; justify-content: flex-end;">
+                                            <span
+                                                @click="seleccionado !== {{ $key }} ? seleccionado = {{ $key }} : seleccionado = null"
+                                                style="cursor: pointer; color: red; font-size: 20px;"><i
+                                                    style="color: red;" class="fa-solid fa-xmark"></i></span>
+                                        </div>
+                                        @include('frontend.producto.formularioResenaResponder', [
+                                            'padre_id' => $resena->id,
+                                            'producto_id' => $producto->id,
+                                        ])
+                                    </div>
+                                @endif
+
+                                @if (count($resena->respuestas) > 0)
+                                    <div style="margin-left: 25px;">
+                                        <div x-data="{ seleccionadoRespuesta: null }" class="contenedor_comentarios">
+                                            @foreach ($resena->respuestas as $key2 => $respuesta)
+                                                <div>
+                                                    <div class="contenedor_resena_respondida">
+                                                        <div class="resena_comentada_datos">
+                                                            @if ($respuesta->user->cliente->imagen_ruta)
+                                                                <img class="h-12 w-12 rounded-full object-cover"
+                                                                    style="margin-right: 12px"
+                                                                    src="{{ Storage::url($respuesta->user->cliente->imagen_ruta) }}"
+                                                                    alt="{{ $respuesta->user->cliente->nombre }}" />
+                                                            @else
+                                                                <img class="h-12 w-12 rounded-full object-cover"
+                                                                    style="margin-right: 12px"
+                                                                    src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
+                                                            @endif
+                                                            <div>
+                                                                <p><strong>{{ $respuesta->user->cliente->nombre }}</strong>
+                                                                </p>
+                                                                @for ($i2 = 0; $i2 < $respuesta->puntaje; $i2++)
+                                                                    <i class="fas fa-star text-yellow-500"></i>
+                                                                @endfor
+                                                                <p>{{ $respuesta->created_at->diffForHumans() }}</p>
+                                                                {{-- <span
+                                                                    @click="seleccionadoRespuesta !== {{ $key2 }} ? seleccionadoRespuesta = {{ $key2 }} : seleccionadoRespuesta = null"
+                                                                    style="cursor: pointer; color: red;">Responder</span>
+                                                                <div
+                                                                    x-show="seleccionadoRespuesta == {{ $key2 }}">
+                                                                    <h2>Responder</h2>
+                                                                    @include('frontend.producto.formularioResenaResponder',
+                                                                        [
+                                                                            'padre_id' => $respuesta->id,
+                                                                            'producto_id' => $producto->id,
+                                                                        ])
+                                                                </div> --}}
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <p>
+                                                            {!! $respuesta->comentario !!}
+                                                        </p>
+
+                                                        {{-- @if (count($respuesta->respuestas) > 0)
+                                                    <hr>
+                                                    <div style="margin-left: 50px;">
+                                                        <h4>Respuestas 2</h4>
+                                                        @foreach ($respuesta->respuestas as $respuesta2)
+                                                            <strong>{{ $respuesta2->user->name }}</strong>
+                                                            <p>{{ $respuesta2->comentario }}</p>
+                                                        @endforeach
+                                                    </div>
+                                                @endif --}}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-    <div>
-        <p>Componente comentarios</p>
-    </div>
 
     {{-- @livewire('frontend.productos.slider-producto', ['productos' => $productos]) --}}
-
-    <div>
-        <p>Componente slider pagos</p>
-    </div>
+    <!--
+        <div>
+            <p>Componente slider pagos</p>
+        </div>
+-->
 
     @push('script')
         <script></script>

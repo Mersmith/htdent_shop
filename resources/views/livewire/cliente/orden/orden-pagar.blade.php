@@ -258,8 +258,8 @@
                                     </span>
                                 </div>
                             </div>
+                            <hr>
                         @endif
-                        <hr>
                         <!--PUNTOS-->
                         @if ($orden->puntos_canjeados)
                             <div class="contenedor_pago">
@@ -270,8 +270,8 @@
                                     </span>
                                 </div>
                             </div>
+                            <hr>
                         @endif
-                        <hr>
                         <!--TOTAL-->
                         <div class="contenedor_pago" style="font-size: 20px">
                             <div>

@@ -252,6 +252,38 @@
     margin-top: 5px;
 }
 
+/*Estilos Comentarios*/
+.contenedor_resena_comentada{
+    border: 1.5px solid #cfd3d9;
+    padding: 20px 15px;
+    margin: 5px 0px;
+}
+
+.contenedor_resena_respondida{
+    background-color: #f5f9ff;
+    border: 1.5px solid #cfd3d9;
+    /*border-radius: 30px;*/
+    padding: 20px 15px;
+    margin: 5px 0px;
+}
+
+.contenedor_resena_respondida textarea{
+    width: 100%;
+    border-radius: 30px;
+}
+
+.contenedor_resena_comentada .resena_comentada_datos,
+.contenedor_resena_respondida .resena_comentada_datos{
+    display: flex;
+}
+
+.contenedor_pagina_producto h2 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    padding: 10px 0px;
+}
+
 @media (max-width: 1200px) {
     .contenedor_info_producto {
         width: 90%;
