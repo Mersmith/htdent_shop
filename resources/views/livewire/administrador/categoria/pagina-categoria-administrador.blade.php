@@ -1,19 +1,19 @@
-<div class="contenedor_pagina_administrador">
-    <!--Cotenedor formulario-->
-    <div class="titulo_pagina">
-        <h2>Crear Categoria</h2>
-    </div>
-    <div class="contenedor_formulario">
+<div>
+    @section('tituloPagina', 'Administrador | Categorias')
+    <!--Titulo-->
+    <h2 class="administrador_paginas_titulo">CREAR NUEVA CATEGORIA</h2>
+    <!--Contenedor Página-->
+    <div class="contenedor_pagina_administrador_perfil">
         <form wire:submit.prevent="crearCategoria" enctype="multipart/form-data">
             <!--Nombre-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.nombre">Nombre:</label>
-                <input type="text" wire:model="crearFormulario.nombre" id="crearFormulario.nombre">
-                @error('crearFormulario.nombre')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos estilos_input_text">
+                <label>
+                    <p class="estilo_nombre_input">Nombre: </p>
+                    <input type="text" wire:model="crearFormulario.nombre">
+                    @error('crearFormulario.nombre')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Ruta-->
             <div class="contenedor_elemento_formulario">
@@ -242,11 +242,12 @@
         </x-slot>
         <x-slot name="footer">
             <div class="contenedor_pie_modal">
-                <button style="background-color: #009eff;" wire:click="$set('editarFormulario.abierto', false)" wire:loading.attr="disabled"
-                    type="submit">Cancelar</button>
+                <button style="background-color: #009eff;" wire:click="$set('editarFormulario.abierto', false)"
+                    wire:loading.attr="disabled" type="submit">Cancelar</button>
 
-                <button style="background-color: #ffa03d;" wire:click="actualizarCategoria" wire:loading.attr="disabled"
-                    wire:target="editarImagen, actualizarCategoria" type="submit">Editar</button>
+                <button style="background-color: #ffa03d;" wire:click="actualizarCategoria"
+                    wire:loading.attr="disabled" wire:target="editarImagen, actualizarCategoria"
+                    type="submit">Editar</button>
             </div>
         </x-slot>
     </x-jet-dialog-modal>

@@ -2,6 +2,66 @@
     margin-left: 300px;
     padding: 20px;
 }
+/*Mensaje alerta*/
+.mensaje_alerta{
+    background-color: #009eff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+}
+
+.mensaje_alerta p{
+    margin-right: 5px;
+}
+/*Titulo*/
+.contenedor_layout_administrador .administrador_paginas_titulo {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #cfd3d9;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/*Boton crear*/
+.contenedor_boton_crear a {
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ffa03d;
+    color: white;
+    padding: 8px 10px;
+    font-weight: 500;
+}
+
+.contenedor_boton_crear a:hover {
+    background-color: #f18f26;
+}
+
+/*Contenedor No existe*/
+.conetenedor_no_existe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaaaaa;
+    font-size: 24px;
+
+}
+
+/*Contenedor Buscador*/
+.contenedor_buscador input{
+    margin-top: 20px;
+}
+
+.contenedor_buscador input{
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 .titulo_pagina {
     font-size: 24px;
@@ -104,6 +164,7 @@
 
 .tabla_controles {
     cursor: pointer;
+    display: flex;
 }
 
 .contenedor_variacion {

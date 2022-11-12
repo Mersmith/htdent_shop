@@ -1,0 +1,196 @@
+.contenedor_layout_administrador {
+    margin-left: 300px;
+    padding: 20px;
+}
+
+/*Mensaje alerta*/
+.mensaje_alerta {
+    background-color: #009eff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+}
+
+.mensaje_alerta p {
+    margin-right: 5px;
+}
+
+/*Fin Mensaje alerta*/
+
+/*Titulo*/
+.contenedor_paginas_titulo {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #cfd3d9;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/*Boton crear*/
+.contenedor_boton_titulo a {
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ffa03d;
+    color: white;
+    padding: 8px 10px;
+    font-weight: 500;
+}
+
+.contenedor_boton_titulo a:hover {
+    background-color: #f18f26;
+}
+
+/*Fin Boton crear*/
+
+/*Contenedor No existe*/
+.contenedor_no_existe_elementos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaaaaa;
+    font-size: 24px;
+}
+
+/*Fin Contenedor No existe*/
+
+/*Contenedor Buscador*/
+.contenedor_buscador input {
+    margin-top: 20px;
+}
+
+.contenedor_buscador input {
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/*Fin Contenedor Buscador*/
+
+/*Contenedor Formulario*/
+/*Contenedor 1 Elemento*/
+.contenedor_1_elementos {
+    display: flex;
+}
+
+.contenedor_1_elementos .label_principal {
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.contenedor_1_elementos input[type=text],
+.contenedor_1_elementos input[type=email],
+.contenedor_1_elementos input[type=password] {
+    width: calc(50% - 5px);
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contenedor_1_elementos button,
+.contenedor_1_elementos input[type=submit] {
+    width: calc(50% - 5px);
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ffa03d;
+    color: white;
+    padding: 8px 0px;
+    font-weight: 500;
+}
+
+.contenedor_1_elementos button:hover,
+.contenedor_1_elementos input[type=submit] {
+    background-color: #f18f26;
+}
+
+/*Fin Contenedor 1 Elemento*/
+
+/*Contenedor 2 Elemento*/
+.contenedor_2_elementos {
+    display: flex;
+    gap: 10px;
+}
+
+.contenedor_2_elementos .label_principal {
+    cursor: pointer;
+    width: 50%;
+    margin: 10px 0px;
+}
+
+.contenedor_2_elementos input[type=text],
+.contenedor_2_elementos input[type=email],
+.contenedor_2_elementos input[type=password] {
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/*Fin Contenedor 2 Elemento*/
+
+/*Contenedor Imagen*/
+.contenedor_imagen_perfil {
+    position: relative;
+}
+
+.contenedor_imagen_perfil img {
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.contenedor_imagen_perfil .opcion_cambiar_imagen {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contenedor_imagen_perfil:hover img {
+    opacity: 0.3;
+}
+
+.contenedor_imagen_perfil:hover .opcion_cambiar_imagen {
+    opacity: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+
+    .contenedor_layout_administrador {
+        margin-left: 0px;
+    }
+
+    /*Estilos 1 elemento*/
+    .contenedor_1_elementos input[type=text],
+    .contenedor_1_elementos input[type=email],
+    .contenedor_1_elementos input[type=password] {
+        width: 100%;
+    }
+
+    .contenedor_1_elementos button,
+    .contenedor_1_elementos input[type=submit] {
+        width: 100%;
+    }
+
+    /*Estilos 2 elemento*/
+    .contenedor_2_elementos {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .contenedor_2_elementos .label_principal {
+        width: 100%;
+    }
+}

@@ -1,15 +1,12 @@
 <div class="centrar_contenedor_slider_producto">
     <div id="contenedor_slider_producto">
         <h1 class="slider_producto_titulo">Equipos Odontológicos más vendidos </h1>
-
-        <div id="slider_producto">
-
+        <div class="glider">
             @foreach ($productos as $key => $producto)
                 <div class="item_slider_producto">
                     <div class="slider_producto_imagen">
                         @if ($producto->imagenes->count())
-                            <img class="slider_imagen" src="{{ Storage::url($producto->imagenes->first()->imagen_ruta) }}"
-                                alt="" />
+                            <img src="{{ Storage::url($producto->imagenes->first()->imagen_ruta) }}" alt="" />
                         @else
                             <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                         @endif
@@ -23,23 +20,56 @@
                     <div style="text-align: center;">
                         <p class="slider_producto_precio">${{ $producto->precio }}</p>
                         <button class="slider_producto_boton">
-                            <a  href="{{ route('producto.index', $producto) }}">
+                            <a href="{{ route('producto.index', $producto) }}">
                                 Ver más
                             </a>
                         </button>
                     </div>
                 </div>
             @endforeach
-
         </div>
-
-        <span id="boton_siguiente_producto" class="boton_slider_producto">
+        <button aria-label="Previous" class="boton_slider_producto glider-prev">
             <i class="fa-solid fa-angle-left"></i>
-        </span>
-        <span id="boton_retroceder_producto" class="boton_slider_producto">
+        </button>
+        <button aria-label="Next" class=" boton_slider_producto glider-next">
             <i class="fa-solid fa-angle-right"></i>
-        </span>
-
+        </button>
     </div>
-
 </div>
+
+<script>
+    new Glider(document.querySelector('.glider'), {
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        draggable: true,
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+        responsive: [{
+            breakpoint: 300,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 640,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3
+            }
+        }, {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4
+            }
+        }]
+    });
+</script>

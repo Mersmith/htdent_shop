@@ -1,40 +1,46 @@
 <div>
-    <h2>Administrador - Pagina Perfil </h2>
-    <br>
-    <div>
-        <h3>Perfil de: {{ $usuario->email }}</h3>
-    </div>
-    <br>
-    <div>
+    @section('tituloPagina', 'Administrador | ' . $usuario->administrador->nombre)
+    <!--Titulo-->
+    <h2 class="administrador_paginas_titulo">MIS DATOS PERSONALES</h2>
+    <!--Contenedor Página-->
+    <div class="contenedor_pagina_administrador_perfil">
         <form wire:submit.prevent="editarPerfilAdministrador" enctype="multipart/form-data">
-            <div>
+            {{-- <div class="contenedor_1_elementos">
                 <label>
-                    <p>Imagen: </p>
+                    <p>Foto: </p>
+                    <div class="contenedor_cambiar_imagen">
+                        @if ($nueva_imagen_ruta)
+                            <img style="width: 100px; height: 100px;" src="{{ $nueva_imagen_ruta->temporaryUrl() }}">
+                        @elseif($imagen_ruta)
+                            <img style="width: 100px; height: 100px;"
+                                src="{{ Storage::url($usuario->administrador->imagen_ruta) }}">
+                        @else
+                            <img style="width: 100px; height: 100px;"
+                                src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
+                        @endif
+                    </div>
+                    <input type="file" wire:model="nueva_imagen_ruta" style="display: none;">
                 </label>
-                @if ($nueva_imagen_ruta)
-                    <img style="width: 100px; height: 100px;" src="{{ $nueva_imagen_ruta->temporaryUrl() }}">
-                @elseif($imagen_ruta)
-                    <img style="width: 100px; height: 100px;"
-                        src="{{ Storage::url($usuario->administrador->imagen_ruta) }}">
-                @else
-                    <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
-                @endif
-                <input type="file" wire:model="nueva_imagen_ruta">
+            </div> --}}
+            <div class="contenedor_2_elementos">
+                <!--Nombre-->
+                <label>
+                    <p>Nombre: </p> <input type="text" wire:model="nombre">
+                </label>
+                <!--Apellido-->
+                <label>
+                    <p>Apellido: </p> <input type="text" wire:model="apellido">
+                </label>
             </div>
-
-            <label>
-                <p>Nombre: </p> <input type="text" wire:model="nombre">
-            </label>
-            <label>
-                <p>Apellido: </p> <input type="text" wire:model="apellido">
-            </label>
-            <label>
-                <p>Celular: </p> <input type="text" wire:model="celular">
-            </label>
-            <br>
-            <br>
-            <button style="border: 1px solid #000; padding: 5px" type="submit">Actualizar</button>
+            <!--Celular-->
+            <div class="contenedor_1_elementos">
+                <label>
+                    <p>Celular: </p> <input type="text" wire:model="celular">
+                </label>
+            </div>
+            <div class="contenedor_1_elementos">
+                <button type="submit">Actualizar cambios</button>
+            </div>
         </form>
     </div>
-
 </div>

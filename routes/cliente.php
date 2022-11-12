@@ -6,9 +6,9 @@ use App\Http\Livewire\Cliente\Orden\OrdenPagar;
 use App\Http\Livewire\Cliente\Perfil\PaginaPerfilCliente;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('', 'cliente/perfil');
+Route::redirect('', 'cliente/datos-personales');
 
-Route::get('perfil', PaginaPerfilCliente::class)->name('perfil');
+Route::get('datos-personales', PaginaPerfilCliente::class)->name('perfil');
 
 Route::get('mi-orden/{orden}/pagar', OrdenPagar::class)->name('orden.pagar');
 Route::get('mis-ordenes', [OrdenController::class, 'index'])->name('orden.index');

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombrePrincipal": "Mis pedidos",
+    "nombrePrincipalUrl": "cliente.pedidos"
+  },
+  {
+    "id": 2,
+    "nombrePrincipal": "CMR Puntos",
+    "nombrePrincipalUrl": "cliente.puntos"
+  },
+  {
+    "id": 3,
+    "nombrePrincipal": "Mis reseñas",
+    "nombrePrincipalUrl": "cliente.resenas"
+  },
+  {
+    "id": 4,
+    "nombrePrincipal": "Mis cupones",
+    "nombrePrincipalUrl": "cliente.cupones"
+  },
+  {
+    "id": 5,
+    "nombrePrincipal": "Mis datos personales",
+    "nombrePrincipalUrl": "cliente.personales"
+  },
+  {
+    "id": 6,
+    "nombrePrincipal": "Mis direcciones",
+    "nombrePrincipalUrl": "cliente.direcciones"
+  },
+  {
+    "id": 7,
+    "nombrePrincipal": "Mis métodos de pago",
+    "nombrePrincipalUrl": "cliente.metodos"
+  },
+  {
+    "id": 8,
+    "nombrePrincipal": "Mis direcciones de facturación",
+    "nombrePrincipalUrl": "cliente.facturacion"
+  }
+]
