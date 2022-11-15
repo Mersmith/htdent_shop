@@ -47,17 +47,31 @@ class PaginaCategoriaAdministrador extends Component
 
     //personalizar los mensajes de validación utilizados por un componente de Livewire
     protected $validationAttributes = [
-        'crearFormulario.nombre' => 'nombre',
-        'crearFormulario.slug' => 'slug',
-        'crearFormulario.icono' => 'icono',
-        'crearFormulario.imagen_ruta' => 'imagen_ruta',
-        'crearFormulario.marcas' => 'marcas',
+        'crearFormulario.nombre' => 'nombre de categoria',
+        'crearFormulario.slug' => 'slug de categoria',
+        'crearFormulario.icono' => 'icono de categoria',
+        'crearFormulario.imagen_ruta' => 'imagen de categoria',
+        'crearFormulario.marcas' => 'marcas de categoria',
 
-        'editarFormulario.nombre' => 'nombre',
-        'editarFormulario.slug' => 'slug',
-        'editarFormulario.icono' => 'icono',
-        'editarImagen' => 'imagen_ruta',
-        'editarFormulario.marcas' => 'marcas',
+        'editarFormulario.nombre' => 'nombre de categoria',
+        'editarFormulario.slug' => 'slug de categoria',
+        'editarFormulario.icono' => 'icono de categoria',
+        'editarImagen' => 'imagen de categoria',
+        'editarFormulario.marcas' => 'marcas de categoria',
+    ];
+
+    protected $messages = [
+        'crearFormulario.nombre.required' => 'El :attribute es requerido.',
+        'crearFormulario.slug.required' => 'El :attribute  requerido.',
+        'crearFormulario.icono.required' => 'El :attribute es requerido.',
+        'crearFormulario.imagen_ruta.required' => 'La :attribute es requerido.',
+        'crearFormulario.marcas.required' => 'La :attribute es requerido.',
+
+        'editarFormulario.nombre.required' => 'El :attribute es requerido.',
+        'editarFormulario.slug.required' => 'El :attribute es requerido.',
+        'editarFormulario.icono.required' => 'El :attribute es requerido.',
+        'editarImagen.required' => 'La :attribute es requerido.',
+        'editarFormulario.marcas.required' => 'La :attribute es requerido.',
     ];
 
     //solo se llama cuando el componente se monta por primera vez y no se volverá a llamar incluso cuando el componente se actualice o se vuelva a renderizar.
@@ -107,9 +121,9 @@ class PaginaCategoriaAdministrador extends Component
         $categoria->marcas()->attach($this->crearFormulario['marcas']);
 
         $this->aleatorio = rand();
-        
+
         $this->traerCategorias();
-        
+
         //Emitir eventos a los padres y no a los componentes secundarios o hermanos.
         $this->emit('mensajeCreado', "Categoria agregado.");
         $this->reset('crearFormulario');

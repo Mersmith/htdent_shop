@@ -1,62 +1,70 @@
-<div class="contenedor_pagina_administrador">
-    <!--Cotenedor formulario-->
-    <div class="titulo_pagina">
-        <h2>Crear Marca</h2>
-    </div>
-    <div class="contenedor_formulario">
-        <form wire:submit.prevent="crearMarca">
+<div>
+    @section('tituloPagina', 'Administrador | Marcas')
+    <!--Titulo-->
+    <h2 class="contenedor_paginas_titulo">CREAR NUEVA MARCA</h2>
+    <!--Contenedor Página-->
+    <div class="contenedor_paginas_administrador">
+        <!--Formulario-->
+        <form wire:submit.prevent="crearMarca" class="formulario">
             <!--Nombre-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.nombre">Nombre:</label>
-                <input type="text" wire:model="crearFormulario.nombre" id="crearFormulario.nombre">
-                @error('crearFormulario.nombre')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Nombre: </p>
+                    <input type="text" wire:model="crearFormulario.nombre" id="crearFormulario.nombre">
+                    @error('crearFormulario.nombre')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Enviar-->
-            <div class="contenedor_elemento_formulario formulario_boton_enviar">
+            <div class="contenedor_1_elementos">
                 <input type="submit" value="Crear Marca">
             </div>
         </form>
+        <!--Cotenedor tabla-->
+        <h2 class="contenedor_paginas_titulo">MARCAS</h2>
+        @if ($marcas->count())
+            <div class="py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    Nombre</th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($marcas as $marca)
+                                <tr>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        {{ $marca->nombre }}
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
+                                        <a wire:click="editarMarca('{{ $marca->id }}')"><span><i
+                                                    class="fa-solid fa-pencil"
+                                                    style="color: green;"></i></span>Editar</a> |
+                                        <a wire:click="$emit('eliminarMarcaModal', '{{ $marca->id }}')">
+                                            <span><i class="fa-solid fa-trash"
+                                                    style="color: red;"></i></span>Eliminar</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @else
+            <div class="contenedor_no_existe_elementos">
+                <p>No hay marcas</p>
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+        @endif
     </div>
-    <!--Cotenedor tabla-->
-    <div class="titulo_pagina">
-        <h2>Marcas</h2>
-    </div>
-    <div class="py-4 overflow-x-auto">
-        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full leading-normal">
-                <thead>
-                    <tr>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Nombre</th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Acción</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    @foreach ($marcas as $marca)
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                {{ $marca->nombre }}
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                <a wire:click="editarMarca('{{ $marca->id }}')"><span><i class="fa-solid fa-pencil"
-                                            style="color: green;"></i></span>Editar</a> |
-                                <a wire:click="$emit('eliminarMarcaModal', '{{ $marca->id }}')">
-                                    <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
     <!--Modal editar -->
     <x-jet-dialog-modal wire:model="editarFormulario.abierto">
         <!--Titulo Modal-->
@@ -74,15 +82,17 @@
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-            <!--Nombre-->
-            <div class="contenedor_elemento_formulario">
-                <label for="editarFormulario.nombre">Nombre:</label>
-                <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
-                @error('editarFormulario.nombre')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="formulario">
+                <!--Nombre-->
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Nombre: </p>
+                        <input type="text" wire:model="editarFormulario.nombre">
+                        @error('editarFormulario.nombre')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
+                </div>
             </div>
         </x-slot>
         <x-slot name="footer">

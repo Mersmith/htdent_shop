@@ -2,12 +2,16 @@
     @section('tituloPagina', 'Inicio')
     @include('frontend.inicio.slider-principal')
 
-    @livewire('frontend.productos.slider-producto', ['productos' => $productos])
-    
+    @if ($productos->count())
+        @livewire('frontend.productos.slider-producto', ['productos' => $productos])
+    @endif
+
     @include('frontend.inicio.llamada-accion')
-    
-    @livewire('frontend.productos.slider-producto2', ['productos' => $productos])
-    
+
+    @if ($productos->count())
+        @livewire('frontend.productos.slider-producto2', ['productos' => $productos])
+    @endif
+
     @include('frontend.inicio.slider-iconos')
 
     @include('frontend.inicio.slider-testimonio')

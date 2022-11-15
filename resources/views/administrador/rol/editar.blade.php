@@ -1,46 +1,51 @@
 <x-administrador-layout>
-    <h1>Rol - Editar</h1>
-    <br>
-    <h3>Editar rol</h3>
-    <br>
-    <div>
-        <a href="{{ route('administrador.rol.index') }}">Regresar</a>
+    @section('tituloPagina', 'Administrador | Editar Rol')
+    <!--Titulo-->
+    <h2 class="contenedor_paginas_titulo">EDITAR ROL</h2>
+    <!--Boton regresar-->
+    <div class="contenedor_boton_titulo">
+        <a href="{{ route('administrador.rol.index') }}"><i class="fa-solid fa-arrow-left-long"></i> Regresar</a>
     </div>
-    <br>
-
-    <div>
-        {!! Form::open(['route' => ['administrador.rol.update', $rol], 'method' => 'put']) !!}
-
-        <div>
-            {!! Form::label('nombre', 'Nombre:') !!}
-            {!! Form::text('nombre', $rol->name, ['placeholder' => 'Escribe el nombre']) !!}
-            @error('nombre')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+    <!--Contenedor Página-->
+    <div class="contenedor_paginas_administrador">
+        <!--Formulario-->
+        {!! Form::open(['route' => ['administrador.rol.update', $rol], 'method' => 'put', 'class' => 'formulario']) !!}
+        <!--Nombre-->
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Nombre: </p>
+                {!! Form::text('nombre', $rol->name, ['placeholder' => 'Escribe el nombre']) !!}
+                @error('nombre')
+                    <span>
+                        {{ $message }}
+                    </span>
+                @enderror
+            </label>
         </div>
-
-        <strong>Permisos</strong>
-
-        @foreach ($permisos as $permiso)
-            <div>
-                <label>
-                    <input type="checkbox" name="permisos[]" value="{{ $permiso->id }}" @checked($rol->permissions->contains($permiso->id))>
-                    {{ $permiso->name }}
-                </label>
-            </div>
-        @endforeach
-
-        @error('permisos')
-            <span>
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-
-        {!! Form::submit('Editar Rol') !!}
-
+        <!--Permisos-->
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Permisos: </p>
+                @foreach ($permisos as $permiso)
+                    <div>
+                        <label>
+                            <input type="checkbox" name="permisos[]" value="{{ $permiso->id }}"
+                                @checked($rol->permissions->contains($permiso->id))>
+                            {{ $permiso->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('permisos')
+                    <span>
+                        {{ $message }}
+                    </span>
+                @enderror
+            </label>
+        </div>
+        <!--Enviar-->
+        <div class="contenedor_1_elementos">
+            {!! Form::submit('Editar Rol') !!}
+        </div>
         {!! Form::close() !!}
     </div>
-
 </x-administrador-layout>

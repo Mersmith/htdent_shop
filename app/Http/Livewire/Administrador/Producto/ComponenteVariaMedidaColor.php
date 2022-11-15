@@ -17,6 +17,16 @@ class ComponenteVariaMedidaColor extends Component
         'nombre' => 'required'
     ];
 
+    protected $validationAttributes = [
+        'nombre' => 'nombre de la medida',
+        'nombre_editado' => 'nombre de la medida',
+    ];
+
+    protected $messages = [
+        'nombre.required' => 'El :attribute es requerido.',
+        'nombre_editado.required' => 'El :attribute es requerido.',
+    ];
+    
     public function guardarMedida()
     {
         $this->validate();

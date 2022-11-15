@@ -25,8 +25,13 @@ class PaginaMarcaAdministrador extends Component
     ];
 
     protected $validationAttributes = [
-        'crearFormulario.nombre' => 'nombre',
-        'editarFormulario.nombre' => 'nombre'
+        'crearFormulario.nombre' => 'nombre de la marca',
+        'editarFormulario.nombre' => 'nombre de la marca'
+    ];
+
+    protected $messages = [
+        'crearFormulario.nombre.required' => 'El :attribute es requerido.',
+        'editarFormulario.nombre.required' => 'El :attribute es requerido.',
     ];
 
     public function mount()
@@ -48,7 +53,6 @@ class PaginaMarcaAdministrador extends Component
 
         $this->emit('mensajeCreado', "Marca creada.");
         $this->reset('crearFormulario');
-
     }
     public function editarMarca(Marca $marca)
     {
@@ -65,7 +69,7 @@ class PaginaMarcaAdministrador extends Component
         ]);
 
         $this->marca->update($this->editarFormulario);
-        
+
         $this->traerMarcas();
         $this->reset('editarFormulario');
         $this->emit('mensajeActualizado', "Marca actualizada.");

@@ -17,7 +17,8 @@ class AgregarCarritoVariacionMedida extends Component
     public function mount()
     {
         $this->medidas = $this->producto->medidas;
-        $this->opciones["imagen"] = Storage::url($this->producto->imagenes->first()->imagen_ruta);
+        $this->opciones["imagen"] = $this->producto->imagenes->count()  ? Storage::url($this->producto->imagenes->first()->imagen_ruta) : asset('imagenes/producto/sin_foto_producto.png') ;
+
         $this->opciones["puntos_ganar"] = $this->producto->puntos_ganar;
         $this->opciones["puntos_tope"] = $this->producto->puntos_tope;
     }

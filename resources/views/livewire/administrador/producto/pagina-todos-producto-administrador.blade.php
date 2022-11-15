@@ -1,21 +1,18 @@
 <div class="contenedor_pagina_administrador">
     @section('tituloPagina', 'Productos')
-
-    <div class="titulo_pagina">
-        <h2>Productos</h2>
+    <!--Titulo-->
+    <h2 class="contenedor_paginas_titulo">TODOS LOS PRODUCTOS</h2>
+    <!--Boton crear-->
+    <div class="contenedor_boton_titulo">
+        <a href="{{ route('administrador.producto.crear') }}">Crear Nuevo Producto</a>
     </div>
-
-    <div class="contenedor_formulario">
-        <!--Nombre-->
-        <div class="contenedor_elemento_formulario">
-            <input type="text" wire:model="buscarProducto"
-                placeholder="Ingrese el nombre del procucto que quiere buscar.">
-        </div>
-    </div>
-
-
     <!--Contenedor tabla-->
     @if ($productos->count())
+        <!--Buscador-->
+        <div class="contenedor_buscador">
+            <input type="text" wire:model="buscarProducto"
+                placeholder="Ingrese el nombre del producto que quiere buscar.">
+        </div>
         <div class="py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
                 <table class="min-w-full leading-normal">
@@ -89,7 +86,7 @@
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     {{ $producto->precio }} USD
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
                                     <a href="{{ route('administrador.producto.editar', $producto) }}">
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
                                         Editar</a> |
@@ -104,8 +101,9 @@
             </div>
         </div>
     @else
-        <div>
+        <div class="contenedor_no_existe_elementos">
             <p>No hay productos</p>
+            <i class="fa-solid fa-spinner"></i>
         </div>
     @endif
     @if ($productos->hasPages())

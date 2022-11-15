@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Administrador\StoreAdministrador;
 
 class AdministradorController extends Controller
 {
@@ -16,13 +17,13 @@ class AdministradorController extends Controller
         return view('administrador.administrador.crear');
     }
 
-    public function store(Request $request)
+    public function store(StoreAdministrador $request)
     {
-        $request->validate([
+        /*$request->validate([
             'nombre' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min_digits:8',
-        ]);
+        ]);*/
 
         $usuario = new User();
         $usuario->email = $request->email;

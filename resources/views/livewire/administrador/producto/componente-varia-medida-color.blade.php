@@ -1,27 +1,29 @@
 <div>
     <!--Formulario-->
-    <div>
+    <div class="formulario">
         <!--<form wire:submit.prevent="guardarMedida">-->
         <!--Nombre-->
-        <div class="contenedor_elemento_formulario">
-            <label>Nombre medida:</label>
-            <input type="text" wire:model.defer="nombre" placeholder="Ingrese nombre de medida.">
-            @error('nombre')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Nombre medida: </p>
+                <input type="text" wire:model.defer="nombre" placeholder="Ingrese nombre de medida.">
+                @error('nombre')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
         </div>
         <!--Enviar-->
-        <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
+        <div class="contenedor_1_elementos">
             <!--<input type="submit" value="Agregar medida">-->
-            <x-jet-button wire:click="guardarMedida" wire:loading.attr="disabled" wire:target="guardarMedida">
+            <button wire:click="guardarMedida" wire:loading.attr="disabled" wire:target="guardarMedida">
                 Agregar medida
-            </x-jet-button>
+            </button>
         </div>
     </div>
     <hr>
     @if ($medidas->count())
+        <!--Titulo-->
+        <h2 class="contenedor_paginas_titulo">MEDIDAS</h2>
         <!--Lista-->
         <div>
             @foreach ($medidas as $index => $medida)
@@ -59,15 +61,18 @@
             </x-slot>
             <!--Contenido Modal-->
             <x-slot name="content">
-                <!--Nombre-->
-                <div class="contenedor_elemento_formulario">
-                    <label>Nombre medida:</label>
-                    <input type="text" wire:model.defer="nombre_editado" placeholder="Ingrese nombre medida.">
-                    @error('nombre_editado')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="formulario">
+                    <!--Nombre-->
+                    <div class="contenedor_elemento_formulario">
+                        <label class="label_principal">
+                            <p class="estilo_nombre_input">Nombre medida: </p>
+                            <input type="text" wire:model.defer="nombre_editado"
+                                placeholder="Ingrese nombre medida.">
+                            @error('nombre_editado')
+                                <span>{{ $message }}</span>
+                            @enderror
+                        </label>
+                    </div>
                 </div>
             </x-slot>
             <!--Pie Modal-->

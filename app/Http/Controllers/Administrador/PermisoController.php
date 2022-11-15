@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Http\Requests\Administrador\StorePermiso;
 
 class PermisoController extends Controller
 {
@@ -22,12 +23,12 @@ class PermisoController extends Controller
         return view('administrador.permiso.crear', compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(StorePermiso $request)
     {
-        $request->validate([
+        /*$request->validate([
             'nombre' => 'required',
             'roles' => 'required',
-        ]);
+        ]);*/
 
         $permiso = Permission::create([
             'name' => $request->nombre
@@ -38,10 +39,6 @@ class PermisoController extends Controller
         return redirect()->route('administrador.permiso.index')->with('crear', 'El Permiso se creo correctamente.');
     }
 
-    public function show($id)
-    {
-    }
-
     public function edit(Permission $permiso)
     {
         $roles = Role::all();
@@ -49,12 +46,12 @@ class PermisoController extends Controller
         return view('administrador.permiso.editar', compact('roles', 'permiso'));
     }
 
-    public function update(Request $request, Permission $permiso)
+    public function update(StorePermiso $request, Permission $permiso)
     {
-        $request->validate([
+        /*$request->validate([
             'nombre' => 'required',
             'roles' => 'required',
-        ]);
+        ]);*/
 
         $permiso->update([
             'name' => $request->nombre,

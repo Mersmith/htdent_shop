@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
 
-Route::get('perfil', PaginaPerfilAdministrador::class)->middleware('can:Ver panel')->name('perfil');
+Route::get('datos-personales', PaginaPerfilAdministrador::class)->middleware('can:Ver panel')->name('perfil');
 
 Route::controller(RolController::class)->middleware('can:Roles y permisos')->group(function () {
-    Route::get('rol', 'index')->name('rol.index');
+    Route::get('todos-los-roles', 'index')->name('rol.index');
     Route::get('rol/crear', 'create')->name('rol.crear');
     Route::post('rol/crear', 'store')->name('rol.store');
     Route::get('rol/{rol}/editar', 'edit')->name('rol.editar');
@@ -39,7 +39,7 @@ Route::controller(PermisoController::class)->group(function () {
     Route::delete('permiso/{permiso}', 'destroy')->name('permiso.eliminar');
 });
 
-Route::get('administrador', PaginaAdministradorAdministrador::class)->middleware('can:Roles y permisos')->name('administrador.index');
+Route::get('todos-los-administrador', PaginaAdministradorAdministrador::class)->middleware('can:Roles y permisos')->name('administrador.index');
 Route::controller(AdministradorController::class)->middleware('can:Roles y permisos')->group(function () {
     Route::get('administrador/crear', 'create')->name('administrador.crear');
     Route::post('administrador/crear', 'store')->name('administrador.store');

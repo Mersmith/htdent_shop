@@ -543,3 +543,36 @@ git commit -m "El cliente podrá dejar comentarios y reseñas."
 git push origin 27_Resenas_Comentarios
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+https://cdnjs.com/libraries/glider-js
+https://nickpiscitelli.github.io/Glider.js/
+
+
+**************************11/11/22***************************************
+->Regla de validación
+php artisan make:request Administrador/StoreRol
+php artisan make:request Administrador/StorePermiso
+php artisan make:request Administrador/StoreAdministrador
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 28_Estilos_Administrador
+git branch
+git status
+
+git add .
+git commit -m "Estilos generales para las páginas."
+git push origin 28_Estilos_Administrador
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************15/11/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 29_Estilos_Administrador_2
+git branch
+git status
+
+git add .
+git commit -m "Estilos generales para las páginas."
+git push origin 29_Estilos_Administrador_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

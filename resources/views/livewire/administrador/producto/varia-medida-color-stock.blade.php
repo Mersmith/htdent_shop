@@ -1,42 +1,42 @@
 <div class="contenedor_variacion_medida_color">
     <!--Formulario-->
-    <div>
+    <div class="formulario">
         <!--<form wire:submit.prevent="guardarPivot">-->
         <!--Colores-->
-        <div class="contenedor_elemento_formulario">
-            <label>Colores:</label>
-            <div>
-                @foreach ($colores as $key => $color)
-                    <label style="display: {{ $key == 0 ? 'none' : '' }};">
-                        <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
-                        <span>
-                            {{ $color->nombre }}
-                        </span>
-                    </label>
-                @endforeach
-            </div>
-            @error('color_id')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p><strong>Colores:</strong></p>
+                <div>
+                    @foreach ($colores as $key => $color)
+                        <label style="display: {{ $key == 0 ? 'none' : '' }};">
+                            <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
+                            <span>
+                                {{ $color->nombre }}
+                            </span>
+                        </label>
+                    @endforeach
+                </div>
+                @error('color_id')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
         </div>
         <!--Stock-->
-        <div class="contenedor_elemento_formulario">
-            <label>Stock por medida y color:</label>
-            <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese el stock.">
-            @error('stock')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Stock por medida y color: </p>
+                <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese el stock.">
+                @error('stock')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
         </div>
         <!--Enviar-->
-        <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
+        <div class="contenedor_1_elementos">
             <!--<input type="submit" value="Agregar stock">-->
-            <x-jet-button wire:loading.attr="disabled" wire:target="guardarPivot" wire:click="guardarPivot">
+            <button wire:loading.attr="disabled" wire:target="guardarPivot" wire:click="guardarPivot">
                 Agregar stock
-            </x-jet-button>
+            </button>
         </div>
     </div>
 
@@ -90,7 +90,6 @@
     <x-jet-dialog-modal wire:model="abierto" wire:key="modal-varia-medida-color-{{ $medida->id }}">
         <!--Titulo Modal-->
         <x-slot name="title">
-
             <div class="contenedor_titulo_modal">
                 <div>
                     <h2 style="font-weight: bold">Editar stock</h2>
@@ -104,16 +103,18 @@
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-            <!--Stock-->
-            <div class="contenedor_elemento_formulario">
-                <label for="pivot_stock">Stock por medida:</label>
-                <input type="number" wire:model="pivot_stock" id="pivot_stock" step="1"
-                    placeholder="Ingrese el stock.">
-                @error('pivot_stock')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="formulario">
+                <!--Stock-->
+                <div class="contenedor_elemento_formulario">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Stock por color: </p>
+                        <input type="number" wire:model="pivot_stock" id="pivot_stock" step="1"
+                            placeholder="Ingrese el stock.">
+                        @error('pivot_stock')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
+                </div>
             </div>
         </x-slot>
 

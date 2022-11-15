@@ -16,7 +16,7 @@ class PaginaEditarProductoAdministrador extends Component
 {
     protected $listeners = ['dropImagenes', 'eliminarProducto', 'editarProducto'];
 
-    public $producto, $categorias, $subcategorias, $marcas, $slug, $sku, $tiene_detalle;
+    public $producto, $categorias, $subcategorias, $marcas, $slug, $sku, $tiene_detalle, $detalle, $stock_total;
     public $categoria_id;
 
     //toma y sincroniza los valores de $producto
@@ -27,14 +27,57 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.nombre' => 'required',
         'slug' => 'required|unique:productos,slug',
         'sku' => 'required|unique:productos,sku',
+        'producto.precio_real' => 'required',
         'producto.precio' => 'required',
         'producto.descripcion' => 'required',
         'producto.informacion' => 'required',
-        'producto.stock_total' => 'numeric',
+        /*'producto.stock_total' => 'required',*/
         'producto.puntos_ganar' => 'numeric',
         'producto.puntos_tope' => 'numeric',
         'producto.tiene_detalle' => 'required',
-        'producto.detalle' => 'required',
+        /*'producto.detalle' => 'required',*/
+    ];
+
+    protected $validationAttributes = [
+        'categoria_id' => 'categoria del producto',
+        'producto.subcategoria_id' => 'subcategoria del producto',
+        'producto.marca_id' => 'marca del producto',
+        'producto.nombre' => 'nombre del producto',
+        'slug' => 'slug del producto',
+        'sku' => 'sku del producto',
+        'producto.precio_real' => 'precio real del producto',
+        'producto.precio' => 'precio de oferta del producto',
+        'producto.descripcion' => 'descripcion del producto',
+        'producto.informacion' => 'informacion del producto',
+        'producto.puntos_ganar' => 'puntos a ganar del producto',
+        'producto.puntos_tope' => 'monto del carrito del producto',
+        'producto.tiene_detalle' => 'detalle del producto',
+        'producto.detalle' => 'detalle del producto',
+        'producto.stock_total' => 'stock del producto',
+        'stock_total' => 'stock del producto',
+        /*'producto.detalle' => 'detalle del producto',*/
+        'detalle' => 'detalle del producto',
+    ];
+
+    protected $messages = [
+        'categoria_id.required' => 'La :attribute es requerido.',
+        'producto.subcategoria_id.required' => 'La :attribute es requerido.',
+        'producto.marca_id.required' => 'La :attribute es requerido.',
+        'producto.nombre.required' => 'El :attribute es requerido.',
+        'slug.required' => 'El :attribute es requerido.',
+        'sku.required' => 'El :attribute es requerido.',
+        'producto.precio_real.required' => 'El :attribute es requerido.',
+        'producto.precio.required' => 'El :attribute es requerido.',
+        'producto.descripcion.required' => 'La :attribute es requerido.',
+        'producto.informacion.required' => 'La :attribute es requerido.',
+        'producto.puntos_ganar.required' => 'Los :attribute es requerido.',
+        'producto.puntos_tope.required' => 'Los :attribute es requerido.',
+        'producto.tiene_detalle.required' => 'El :attribute es requerido.',
+        'producto.detalle.required' => 'El :attribute es requerido.',
+        'producto.stock_total.required' => 'El :attribute es requerido.',
+        'stock_total.required' => 'El :attribute es requerido.',
+        /*'producto.detalle.required' => 'El :attribute es requerido.',*/
+        'detalle.required' => 'El :attribute es requerido.',
     ];
 
     public function mount(Producto $producto)
@@ -50,6 +93,8 @@ class PaginaEditarProductoAdministrador extends Component
         $this->slug = $this->producto->slug;
         $this->sku = $this->producto->sku;
         $this->tiene_detalle = $this->producto->tiene_detalle;
+        $this->detalle = $this->producto->detalle;
+        $this->stock_total = $this->producto->stock_total;
 
         $this->marcas = Marca::whereHas('categorias', function (Builder $query) {
             $query->where('categoria_id', $this->categoria_id);
@@ -92,14 +137,24 @@ class PaginaEditarProductoAdministrador extends Component
 
         if ($this->producto->subcategoria_id) {
             if (!$this->subcategoria->tiene_color && !$this->subcategoria->tiene_medida) {
-                $rules['producto.stock_total'] = 'required|numeric';
-            }
+                $rules['stock_total'] = 'required|numeric';
+                $this->producto->stock_total = $this->stock_total;
+            }/*else{
+                $this->producto->stock_total = null;
+            }*/
+        }
+
+        if ($this->tiene_detalle) {
+            $rules['detalle'] = 'required';
+        } else {
+            $this->detalle = null;
         }
 
         $this->validate($rules);
 
         $this->producto->slug = $this->slug;
         $this->producto->sku = $this->sku;
+        $this->producto->detalle = $this->detalle;
 
         $this->producto->save();
 

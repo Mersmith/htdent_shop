@@ -58,6 +58,6 @@ class PaginaPerfilCliente extends Component
 
         $usuario = User::find(Auth::user()->id);
 
-        return view('livewire.cliente.perfil.pagina-perfil-cliente', ['usuario' => $usuario])->layout('layouts.frontend.frontend');
+        return view('livewire.cliente.perfil.pagina-perfil-cliente', ['usuario' => $usuario])->layout('layouts.cliente.cliente');
     }
 }

@@ -10,6 +10,8 @@ use Livewire\WithPagination;
 class PaginaAdministradorAdministrador extends Component
 {
     use WithPagination;
+    //Los detectores de eventos
+    protected $listeners = ['eliminarAdmnistrador'];
 
     public $buscar;
 
@@ -19,7 +21,7 @@ class PaginaAdministradorAdministrador extends Component
         $this->resetPage();
     }
 
-    public function eliminarUsuario(User $usuario)
+    public function eliminarAdmnistrador(User $usuario)
     {
         $usuario->delete();
         return $usuario;

@@ -27,6 +27,35 @@
 
         <!-- Contenido de páginas-->
         <main class="contenedor_layout_administrador">
+            <!--Mensaje alerta-->
+            @if (session('crear'))
+                <div id="mensaje_alerta_crear" class="mensaje_alerta">
+                    <p>{{ session('crear') }}</p>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <script>
+                        window.onload = function() {
+                            mensajeCreado();
+                        };
+                    </script>
+                </div>
+            @endif
+            @if (session('editar'))
+                <div id="mensaje_alerta_editar" class="mensaje_alerta">
+                    <p>{{ session('editar') }}</p>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <script>
+                        window.onload = function() {
+                            mensajeActualizado();
+                        };
+                    </script>
+                </div>
+            @endif
+            @if (session('eliminar'))
+                <div class="mensaje_alerta">
+                    <p>{{ session('eliminar') }}</p>
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+            @endif
             {{ $slot }}
         </main>
     </div>
@@ -72,6 +101,26 @@
                 timer: 2500
             })
         })
+
+        function mensajeActualizado() {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: "Actualizado",
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+
+        function mensajeCreado() {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: "Creado correctamente",
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
     </script>
 </body>
 

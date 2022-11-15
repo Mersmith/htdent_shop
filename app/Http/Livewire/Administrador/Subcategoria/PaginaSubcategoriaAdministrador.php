@@ -13,20 +13,6 @@ class PaginaSubcategoriaAdministrador extends Component
 
     protected $listeners = ['eliminarSubcategoria'];
 
-    protected $rules = [
-        'crearFormulario.nombre' => 'required',
-        'crearFormulario.slug' => 'required|unique:subcategorias,slug',
-        'crearFormulario.tiene_color' => 'required',
-        'crearFormulario.tiene_medida' => 'required',
-    ];
-
-    protected $validationAttributes = [
-        'crearFormulario.nombre' => 'nombre',
-        'crearFormulario.slug' => 'slug',
-        'crearFormulario.tiene_color' => 'tiene_color',
-        'crearFormulario.tiene_medida' => 'tiene_medida',
-    ];
-
     public $crearFormulario = [
         'nombre' => null,
         'slug' => null,
@@ -42,6 +28,30 @@ class PaginaSubcategoriaAdministrador extends Component
         'tiene_medida' => false
     ];
 
+    protected $rules = [
+        'crearFormulario.nombre' => 'required',
+        'crearFormulario.slug' => 'required|unique:subcategorias,slug',
+        'crearFormulario.tiene_color' => 'required',
+        'crearFormulario.tiene_medida' => 'required',
+    ];
+
+    protected $validationAttributes = [
+        'crearFormulario.nombre' => 'nombre de la subcategoria',
+        'crearFormulario.slug' => 'slug nombre de la subcategoria',
+
+        'editarFormulario.nombre' => 'nombre de la subcategoria',
+        'editarFormulario.slug' => 'slug nombre de la subcategoria',
+    ];
+
+    protected $messages = [
+        'crearFormulario.nombre.required' => 'El :attribute es requerido.',
+        'crearFormulario.slug.required' => 'El :attribute  requerido.',
+
+        'editarFormulario.nombre.required' => 'El :attribute es requerido.',
+        'editarFormulario.slug.required' => 'El :attribute  requerido.',
+    ];
+
+    
     public function mount(Categoria $categoria)
     {
         $this->categoria = $categoria;

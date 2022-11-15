@@ -19,7 +19,7 @@ class PaginaCrearProductoAdministrador extends Component
     public $categorias, $subcategorias = [], $marcas = [], $imagenes = [];
 
     public $categoria_id = "",  $subcategoria_id = "", $marca_id = "";
-    public $nombre = null, $slug = null,  $sku = null,  $precio = 1, $descripcion = null,
+    public $nombre = null, $slug = null,  $sku = null,  $precio = 1, $precio_real = 1, $descripcion = null,
         $informacion = null, $puntos_ganar = 0, $puntos_tope = 0,
         $tiene_detalle = false, $detalle = null,  $stock_total = 0, $estado = 1;
 
@@ -30,6 +30,7 @@ class PaginaCrearProductoAdministrador extends Component
         'nombre' => 'required',
         'slug' => 'required|unique:productos',
         'sku' => 'required|unique:productos',
+        'precio_real' => 'required',
         'precio' => 'required',
         'descripcion' => 'required',
         'informacion' => 'required',
@@ -38,7 +39,45 @@ class PaginaCrearProductoAdministrador extends Component
         'tiene_detalle' => 'required',
         'estado' => 'required',
     ];
-    
+
+    protected $validationAttributes = [
+        'categoria_id' => 'categoria del producto',
+        'subcategoria_id' => 'subcategoria del producto',
+        'marca_id' => 'marca del producto',
+        'nombre' => 'nombre del producto',
+        'slug' => 'slug del producto',
+        'sku' => 'sku del producto',
+        'precio_real' => 'precio real del producto',
+        'precio' => 'precio de oferta del producto',
+        'descripcion' => 'descripcion del producto',
+        'informacion' => 'informacion del producto',
+        'puntos_ganar' => 'puntos a ganar del producto',
+        'puntos_tope' => 'monto del carrito del producto',
+        'tiene_detalle' => 'detalle del producto',
+        'estado' => 'estado del producto',
+        'stock_total' => 'stock del producto',
+        'detalle' => 'detalle del producto',
+    ];
+
+    protected $messages = [
+        'categoria_id.required' => 'La :attribute es requerido.',
+        'subcategoria_id.required' => 'La :attribute es requerido.',
+        'marca_id.required' => 'La :attribute es requerido.',
+        'nombre.required' => 'El :attribute es requerido.',
+        'slug.required' => 'El :attribute es requerido.',
+        'sku.required' => 'El :attribute es requerido.',
+        'precio_real.required' => 'El :attribute es requerido.',
+        'precio.required' => 'El :attribute es requerido.',
+        'descripcion.required' => 'La :attribute es requerido.',
+        'informacion.required' => 'La :attribute es requerido.',
+        'puntos_ganar.required' => 'Los :attribute es requerido.',
+        'puntos_tope.required' => 'Los :attribute es requerido.',
+        'tiene_detalle.required' => 'El :attribute es requerido.',
+        'estado.required' => 'El :attribute es requerido.',
+        'stock_total.required' => 'El :attribute es requerido.',
+        'detalle.required' => 'El :attribute es requerido.',
+    ];
+
     public function mount()
     {
         $this->categorias = Categoria::all();
@@ -58,7 +97,12 @@ class PaginaCrearProductoAdministrador extends Component
     public function updatedNombre($value)
     {
         $this->slug = Str::slug($value);
-        $this->sku = trim(strtoupper(substr($value, 0, 2)) . "-" . "S" . rand(1, 500) . strtoupper(substr($value, -2)));
+        $this->sku = trim(mb_strtoupper(mb_substr($value, 0, 2)) . "-" . "S" . rand(1, 500) . strtoupper(mb_substr($value, -2)));
+    }
+
+    public function updatedPrecioReal($value)
+    {
+        $this->precio = $value;
     }
 
     //Propiedad computada
@@ -93,6 +137,7 @@ class PaginaCrearProductoAdministrador extends Component
         $producto->slug = $this->slug;
         $producto->sku = $this->sku;
         $producto->precio = $this->precio;
+        $producto->precio_real = $this->precio_real;
         $producto->descripcion = $this->descripcion;
         $producto->informacion = $this->informacion;
         $producto->puntos_ganar = $this->puntos_ganar;
