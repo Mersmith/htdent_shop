@@ -4,15 +4,10 @@
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.1.2-web/css/all.min.css') }}">
 
 <!-- Styles -->
-<!-- Layout -->
-<link rel="stylesheet" href="{{ asset('administrador/layout/layout.css') }}">
+<!-- Generales -->
+<link rel="stylesheet" href="{{ asset('generales/generales.css') }}">
 <!-- Menu Principal -->
 <link rel="stylesheet" href="{{ asset('administrador/inicio/css/menu-principal-administrador.css') }}">
-<!-- Perfil Administrador -->
-<link rel="stylesheet" href="{{ asset('administrador/perfil/perfil.css') }}">
-<!-- Perfil Roles -->
-<link rel="stylesheet" href="{{ asset('administrador/roles/roles.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/roles/crear-rol.css') }}">
 
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"

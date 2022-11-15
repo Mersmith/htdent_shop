@@ -1,10 +1,10 @@
 <div>
     @section('tituloPagina', 'Administrador | ' . $usuario->administrador->nombre)
     <!--Titulo-->
-    <h2 class="administrador_paginas_titulo">MIS DATOS PERSONALES</h2>
+    <h2 class="contenedor_paginas_titulo">MIS DATOS PERSONALES</h2>
     <!--Contenedor Página-->
-    <div class="contenedor_pagina_administrador_perfil">
-        <form wire:submit.prevent="editarPerfilAdministrador" enctype="multipart/form-data">
+    <div class="contenedor_paginas_administrador">
+        <form wire:submit.prevent="editarPerfilAdministrador" enctype="multipart/form-data" class="formulario">
             {{-- <div class="contenedor_1_elementos">
                 <label>
                     <p>Foto: </p>
@@ -24,18 +24,18 @@
             </div> --}}
             <div class="contenedor_2_elementos">
                 <!--Nombre-->
-                <label>
-                    <p>Nombre: </p> <input type="text" wire:model="nombre">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Nombre: </p> <input type="text" wire:model="nombre">
                 </label>
                 <!--Apellido-->
-                <label>
-                    <p>Apellido: </p> <input type="text" wire:model="apellido">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Apellido: </p> <input type="text" wire:model="apellido">
                 </label>
             </div>
             <!--Celular-->
             <div class="contenedor_1_elementos">
-                <label>
-                    <p>Celular: </p> <input type="text" wire:model="celular">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Celular: </p> <input type="text" wire:model="celular">
                 </label>
             </div>
             <div class="contenedor_1_elementos">

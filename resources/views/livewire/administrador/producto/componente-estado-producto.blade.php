@@ -1,31 +1,30 @@
-<div>
+<div class="formulario">
     <!--<form wire:submit.prevent="actualizarEstadoProducto">-->
     <!--Estado-->
-    <div class="contenedor_elemento_formulario">
-        <label>Estado del Producto:</label>
-        <div class="estado">
-            <label>
-                <input type="radio" value="1" name="estado" wire:model.defer="estado">
-                Borrador
-            </label>
-
-            <label>
-                <input type="radio" value="2" name="estado" wire:model.defer="estado">
-                Publicado
-            </label>
-        </div>
-        @error('estado')
-            <span>
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+    <div class="contenedor_1_elementos">
+        <label class="label_principal">
+            <p class="estilo_nombre_input">Estado del producto: </p>
+            <div>
+                <label>
+                    <input type="radio" value="1" name="estado" wire:model.defer="estado">
+                    Publicado
+                </label>
+                <label>
+                    <input type="radio" value="2" name="estado" wire:model.defer="estado">
+                    Borrador
+                </label>
+            </div>
+            @error('estado')
+                <span>{{ $message }}</span>
+            @enderror
+        </label>
     </div>
     <!--Enviar-->
-    <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
+    <div class="contenedor_1_elementos">
         <!--<input type="submit" value="Actualizar estado">-->
-        <x-jet-button wire:click="actualizarEstadoProducto" wire:loading.attr="disabled"
+        <button wire:click="actualizarEstadoProducto" wire:loading.attr="disabled"
             wire:target="actualizarEstadoProducto">
             Actualizar estado
-        </x-jet-button>
+        </button>
     </div>
 </div>

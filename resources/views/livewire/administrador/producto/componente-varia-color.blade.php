@@ -1,42 +1,42 @@
 <div>
     <!--Formulario-->
-    <div>
+    <div class="formulario">
         <!--<form wire:submit.prevent="guardarColor">-->
         <!--Colores-->
-        <div class="contenedor_elemento_formulario">
-            <label>Colores:</label>
-            <div>
-                @foreach ($colores as $key => $color)
-                    <label style="display: {{ $key == 0 ? 'none' : '' }};">
-                        <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
-                        <span>
-                            {{ $color->nombre }}
-                        </span>
-                    </label>
-                @endforeach
-            </div>
-            @error('color_id')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Colores: </p>
+                <div>
+                    @foreach ($colores as $key => $color)
+                        <label style="display: {{ $key == 0 ? 'none' : '' }};">
+                            <input type="radio" name="color_id" wire:model.defer="color_id" value="{{ $color->id }}">
+                            <span>
+                                {{ $color->nombre }}
+                            </span>
+                        </label>
+                    @endforeach
+                </div>
+                @error('color_id')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
         </div>
         <!--Stock-->
-        <div class="contenedor_elemento_formulario">
-            <label>Stock por color:</label>
-            <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese stock.">
-            @error('stock')
-                <span>
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="contenedor_1_elementos">
+            <label class="label_principal">
+                <p class="estilo_nombre_input">Stock por color: </p>
+                <input type="number" wire:model.defer="stock" step="1" placeholder="Ingrese stock.">
+                @error('stock')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
         </div>
         <!--Enviar-->
-        <div class="contenedor_elemento_formulario formulario_boton_enviar" style="width: 200px">
+        <div class="contenedor_1_elementos">
             <!--<input type="submit" value="Agregar Color">-->
-            <x-jet-button wire:loading.attr="disabled" wire:target="guardarColor" wire:click="guardarColor">
+            <button wire:loading.attr="disabled" wire:target="guardarColor" wire:click="guardarColor">
                 Agregar color
-            </x-jet-button>
+            </button>
         </div>
     </div>
     <!--Tabla-->
@@ -66,7 +66,7 @@
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     {{ $producto_color->pivot->stock }} unidad(es)
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
                                     <button wire:click="editarPivot({{ $producto_color->pivot->id }})"
                                         wire:loading.attr="disabled"
                                         wire:target="editarPivot({{ $producto_color->pivot->id }})"><span><i
@@ -101,15 +101,18 @@
             </x-slot>
             <!--Contenido Modal-->
             <x-slot name="content">
-                <!--Stock-->
-                <div class="contenedor_elemento_formulario">
-                    <label>Stock por color:</label>
-                    <input type="number" wire:model="pivot_stock" step="1" placeholder="Ingrese el stock.">
-                    @error('pivot_stock')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="formulario">
+                    <!--Stock-->
+                    <div class="contenedor_1_elementos_100">
+                        <label class="label_principal">
+                            <p class="estilo_nombre_input">Stock por color: </p>
+                            <input type="number" wire:model="pivot_stock" step="1"
+                                placeholder="Ingrese el stock.">
+                            @error('pivot_stock')
+                                <span>{{ $message }}</span>
+                            @enderror
+                        </label>
+                    </div>
                 </div>
             </x-slot>
             <!--Pie Modal-->

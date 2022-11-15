@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(SliderSeeder::class);
-        $this->call(CategoriaSeeder::class);
-        $this->call(SubcategoriaSeeder::class);
+        /*$this->call(CategoriaSeeder::class);
+        $this->call(SubcategoriaSeeder::class);*/
         //$this->call(ProductoSeeder::class);
         $this->call(ColorSeeder::class);
         //$this->call(ColorProductoSeeder::class);
         //$this->call(MedidaSeeder::class);
         //$this->call(ColorMedidaSeeder::class);
-        $this->call(DepartamentoSeeder::class);
+        /*$this->call(DepartamentoSeeder::class);*/
 
     }
 }

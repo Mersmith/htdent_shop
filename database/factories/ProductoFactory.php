@@ -29,6 +29,7 @@ class ProductoFactory extends Factory
             'nombre' => $nombre,
             'slug' => Str::slug($nombre),
             'sku' => $this->faker->unique()->randomNumber(),
+            'precio_real' => $this->faker->randomElement([1000, 500, 50, 3000, 15000]),
             'precio' => $this->faker->randomElement([1000, 500, 50, 3000, 15000]),
             'stock_total' => $stock,
             'descripcion' => $this->faker->text(),

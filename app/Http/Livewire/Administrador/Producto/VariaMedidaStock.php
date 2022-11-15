@@ -19,6 +19,16 @@ class VariaMedidaStock extends Component
         'stock' => 'required|numeric'
     ];
 
+    protected $validationAttributes = [
+        'stock' => 'stock de la medida',
+        'pivot_stock' => 'stock de la medida',
+    ];
+
+    protected $messages = [
+        'stock' => 'El :attribute es requerido.',
+        'pivot_stock' => 'El :attribute es requerido.',
+    ];
+
     public function mount()
     {
         $this->colores = Color::all();

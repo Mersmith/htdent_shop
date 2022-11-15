@@ -1,118 +1,128 @@
-<div class="contenedor_pagina_administrador">
-    <!--Cotenedor formulario-->
-    <div class="titulo_pagina">
-        <h2>Crear Subcategoria</h2>
+<div>
+    @section('tituloPagina', 'Administrador | Subcategorias')
+    <!--Titulo-->
+    <h2 class="contenedor_paginas_titulo">CREAR NUEVA SUBCATEGORIA</h2>
+    <!--Boton crear-->
+    <div class="contenedor_boton_titulo">
+        <a href="{{ route('administrador.categoria') }}"><i class="fa-solid fa-arrow-left-long"></i> Regresar</a>
     </div>
-    <div class="contenedor_formulario">
-        <form wire:submit.prevent="crearSubcategoria">
-            <!--Nombre-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.nombre">Nombre:</label>
-                <input type="text" wire:model="crearFormulario.nombre" id="crearFormulario.nombre">
-                @error('crearFormulario.nombre')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <!--Ruta-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.slug">Ruta:</label>
-                <input type="text" wire:model="crearFormulario.slug" id="crearFormulario.slug">
-                @error('crearFormulario.slug')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+    <!--Contenedor Página-->
+    <div class="contenedor_paginas_administrador">
+        <!--Fomrulario-->
+        <form wire:submit.prevent="crearSubcategoria" class="formulario">
+            <!--Dos input-->
+            <div class="contenedor_2_elementos">
+                <!--Nombre-->
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Nombre: </p>
+                    <input type="text" wire:model="crearFormulario.nombre">
+                    @error('crearFormulario.nombre')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
+                <!--Ruta-->
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Slug: </p>
+                    <input type="text" wire:model="crearFormulario.slug">
+                    @error('crearFormulario.slug')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Color-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.slug">¿Tiene color?:</label>
-                <div class="contenedor_formulario_checkbox">
-                    <label>
-                        <input type="radio" value="1" name="tiene_color"
-                            wire:model.defer="crearFormulario.tiene_color">
-                        Si
-                    </label>
-
-                    <label>
-                        <input type="radio" value="0" name="tiene_color"
-                            wire:model.defer="crearFormulario.tiene_color">
-                        No
-                    </label>
-                </div>
-                @error('crearFormulario.tiene_color')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">¿Tiene color?: </p>
+                    <div>
+                        <label>
+                            <input type="radio" value="1" name="tiene_color"
+                                wire:model.defer="crearFormulario.tiene_color">
+                            Si
+                        </label>
+                        <label>
+                            <input type="radio" value="0" name="tiene_color"
+                                wire:model.defer="crearFormulario.tiene_color">
+                            No
+                        </label>
+                    </div>
+                    @error('crearFormulario.tiene_color')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Medida-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.slug">¿Tiene medida?:</label>
-                <div class="contenedor_formulario_checkbox">
-                    <label>
-                        <input type="radio" value="1" name="tiene_medida"
-                            wire:model.defer="crearFormulario.tiene_medida">
-                        Si
-                    </label>
-
-                    <label>
-                        <input type="radio" value="0" name="tiene_medida"
-                            wire:model.defer="crearFormulario.tiene_medida">
-                        No
-                    </label>
-                </div>
-                @error('crearFormulario.tiene_medida')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">¿Tiene medida?: </p>
+                    <div>
+                        <label>
+                            <input type="radio" value="1" name="tiene_medida"
+                                wire:model.defer="crearFormulario.tiene_medida">
+                            Si
+                        </label>
+                        <label>
+                            <input type="radio" value="0" name="tiene_medida"
+                                wire:model.defer="crearFormulario.tiene_medida">
+                            No
+                        </label>
+                    </div>
+                    @error('crearFormulario.tiene_medida')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Enviar-->
-            <div class="contenedor_elemento_formulario formulario_boton_enviar">
+            <div class="contenedor_1_elementos">
                 <input type="submit" value="Crear Subcategoria">
             </div>
         </form>
-    </div>
-    <!--Cotenedor tabla-->
-    <div class="titulo_pagina">
-        <h2>Subcategorias</h2>
-    </div>
-    <div class="py-4 overflow-x-auto">
-        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full leading-normal">
-                <thead>
-                    <tr>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Nombre</th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Acción</th>
-                    </tr>
-                </thead>
+        <!--Cotenedor tabla-->
+        <h2 class="contenedor_paginas_titulo">SUBCATEGORIAS</h2>
+        @if ($subcategorias->count())
+            <div class="py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    Nombre</th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($subcategorias as $subcategoria)
+                                <tr>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        {{ $subcategoria->nombre }}
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
+                                        <a wire:click="editarSubcategoria('{{ $subcategoria->id }}')"><span><i
+                                                    class="fa-solid fa-pencil"
+                                                    style="color: green;"></i></span>Editar</a> |
+                                        <a wire:click="$emit('eliminarSubcategoriaModal', '{{ $subcategoria->id }}')">
+                                            <span><i class="fa-solid fa-trash"
+                                                    style="color: red;"></i></span>Eliminar</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @else
+            <div class="contenedor_no_existe_elementos">
+                <p>No hay subcategorias</p>
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+        @endif
 
-                <tbody>
-                    @foreach ($subcategorias as $subcategoria)
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                {{ $subcategoria->nombre }}
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                <a wire:click="editarSubcategoria('{{ $subcategoria->id }}')"><span><i
-                                            class="fa-solid fa-pencil" style="color: green;"></i></span>Editar</a> |
-                                <a wire:click="$emit('eliminarSubcategoriaModal', '{{ $subcategoria->id }}')">
-                                    <span><i class="fa-solid fa-trash" style="color: red;"></i></span>Eliminar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
     <!--Modal editar categoria -->
     <x-jet-dialog-modal wire:model="editarFormulario.abierto">
+        <!--Titulo Modal-->
         <x-slot name="title">
             <div class="contenedor_titulo_modal">
                 <div>
@@ -125,67 +135,70 @@
                 </div>
             </div>
         </x-slot>
+        <!--Contenido Modal-->
         <x-slot name="content">
-            <div class="contenedor_formulario">
+            <div class="formulario">
                 <!--Nombre-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.nombre">Nombre:</label>
-                    <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
-                    @error('editarFormulario.nombre')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Nombre: </p>
+                        <input type="text" wire:model="editarFormulario.nombre">
+                        @error('editarFormulario.nombre')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Ruta-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.slug">Ruta:</label>
-                    <input type="text" wire:model="editarFormulario.slug" id="editarFormulario.slug">
-                    @error('editarFormulario.slug')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Slug: </p>
+                        <input type="text" wire:model="editarFormulario.slug">
+                        @error('editarFormulario.slug')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Color-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.tiene_color">¿Tiene color?:</label>
-                    <div class="contenedor_formulario_checkbox">
-                        <label>
-                            <input type="radio" value="1" name="editarFormulario.tiene_color" wire:model.defer="editarFormulario.tiene_color">
-                            Si
-                        </label>
-
-                        <label>
-                            <input type="radio" value="0" name="editarFormulario.tiene_color" wire:model.defer="editarFormulario.tiene_color">
-                            No
-                        </label>
-                    </div>
-                    @error('editarFormulario.tiene_color')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">¿Tiene color?: </p>
+                        <div>
+                            <label>
+                                <input type="radio" value="1" name="editarFormulario.tiene_color"
+                                    wire:model.defer="editarFormulario.tiene_color">
+                                Si
+                            </label>
+                            <label>
+                                <input type="radio" value="0" name="editarFormulario.tiene_color"
+                                    wire:model.defer="editarFormulario.tiene_color">
+                                No
+                            </label>
+                        </div>
+                        @error('editarFormulario.tiene_color')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Medida-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.tiene_medida">¿Tiene medida?:</label>
-                    <div class="contenedor_formulario_checkbox">
-                        <label>
-                            <input type="radio" value="1" name="editarFormulario.tiene_medida" wire:model.defer="editarFormulario.tiene_medida">
-                            Si
-                        </label>
-
-                        <label>
-                            <input type="radio" value="0" name="editarFormulario.tiene_medida" wire:model.defer="editarFormulario.tiene_medida">
-                            No
-                        </label>
-                    </div>
-                    @error('editarFormulario.tiene_medida')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">¿Tiene medida?: </p>
+                        <div>
+                            <label>
+                                <input type="radio" value="1" name="editarFormulario.tiene_medida"
+                                    wire:model.defer="editarFormulario.tiene_medida">
+                                Si
+                            </label>
+                            <label>
+                                <input type="radio" value="0" name="editarFormulario.tiene_medida"
+                                    wire:model.defer="editarFormulario.tiene_medida">
+                                No
+                            </label>
+                        </div>
+                        @error('editarFormulario.tiene_medida')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
             </div>
         </x-slot>
@@ -198,7 +211,6 @@
                     wire:loading.attr="disabled" wire:target="actualizarCategoria" type="submit">Editar</button>
             </div>
         </x-slot>
-
     </x-jet-dialog-modal>
 </div>
 

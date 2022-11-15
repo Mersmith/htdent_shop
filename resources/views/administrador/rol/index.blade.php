@@ -1,13 +1,13 @@
 <x-administrador-layout>
     @section('tituloPagina', 'Administrador | Roles')
     <!--Titulo-->
-    <h2 class="administrador_paginas_titulo">TODOS LOS ROLES</h2>
+    <h2 class="contenedor_paginas_titulo">TODOS LOS ROLES</h2>
     <!--Boton crear-->
-    <div class="contenedor_boton_crear">
+    <div class="contenedor_boton_titulo">
         <a href="{{ route('administrador.rol.crear') }}">Crear Nuevo Rol</a>
     </div>
     <!--Contenedor Página-->
-    <div class="contenedor_pagina_administrador_roles">
+    <div class="contenedor_paginas_administrador">
         <!--Contenedor tabla-->
         @if ($roles->count())
             <div class="py-4 overflow-x-auto">
@@ -35,7 +35,7 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $rol->name }}
                                     </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
                                         <a href="{{ route('administrador.rol.editar', $rol) }}"><span><i
                                                     class="fa-solid fa-pencil" style="color: green;"></i></span>
                                             Editar</a> |
@@ -56,7 +56,7 @@
                 </div>
             </div>
         @else
-            <div class="conetenedor_no_existe">
+            <div class="contenedor_no_existe_elementos">
                 <p>No hay roles</p>
                 <i class="fa-solid fa-spinner"></i>
             </div>

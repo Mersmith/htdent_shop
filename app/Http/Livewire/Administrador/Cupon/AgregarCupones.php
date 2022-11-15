@@ -9,6 +9,22 @@ class AgregarCupones extends Component
 {
     public $codigo, $tipo = "fijo", $descuento, $carrito_monto, $fecha_expiracion;
 
+    protected $validationAttributes = [
+        'codigo' => 'código del cupón',
+        'tipo' => 'tipo de cupón',
+        'descuento' => 'descuento del cupón',
+        'carrito_monto' => 'monto de carrito para el cupón',
+        'fecha_expiracion' => 'fecha de expiración del cupón',
+    ];
+
+    protected $messages = [
+        'codigo.required' => 'El :attribute es requerido.',
+        'tipo.required' => 'El :attribute es requerido.',
+        'descuento.required' => 'El :attribute es requerido.',
+        'carrito_monto.required' => 'El :attribute es requerido.',
+        'fecha_expiracion.required' => 'La :attribute es requerido.',
+    ];
+
     public function crearCupon()
     {
         $this->validate([

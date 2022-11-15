@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('sku')->unique()->nullable();
             $table->float('precio');
+            $table->float('precio_real');
             $table->integer('stock_total')->nullable();
             $table->text('descripcion');
             $table->text('informacion');

@@ -1,151 +1,164 @@
 <div>
     @section('tituloPagina', 'Administrador | Categorias')
     <!--Titulo-->
-    <h2 class="administrador_paginas_titulo">CREAR NUEVA CATEGORIA</h2>
+    <h2 class="contenedor_paginas_titulo">CREAR NUEVA CATEGORIA</h2>
     <!--Contenedor Página-->
-    <div class="contenedor_pagina_administrador_perfil">
-        <form wire:submit.prevent="crearCategoria" enctype="multipart/form-data">
-            <!--Nombre-->
-            <div class="contenedor_1_elementos estilos_input_text">
-                <label>
+    <div class="contenedor_paginas_administrador">
+        <form wire:submit.prevent="crearCategoria" enctype="multipart/form-data" class="formulario">
+            <!--Dos input-->
+            <div class="contenedor_2_elementos">
+                <!--Nombre-->
+                <label class="label_principal">
                     <p class="estilo_nombre_input">Nombre: </p>
                     <input type="text" wire:model="crearFormulario.nombre">
                     @error('crearFormulario.nombre')
                         <span>{{ $message }}</span>
                     @enderror
                 </label>
-            </div>
-            <!--Ruta-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.slug">Ruta:</label>
-                <input type="text" wire:model="crearFormulario.slug" id="crearFormulario.slug">
-                @error('crearFormulario.slug')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <!--Ruta-->
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Slug: </p>
+                    <input type="text" wire:model="crearFormulario.slug">
+                    @error('crearFormulario.slug')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Icono-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.icono">Icono:</label>
-                <code>
-                    <?php print htmlentities('<i class="fa-brands fa-facebook"></i>'); ?>
-                </code>
-                <input type="text" wire:model="crearFormulario.icono" id="crearFormulario.icono">
-                @error('crearFormulario.icono')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos_100">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Icono: </p>
+                    <code>
+                        <?php print htmlentities('<i class="fa-brands fa-facebook"></i>'); ?>
+                    </code>
+                    <input type="text" wire:model="crearFormulario.icono">
+                    @error('crearFormulario.icono')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Marcas-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.marcas">Marcas:</label>
-                <div class="contenedor_formulario_checkbox">
-                    @foreach ($marcas as $marca)
-                        <label>
-                            <input type="checkbox" name="marcas[]" wire:model.defer="crearFormulario.marcas"
-                                value="{{ $marca->id }}" id="crearFormulario.marcas">
-                            <span> {{ $marca->nombre }}</span>
-                        </label>
-                    @endforeach
-                </div>
-                @error('crearFormulario.marcas')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos_100">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Marcas: </p>
+                    @if ($marcas->count())
+                        <div>
+                            @foreach ($marcas as $marca)
+                                <!--<div>-->
+                                <label>
+                                    <input type="checkbox" name="marcas[]" wire:model.defer="crearFormulario.marcas"
+                                        value="{{ $marca->id }}">
+                                    <span> {{ $marca->nombre }}</span>
+                                </label>
+                                <!--</div>-->
+                            @endforeach
+                        </div>
+                        @error('crearFormulario.marcas')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    @else
+                        <div class="contenedor_no_existe_elementos">
+                            <p>No hay marcas</p>
+                            <i class="fa-solid fa-spinner"></i>
+                        </div>
+                    @endif
+
+                </label>
             </div>
             <!--Imagen-->
-            <div class="contenedor_elemento_formulario">
-                <label for="crearFormulario.imagen_ruta">Imagen:</label>
-                <div class="contenedor_formulario_imagen">
-                    @if ($crearFormulario['imagen_ruta'])
-                        <img src="{{ $crearFormulario['imagen_ruta']->temporaryUrl() }}">
-                    @else
-                        <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
-                    @endif
-                    <label class="formulario_boton_imagen">
-                        <input type="file" wire:model="crearFormulario.imagen_ruta" style="display: none"
-                            id="crearFormulario.imagen_ruta">
-                        Subir Imagen
-                    </label>
-                </div>
-
-                @error('crearFormulario.imagen_ruta')
-                    <span>
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="contenedor_1_elementos_imagen">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Imagen: </p>
+                    <div class="contenedor_subir_imagen_sola" style="width: 100px; height: 100px;">
+                        @if ($crearFormulario['imagen_ruta'])
+                            <img style="width: 100px; height: 100px;"
+                                src="{{ $crearFormulario['imagen_ruta']->temporaryUrl() }}">
+                        @else
+                            <img style="width: 100px; height: 100px;"
+                                src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
+                        @endif
+                        <div class="opcion_cambiar_imagen">
+                            Editar <i class="fa-solid fa-camera"></i>
+                        </div>
+                    </div>
+                    <input type="file" wire:model="crearFormulario.imagen_ruta" style="display: none">
+                    @error('crearFormulario.imagen_ruta')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
             </div>
             <!--Enviar-->
-            <div class="contenedor_elemento_formulario formulario_boton_enviar">
+            <div class="contenedor_1_elementos">
                 <input type="submit" value="Crear Categoria">
             </div>
         </form>
     </div>
-    <hr>
     <!--Cotenedor tabla-->
-    <br>
-    <div class="titulo_pagina">
-        <h2>Categorias</h2>
-    </div>
-    <div class="py-4 overflow-x-auto">
-        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full leading-normal">
-                <thead>
-                    <tr>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Imagen</th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Nombre</th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Ruta</th>
-                        <th
-                            class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                            Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categorias as $categoria)
+    <h2 class="contenedor_paginas_titulo">CATEGORIAS</h2>
+    @if ($categorias->count())
+        <div class="py-4 overflow-x-auto">
+            <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+                <table class="min-w-full leading-normal">
+                    <thead>
                         <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <div class="flex-shrink-0 w-10 h-10">
-                                    <img class="w-full h-full" src="{{ Storage::url($categoria['imagen_ruta']) }}"
-                                        alt="" />
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span>
-                                    {!! $categoria->icono !!}
-                                </span>
-                                {{ $categoria->nombre }}
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                {{ $categoria->slug }}
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm tabla_controles">
-                                <a href="{{ route('administrador.subcategoria', $categoria) }}">
-                                    <span><i class="fa-solid fa-eye" style="color: #009eff;"></i></span>
-                                    Ver
-                                </a>
-                                |
-                                <a wire:click="editarCategoria('{{ $categoria->slug }}')">
-                                    <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
-                                    Editar</a> |
-                                <a wire:click="$emit('eliminarCategoriaModal', '{{ $categoria->slug }}')">
-                                    <span><i class="fa-solid fa-trash" style="color: red;"></i></span>
-                                    Eliminar</a>
-                            </td>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Imagen</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Nombre</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Ruta</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Acción</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($categorias as $categoria)
+                            <tr>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <div class="flex-shrink-0 w-10 h-10">
+                                        <img class="w-full h-full" src="{{ Storage::url($categoria['imagen_ruta']) }}"
+                                            alt="" />
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <span>
+                                        {!! $categoria->icono !!}
+                                    </span>
+                                    {{ $categoria->nombre }}
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    {{ $categoria->slug }}
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
+                                    <a href="{{ route('administrador.subcategoria', $categoria) }}">
+                                        <span><i class="fa-solid fa-eye" style="color: #009eff;"></i></span>
+                                        Ver
+                                    </a>
+                                    |
+                                    <a wire:click="editarCategoria('{{ $categoria->slug }}')">
+                                        <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
+                                        Editar</a> |
+                                    <a wire:click="$emit('eliminarCategoriaModal', '{{ $categoria->slug }}')">
+                                        <span><i class="fa-solid fa-trash" style="color: red;"></i></span>
+                                        Eliminar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    @else
+        <div class="contenedor_no_existe_elementos">
+            <p>No hay categorias</p>
+            <i class="fa-solid fa-spinner"></i>
+        </div>
+    @endif
+
     <!--Modal editar categoria -->
     <x-jet-dialog-modal wire:model="editarFormulario.abierto">
         <!--Titulo Modal-->
@@ -163,80 +176,79 @@
         </x-slot>
         <!--Contenido Modal-->
         <x-slot name="content">
-            <div class="contenedor_formulario">
+            <div class="formulario">
                 <!--Imagen-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.imagen_ruta">Imagen:</label>
-                    <div class="contenedor_formulario_imagen">
-                        @if ($editarImagen)
-                            <img class="w-full h-64 object-cover object-center"
-                                src="{{ $editarImagen->temporaryUrl() }}" alt="">
-                        @else
-                            <img style="width: 100px; height: 100px;"
-                                src="{{ $editarFormulario['imagen_ruta'] ? Storage::url($editarFormulario['imagen_ruta']) : '' }}">
-                        @endif
-                        <label class="formulario_boton_imagen">
-                            <input type="file" wire:model="editarImagen" id="editarImagen" style="display: none">
-                            Subir Imagen
-                        </label>
-                    </div>
-
-                    @error('editarImagen')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_imagen">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Imagen: </p>
+                        <div class="contenedor_subir_imagen_sola">
+                            @if ($editarImagen)
+                                <img style="width: 100px; height: 100px;" src="{{ $editarImagen->temporaryUrl() }}"
+                                    alt="">
+                            @else
+                                <img style="width: 100px; height: 100px;"
+                                    src="{{ $editarFormulario['imagen_ruta'] ? Storage::url($editarFormulario['imagen_ruta']) : '' }}">
+                            @endif
+                            <div class="opcion_cambiar_imagen">
+                                Editar <i class="fa-solid fa-camera"></i>
+                            </div>
+                        </div>
+                        <input type="file" wire:model="editarImagen" id="editarImagen" style="display: none">
+                        @error('editarImagen')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Nombre-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.nombre">Nombre:</label>
-                    <input type="text" wire:model="editarFormulario.nombre" id="editarFormulario.nombre">
-                    @error('editarFormulario.nombre')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Nombre: </p>
+                        <input type="text" wire:model="editarFormulario.nombre">
+                        @error('editarFormulario.nombre')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Ruta-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.slug">Ruta:</label>
-                    <input type="text" wire:model="editarFormulario.slug" id="editarFormulario.slug">
-                    @error('editarFormulario.slug')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Slug: </p>
+                        <input type="text" wire:model="editarFormulario.slug">
+                        @error('editarFormulario.slug')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Icono-->
                 <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.icono">Icono:</label>
-                    <code>
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Icono: </p>
+                        {{-- <code>
                         <?php print htmlentities('<i class="fa-brands fa-facebook"></i>'); ?>
-                    </code>
-                    <input type="text" wire:model="editarFormulario.icono" id="editarFormulario.icono">
-                    @error('editarFormulario.icono')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    </code> --}}
+                        <input type="text" wire:model="editarFormulario.icono">
+                        @error('editarFormulario.icono')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
                 <!--Marcas-->
-                <div class="contenedor_elemento_formulario">
-                    <label for="editarFormulario.marcas">Marcas:</label>
-                    <div class="contenedor_formulario_checkbox">
-                        @foreach ($marcas as $marca)
-                            <label>
-                                <input type="checkbox" name="marcas[]" wire:model.defer="editarFormulario.marcas"
-                                    value="{{ $marca->id }}" id="editarFormulario.marcas">
-                                {{ $marca->nombre }}
-                            </label>
-                        @endforeach
-                    </div>
-                    @error('editarFormulario.marcas')
-                        <span>
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <div class="contenedor_1_elementos_100">
+                    <label class="label_principal">
+                        <p class="estilo_nombre_input">Marcas: </p>
+                        <div>
+                            @foreach ($marcas as $marca)
+                                <label>
+                                    <input type="checkbox" name="marcas[]" wire:model.defer="editarFormulario.marcas"
+                                        value="{{ $marca->id }}">
+                                    {{ $marca->nombre }}
+                                </label>
+                            @endforeach
+                        </div>
+                        @error('editarFormulario.marcas')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </label>
                 </div>
             </div>
         </x-slot>

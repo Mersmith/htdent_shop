@@ -19,6 +19,18 @@ class ComponenteVariaColor extends Component
         'stock' => 'required|numeric'
     ];
 
+    protected $validationAttributes = [
+        'color_id' => 'el color',
+        'stock' => 'el stock del color',
+        'pivot_stock' => 'el stock del color',
+    ];
+
+    protected $messages = [
+        'color_id.required' => 'El :attribute es requerido.',
+        'stock.required' => 'El :attribute es requerido.',
+        'pivot_stock.required' => 'El :attribute es requerido.',
+    ];
+
     public function mount()
     {
         $this->colores = Color::all();
@@ -27,7 +39,7 @@ class ComponenteVariaColor extends Component
     public function guardarColor()
     {
         $this->validate();
-        
+
         $pivot = Pivot::where('color_id', $this->color_id)
             ->where('producto_id', $this->producto->id)
             ->first();
@@ -63,6 +75,10 @@ class ComponenteVariaColor extends Component
 
     public function actualizarPivot()
     {
+        $this->validate([
+            'pivot_stock' => 'required'
+        ]);
+
         $this->pivot->color_id = $this->pivot_color_id;
         $this->pivot->stock = $this->pivot_stock;
 

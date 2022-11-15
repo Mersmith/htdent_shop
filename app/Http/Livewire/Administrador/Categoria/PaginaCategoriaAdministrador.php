@@ -50,13 +50,13 @@ class PaginaCategoriaAdministrador extends Component
         'crearFormulario.nombre' => 'nombre de categoria',
         'crearFormulario.slug' => 'slug de categoria',
         'crearFormulario.icono' => 'icono de categoria',
-        'crearFormulario.imagen_ruta' => 'imagen_ruta de categoria',
+        'crearFormulario.imagen_ruta' => 'imagen de categoria',
         'crearFormulario.marcas' => 'marcas de categoria',
 
         'editarFormulario.nombre' => 'nombre de categoria',
         'editarFormulario.slug' => 'slug de categoria',
         'editarFormulario.icono' => 'icono de categoria',
-        'editarImagen' => 'imagen_ruta de categoria',
+        'editarImagen' => 'imagen de categoria',
         'editarFormulario.marcas' => 'marcas de categoria',
     ];
 

@@ -564,3 +564,15 @@ git commit -m "Estilos generales para las páginas."
 git push origin 28_Estilos_Administrador
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************15/11/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 29_Estilos_Administrador_2
+git branch
+git status
+
+git add .
+git commit -m "Estilos generales para las páginas."
+git push origin 29_Estilos_Administrador_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

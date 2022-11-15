@@ -32,12 +32,18 @@
                             <div class="contenedor_imagen_producto_pie">
                                 <div class="contenedor_imagen_producto_item">
                                     @foreach ($producto->imagenes as $key => $imagen)
-                                        <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
-                                            @click="current = {{ $key }}, open = true">
+                                        <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
                                     @endforeach
                                 </div>
                             </div>
 
+                        </div>
+                    @else
+                        <div class="contenedor_imagen_producto_principal">
+                            <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
+                            <span class="agregar_favorito"> <i class="fa-solid fa-heart"
+                                    style="color: #ffa03d; cursor: pointer;"></i>
+                            </span>
                         </div>
                     @endif
                 </div>
@@ -45,7 +51,7 @@
                 <div class="contenedor_producto_info">
                     <h1>{{ $producto->nombre }} </h1>
                     <p class="producto_info_sku">SKU: {{ $producto->sku }} </p>
-                    <p class="producto_info_precio">$ {{ $producto->precio }}.00 <span>Incluye IGV</span></p>
+                    <p class="producto_info_precio">$ {{ $producto->precio }}.00 <span style="text-decoration:line-through;">$ {{ $producto->precio_real }}.00</span></p>
 
                     @if ($producto->puntos_ganar > 0)
                         <p>Gana hasta {{ $producto->puntos_ganar }} CRD Puntos <span><i
