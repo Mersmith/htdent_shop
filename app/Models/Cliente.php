@@ -21,4 +21,10 @@ class Cliente extends Model
     public function resenas(){
         return $this->hasMany(Resena::class);
     }
+
+    public function direcciones()
+    {
+        return $this->hasMany(Direccion::class);
+    }
+
 }

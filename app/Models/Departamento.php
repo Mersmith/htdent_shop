@@ -13,8 +13,8 @@ class Departamento extends Model
 
     //Relacion uno a muchos
     //Un departamento tiene muchas ciudades
-    public function ciudades(){
-        return $this->hasMany(Ciudad::class);
+    public function provincias(){
+        return $this->hasMany(Provincia::class);
     }
 
     public function ordenes(){

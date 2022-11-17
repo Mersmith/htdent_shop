@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Frontend\Carrito;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 use App\Models\Departamento;
-use App\Models\Ciudad;
+use App\Models\Provincia;
 use App\Models\Distrito;
 use App\Models\Cupon;
 use Carbon\Carbon;
@@ -15,8 +15,8 @@ class CarritoCompras extends Component
 {
     public $tipo_envio = 1;
     public $contacto, $celular, $direccion, $referencia, $costo_envio = 0;
-    public $departamentos, $ciudades = [], $distritos = [];
-    public $departamento_id = "", $ciudad_id = "", $distrito_id = "";
+    public $departamentos, $provincias = [], $distritos = [];
+    public $departamento_id = "", $provincia_id = "", $distrito_id = "";
     public $codigo_cupon, $tipoCupon = "fijo", $tieneCodigoCupon = 0, $cupon_descuento = 0;
 
     public $tienePuntos = 0, $puntosCanje = 0, $puntos_descuento = 0;
@@ -33,7 +33,7 @@ class CarritoCompras extends Component
         'contacto.required' => 'Nombre de contacto requerido.',
         'celular.required' => 'Celular de contacto requerido.',
         'departamento_id.required' => 'Departamento de envio requerido.',
-        'ciudad_id.required' => 'Ciudad de envio requerido.',
+        'provincia_id.required' => 'Provincia de envio requerido.',
         'distrito_id.required' => 'Distrito de envio requerido.',
         'direccion.required' => 'Dirección de envio requerido.',
         'referencia.required' => 'Referencia de envio requerido.',
@@ -50,22 +50,22 @@ class CarritoCompras extends Component
     {
         if ($value == 1) {
             $this->resetValidation([
-                'departamento_id', 'ciudad_id', 'distrito_id', 'direccion', 'referencia'
+                'departamento_id', 'provincia_id', 'distrito_id', 'direccion', 'referencia'
             ]);
         }
     }
 
     public function updatedDepartamentoId($value)
     {
-        $this->ciudades = Ciudad::where('departamento_id', $value)->get();
-        $this->reset(['ciudad_id', 'distrito_id']);
+        $this->provincias = Provincia::where('departamento_id', $value)->get();
+        $this->reset(['provincia_id', 'distrito_id']);
     }
 
-    public function updatedCiudadId($value)
+    public function updatedProvinciaId($value)
     {
-        $ciudad = Ciudad::find($value);
-        $this->costo_envio = $ciudad->costo;
-        $this->distritos = Distrito::where('ciudad_id', $value)->get();
+        $provincia = Provincia::find($value);
+        $this->costo_envio = $provincia->costo;
+        $this->distritos = Distrito::where('provincia_id', $value)->get();
         $this->reset('distrito_id');
     }
 
@@ -130,7 +130,7 @@ class CarritoCompras extends Component
 
         if ($this->tipo_envio == 2) {
             $rules['departamento_id'] = 'required';
-            $rules['ciudad_id'] = 'required';
+            $rules['provincia_id'] = 'required';
             $rules['distrito_id'] = 'required';
             $rules['direccion'] = 'required';
             $rules['referencia'] = 'required';
@@ -155,7 +155,7 @@ class CarritoCompras extends Component
             $orden->costo_envio = $this->costo_envio;
             $orden->envio = json_encode([
                 'departamento' => Departamento::find($this->departamento_id)->nombre,
-                'ciudad' => Ciudad::find($this->ciudad_id)->nombre,
+                'provincia' => Provincia::find($this->provincia_id)->nombre,
                 'distrito' => Distrito::find($this->distrito_id)->nombre,
                 'direccion' => $this->direccion,
                 'referencia' => $this->referencia

@@ -26,9 +26,9 @@ class Orden extends Model
     }
 
     //Una Orden pertenece a una Ciudad
-    public function ciudad()
+    public function provincia()
     {
-        return $this->belongsTo(Ciudad::class);
+        return $this->belongsTo(Provincia::class);
     }
 
     //Una Orden pertenece a un distrito

@@ -467,7 +467,7 @@ php artisan make:livewire Frontend/Carrito/ActualizarCantidadVariacionColor
 php artisan make:livewire Frontend/Carrito/ActualizarCantidadVariacionMedida
 
 php artisan make:model Departamento -mfs
-php artisan make:model Ciudad -mfs
+php artisan make:model Provincia -mfs
 php artisan make:model Distrito -mfs
 php artisan make:model Orden -m
 
@@ -574,5 +574,25 @@ git status
 git add .
 git commit -m "Estilos generales para las páginas."
 git push origin 29_Estilos_Administrador_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+php artisan make:model Direccion -msfc
+php artisan make:livewire Cliente/Direccion/PaginaDireccionCliente
+
+php artisan make:livewire Administrador\Departamento\departamento-componente
+php artisan make:livewire Administrador\Departamento\provincia-componente
+php artisan make:livewire Administrador\Departamento\mostrar-departamento
+php artisan make:livewire Administrador\Departamento\distrito-provincia
+
+php artisan make:livewire Cliente/Direccion/PaginaCrearDireccionCliente
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 30_Direcciones_Administrador
+git branch
+git status
+
+git add .
+git commit -m "Direcciones Administrador"
+git push origin 30_Direcciones_Administrador
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

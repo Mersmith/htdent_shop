@@ -9,9 +9,10 @@ class Distrito extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'ciudad_id'];
+    protected $fillable = ['nombre', 'provincia_id'];
 
-    public function ordenes(){
+    public function ordenes()
+    {
         return $this->hasMany(Orden::class);
     }
 }

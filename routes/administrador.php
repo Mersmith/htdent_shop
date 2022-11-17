@@ -10,6 +10,9 @@ use App\Http\Livewire\Administrador\Categoria\PaginaCategoriaAdministrador;
 use App\Http\Livewire\Administrador\Cupon\AgregarCupones;
 use App\Http\Livewire\Administrador\Cupon\EditarCupones;
 use App\Http\Livewire\Administrador\Cupon\MostrarCupones;
+use App\Http\Livewire\Administrador\Departamento\DepartamentoComponente;
+use App\Http\Livewire\Administrador\Departamento\MostrarDepartamento;
+use App\Http\Livewire\Administrador\Departamento\ProvinciaComponente;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
@@ -61,3 +64,6 @@ Route::get('cupones', MostrarCupones::class)->name('cupones.index');
 Route::get('cupones/crear', AgregarCupones::class)->name('cupones.crear');
 Route::get('cupones/{cupon}/editar', EditarCupones::class)->name('cupones.editar');
 
+Route::get('departamentos', DepartamentoComponente::class)->name('departamentos.index');
+Route::get('provincias/{departamento}', MostrarDepartamento::class)->name('departamentos.mostrar');
+Route::get('distritos/{provincia}', ProvinciaComponente::class)->name('provincias.mostrar');
