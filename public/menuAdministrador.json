@@ -61,5 +61,11 @@
     "nombrePrincipal": "Cupones",
     "nombrePrincipalUrl": "administrador.cupones.index",
     "subMenu1": []
+  },
+  {
+    "id": 7,
+    "nombrePrincipal": "Departamentos",
+    "nombrePrincipalUrl": "administrador.departamentos.index",
+    "subMenu1": []
   }
 ]

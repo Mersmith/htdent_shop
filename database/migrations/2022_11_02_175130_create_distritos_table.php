@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('distritos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('ciudad_id');
             $table->string('nombre');
+            $table->unsignedBigInteger('provincia_id');
 
-            $table->foreign('ciudad_id')->references('id')->on('ciudads')->onDelete('cascade');
+            $table->foreign('provincia_id')->references('id')->on('provincias')->onDelete('cascade');
 
             $table->timestamps();
         });

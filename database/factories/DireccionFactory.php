@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Provincia>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Direccion>
  */
-class ProvinciaFactory extends Factory
+class DireccionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class ProvinciaFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->word(),
-            'costo' => $this->faker->randomElement([5, 10, 15])
+            //
         ];
     }
 }

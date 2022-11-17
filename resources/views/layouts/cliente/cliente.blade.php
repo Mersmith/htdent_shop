@@ -35,8 +35,9 @@
                         <a><i class="fa-solid fa-comments"></i><span>Reseñas</span></a>
                         <a><i class="fa-solid fa-clipboard-check"></i><span>Cupones</span></a>
                         <hr>
-                        <a><i class="fa-solid fa-user-pen"></i><span>Datos personales</span></a>
-                        <a><i class="fa-solid fa-map-location-dot"></i><span>Direcciones</span></a>
+                        <a href="{{ route('cliente.perfil') }}"><i class="fa-solid fa-user-pen"></i><span>Datos
+                                personales</span></a>
+                        <a href="{{ route('cliente.direcciones') }}"><i class="fa-solid fa-map-location-dot"></i><span>Direcciones</span></a>
                         <a><i class="fa-regular fa-credit-card"></i><span>Métodos de pago</span></a>
                         <a><i class="fa-solid fa-file-invoice-dollar"></i><span>Direcciones de factura</span></a>
                         <hr>

@@ -108,7 +108,7 @@
                 <!--Video-->
                 @if ($producto->link_video)
                     <div class="contenedor_producto_video">
-                        <iframe src="https://www.youtube.com/embed/8UlX4a_zYNk" title="YouTube video player"
+                        <iframe src="{{$producto->link_video}}" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
