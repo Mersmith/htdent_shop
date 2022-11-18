@@ -86,7 +86,9 @@ class PaginaCrearDireccionCliente extends Component
         $direccion->distrito_nombre = $this->distrito_nombre;
 
         $direccion->save();
+        return redirect()->route('cliente.direcciones');
     }
+    
     public function render()
     {
         return view('livewire.cliente.direccion.pagina-crear-direccion-cliente')->layout('layouts.cliente.cliente');

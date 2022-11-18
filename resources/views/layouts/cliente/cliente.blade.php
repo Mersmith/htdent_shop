@@ -31,13 +31,15 @@
                 <div class="grid_layout_cliente">
                     <div class="contenedor_cliente_menu">
                         <a><i class="fas fa-truck"></i><span>Pedidos</span></a>
-                        <a><i class="fa-solid fa-arrows-to-circle"></i><span>CDR Puntos</span></a>
+                        <a href="{{ route('cliente.puntos.crd') }}"><i
+                                class="fa-solid fa-arrows-to-circle"></i><span>CRD Puntos</span></a>
                         <a><i class="fa-solid fa-comments"></i><span>Reseñas</span></a>
                         <a><i class="fa-solid fa-clipboard-check"></i><span>Cupones</span></a>
                         <hr>
                         <a href="{{ route('cliente.perfil') }}"><i class="fa-solid fa-user-pen"></i><span>Datos
                                 personales</span></a>
-                        <a href="{{ route('cliente.direcciones') }}"><i class="fa-solid fa-map-location-dot"></i><span>Direcciones</span></a>
+                        <a href="{{ route('cliente.direcciones') }}"><i
+                                class="fa-solid fa-map-location-dot"></i><span>Direcciones</span></a>
                         <a><i class="fa-regular fa-credit-card"></i><span>Métodos de pago</span></a>
                         <a><i class="fa-solid fa-file-invoice-dollar"></i><span>Direcciones de factura</span></a>
                         <hr>

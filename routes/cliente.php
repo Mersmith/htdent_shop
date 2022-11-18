@@ -6,6 +6,7 @@ use App\Http\Livewire\Cliente\Orden\OrdenPagar;
 use App\Http\Livewire\Cliente\Perfil\PaginaPerfilCliente;
 use App\Http\Livewire\Cliente\Direccion\PaginaDireccionCliente;
 use App\Http\Livewire\Cliente\Direccion\PaginaCrearDireccionCliente;
+use App\Http\Livewire\Cliente\Direccion\PaginaEditarDireccionCliente;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'cliente/datos-personales');
@@ -20,3 +21,8 @@ Route::get('orden/{orden}/compra-paypal', [OrdenController::class, 'comprarPaypa
 
 Route::get('mis-direcciones', PaginaDireccionCliente::class)->name('direcciones');
 Route::get('crear-direccion', PaginaCrearDireccionCliente::class)->name('direcciones.crear');
+Route::get('mis-direcciones/{direccionslug}/editar', PaginaEditarDireccionCliente::class)->name('direcciones.editar');
+
+Route::get('puntos-crd', function () {
+    return view('cliente.puntos.pagina-index');
+})->name('puntos.crd');

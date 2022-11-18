@@ -596,3 +596,15 @@ git commit -m "Direcciones Administrador"
 git push origin 30_Direcciones_Administrador
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+php artisan make:livewire Cliente/Direccion/PaginaEditarDireccionCliente
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 31_Direcciones_Cliente
+git branch
+git status
+
+git add .
+git commit -m "Direcciones Cliente"
+git push origin 31_Direcciones_Cliente
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
