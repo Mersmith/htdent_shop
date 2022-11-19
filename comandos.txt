@@ -608,3 +608,16 @@ git commit -m "Direcciones Cliente"
 git push origin 31_Direcciones_Cliente
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************18/11/22***************************************
+php artisan make:controller Cliente/CuponesController
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 32_Cupones_Cliente
+git branch
+git status
+
+git add .
+git commit -m "Cupones Cliente"
+git push origin 32_Cupones_Cliente
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

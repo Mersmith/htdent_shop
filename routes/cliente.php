@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cliente\CuponesController;
 use App\Http\Controllers\Cliente\OrdenController;
 use App\Http\Livewire\Cliente\Orden\OrdenMostrar;
 use App\Http\Livewire\Cliente\Orden\OrdenPagar;
@@ -26,3 +27,6 @@ Route::get('mis-direcciones/{direccionslug}/editar', PaginaEditarDireccionClient
 Route::get('puntos-crd', function () {
     return view('cliente.puntos.pagina-index');
 })->name('puntos.crd');
+
+Route::get('mis-cupones', [CuponesController::class, 'index'])->name('cupon.index');
+
