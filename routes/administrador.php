@@ -15,6 +15,7 @@ use App\Http\Livewire\Administrador\Departamento\MostrarDepartamento;
 use App\Http\Livewire\Administrador\Departamento\ProvinciaComponente;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
+use App\Http\Livewire\Administrador\PaginaOrdenesAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaEditarProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaTodosProductoAdministrador;
@@ -67,3 +68,6 @@ Route::get('cupones/{cupon}/editar', EditarCupones::class)->name('cupones.editar
 Route::get('departamentos', DepartamentoComponente::class)->name('departamentos.index');
 Route::get('provincias/{departamento}', MostrarDepartamento::class)->name('departamentos.mostrar');
 Route::get('distritos/{provincia}', ProvinciaComponente::class)->name('provincias.mostrar');
+
+Route::get('ordenes', PaginaOrdenesAdministrador::class)->name('ordenes.index');
+

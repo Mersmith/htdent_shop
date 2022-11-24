@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\InicioController;
 use App\Http\Controllers\Frontend\ProductoController;
 use App\Http\Controllers\Frontend\ResenaController;
 use App\Http\Livewire\Frontend\Carrito\CarritoCompras;
+use App\Http\Livewire\Frontend\Tienda\TiendaPagina;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 require_once __DIR__ . '/fortify.php';
@@ -31,6 +32,7 @@ Route::get('eliminar-carrito', function () {
 Route::post('resenas/{producto}', [ResenaController::class, 'store'])->name('resenas.store');
 Route::post('resenas/{producto}/{comentario}', [ResenaController::class, 'respuesta'])->name('resenas.respuesta');
 
+Route::get('tienda', TiendaPagina::class)->name('tienda');
 
 
 /*Route::middleware([

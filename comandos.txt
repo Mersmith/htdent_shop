@@ -621,3 +621,25 @@ git commit -m "Cupones Cliente"
 git push origin 32_Cupones_Cliente
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************21/11/22***************************************
+php artisan make:livewire Administrador/PaginaOrdenesAdministrador
+
+{
+    "id": 1,
+    "nombrePrincipal": "Inicio",
+    "nombrePrincipalUrl": "/",
+    "subMenu1": []
+},
+
+ php artisan make:livewire Frontend/Tienda/TiendaPagina
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 33_Pagina_Tienda
+git branch
+git status
+
+git add .
+git commit -m "Pagina Tienda"
+git push origin 33_Pagina_Tienda
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

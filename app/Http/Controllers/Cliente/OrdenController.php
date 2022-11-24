@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orden;
 use Illuminate\Support\Facades\Http;
-
+    
 class OrdenController extends Controller
 {
     //Mis Ordenes en total
@@ -18,7 +18,8 @@ class OrdenController extends Controller
             $ordenes->where('estado', request('estado'));
         }
 
-        $ordenes = $ordenes->get();
+        $ordenes = $ordenes->paginate(5)->withQueryString();
+        //$ordenes = $ordenes->get();
 
         $pendiente = Orden::where('estado', 1)->where('user_id', auth()->user()->id)->count();
         $recibido = Orden::where('estado', 2)->where('user_id', auth()->user()->id)->count();

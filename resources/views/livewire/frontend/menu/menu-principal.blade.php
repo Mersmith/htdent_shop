@@ -149,6 +149,9 @@
             <!-- FIN MENU-PRINCIPAL -->
         </div>
         <div class="contenedor_iconos">
+            <a href="{{ route('tienda') }}">
+                <i class="fa-solid fa-store" style="color: #666666;"></i>
+            </a>
             @auth
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
