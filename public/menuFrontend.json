@@ -1,11 +1,5 @@
 [
   {
-    "id": 1,
-    "nombrePrincipal": "Inicio",
-    "nombrePrincipalUrl": "/",
-    "subMenu1": []
-  },
-  {
     "id": 2,
     "nombrePrincipal": "Equipos intraorales",
     "nombrePrincipalUrl": "equipos-intraorales",

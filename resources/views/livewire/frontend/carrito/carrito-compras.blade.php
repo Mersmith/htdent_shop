@@ -163,17 +163,17 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <!--Ciudades-->
+                                    <!--Provincia-->
                                     <div class="contenedor_elemento_formulario">
-                                        <label>Ciudad:</label>
-                                        <select wire:model="ciudad_id">
-                                            <option value="" selected disabled>Seleccione una ciudad</option>
+                                        <label>Provincia:</label>
+                                        <select wire:model="provincia_id">
+                                            <option value="" selected disabled>Seleccione una provincia</option>
 
-                                            @foreach ($ciudades as $ciudad)
-                                                <option value="{{ $ciudad->id }}">{{ $ciudad->nombre }}</option>
+                                            @foreach ($provincias as $provincia)
+                                                <option value="{{ $provincia->id }}">{{ $provincia->nombre }}</option>
                                             @endforeach
                                         </select>
-                                        @error('ciudad_id')
+                                        @error('provincia_id')
                                             <span>
                                                 <strong>{{ $message }}</strong>
                                             </span>

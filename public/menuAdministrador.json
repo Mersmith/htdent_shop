@@ -67,5 +67,11 @@
     "nombrePrincipal": "Departamentos",
     "nombrePrincipalUrl": "administrador.departamentos.index",
     "subMenu1": []
+  },
+  {
+    "id": 8,
+    "nombrePrincipal": "Ordenes",
+    "nombrePrincipalUrl": "administrador.ordenes.index",
+    "subMenu1": []
   }
 ]

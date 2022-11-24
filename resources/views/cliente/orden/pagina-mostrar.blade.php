@@ -166,8 +166,8 @@
                             @else
                                 <label>Departamento:</label>
                                 <p>{{ $envio->departamento }}</p>
-                                <label>Ciudad:</label>
-                                <p>{{ $envio->ciudad }}</p>
+                                <label>Provincia:</label>
+                                <p>{{ $envio->provincia }}</p>
                                 <label>Distrito:</label>
                                 <p>{{ $envio->distrito }}</p>
                                 <label>Dirección:</label>
