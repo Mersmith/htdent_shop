@@ -643,3 +643,14 @@ git commit -m "Pagina Tienda"
 git push origin 33_Pagina_Tienda
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 34_Administrador_Ordenes_1
+git branch
+git status
+
+git add .
+git commit -m "Administrador de Ordenes 1"
+git push origin 34_Administrador_Ordenes_1
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
