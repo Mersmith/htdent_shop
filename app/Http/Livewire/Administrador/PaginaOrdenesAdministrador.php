@@ -12,6 +12,10 @@ class PaginaOrdenesAdministrador extends Component
     public $buscarOrden;
     protected $paginate = 10;
 
+    public $estado;
+    protected $queryString = ['estado'];
+    //request('estado')
+
     /*public function updatingBuscarOrden()
     {
         $this->resetPage();
@@ -19,15 +23,20 @@ class PaginaOrdenesAdministrador extends Component
 
     public function render()
     {
-        $ordenes = Orden::query()->where('total', 'like', '%' . $this->buscarOrden . '%');
+        $ordenes = Orden::query()->orderBy('updated_at', 'desc');
 
-        if (request('estado')) {
-            $ordenes->where('estado', request('estado'));
-            //dump(request('estado'));
+        if ($this->estado) {
+            $ordenes->where('estado', $this->estado);
+            if ($this->buscarOrden) {
+                $ordenes->where('total', 'like', '%' . $this->buscarOrden . '%');
+            }
+        } else {
+            if ($this->buscarOrden) {
+                $ordenes->where('total', 'like', '%' . $this->buscarOrden . '%');
+            }
         }
 
-        $ordenes = $ordenes->paginate(1)->withQueryString();
-
+        $ordenes = $ordenes->paginate(4)->withQueryString();
 
         $pendiente = Orden::where('estado', 1)->count();
         $recibido = Orden::where('estado', 2)->count();
