@@ -158,7 +158,7 @@
                 minprice: 0, //Minimo inicio
                 maxprice: 7000, //Máximo inicio
                 min: 0, //Salto
-                max: 40000, //Máximo fin
+                max: 700000, //Máximo fin
                 minthumb: 0,
                 maxthumb: 0,
 

@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="{{ asset('generales/generales.css') }}">
 <!-- Menu Principal -->
 <link rel="stylesheet" href="{{ asset('administrador/inicio/css/menu-principal-administrador.css') }}">
+<!-- Orden -->
+<link rel="stylesheet" href="{{ asset('administrador/orden/orden.css') }}">
+<link rel="stylesheet" href="{{ asset('cliente/orden/orden.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/carrito/carrito.css') }}">
+
 
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
