@@ -79,7 +79,7 @@ class TiendaPagina extends Component
             });
         }
 
-        $productos = $productosQuery->whereBetween('precio', [$this->minimo, $this->maximo])->paginate(10);
+        $productos = $productosQuery->whereBetween('precio', [$this->minimo, $this->maximo])->paginate(20);
 
         return view('livewire.frontend.tienda.tienda-pagina', compact('productos'))->layout('layouts.frontend.frontend');
     }

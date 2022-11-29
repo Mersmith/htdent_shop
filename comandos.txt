@@ -654,3 +654,20 @@ git commit -m "Administrador de Ordenes 1"
 git push origin 34_Administrador_Ordenes_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************28/11/22***************************************
+
+php artisan vendor:publish --tag=laravel-pagination
+
+php artisan make:livewire Administrador/Orden/PaginaOrdenesEditarAdministrador
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 35_Administrador_Ordenes_Actualizar
+git branch
+git status
+
+git add .
+git commit -m "Actualizar los estados de las ordenes"
+git push origin 35_Administrador_Ordenes_Actualizar
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

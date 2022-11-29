@@ -15,7 +15,8 @@ use App\Http\Livewire\Administrador\Departamento\MostrarDepartamento;
 use App\Http\Livewire\Administrador\Departamento\ProvinciaComponente;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
-use App\Http\Livewire\Administrador\PaginaOrdenesAdministrador;
+use App\Http\Livewire\Administrador\Orden\PaginaOrdenesAdministrador;
+use App\Http\Livewire\Administrador\Orden\PaginaOrdenesEditarAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaEditarProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaTodosProductoAdministrador;
@@ -70,4 +71,5 @@ Route::get('provincias/{departamento}', MostrarDepartamento::class)->name('depar
 Route::get('distritos/{provincia}', ProvinciaComponente::class)->name('provincias.mostrar');
 
 Route::get('ordenes', PaginaOrdenesAdministrador::class)->name('ordenes.index');
+Route::get('ordenes/{orden}/editar', PaginaOrdenesEditarAdministrador::class)->name('ordenes.editar');
 

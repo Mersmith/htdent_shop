@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Administrador;
+namespace App\Http\Livewire\Administrador\Orden;
 
 use App\Models\Orden;
 use Livewire\Component;
@@ -43,7 +43,8 @@ class PaginaOrdenesAdministrador extends Component
         $enviado = Orden::where('estado', 3)->count();
         $entregado = Orden::where('estado', 4)->count();
         $anulado = Orden::where('estado', 5)->count();
+        $todos = $pendiente + $recibido + $enviado + $entregado + $anulado;
 
-        return view('livewire.administrador.pagina-ordenes-administrador', compact('ordenes', 'pendiente', 'recibido', 'enviado', 'entregado', 'anulado'))->layout('layouts.administrador.administrador');
+        return view('livewire.administrador.orden.pagina-ordenes-administrador', compact('ordenes', 'pendiente', 'recibido', 'enviado', 'entregado', 'anulado', 'todos'))->layout('layouts.administrador.administrador');
     }
 }
