@@ -34,6 +34,11 @@ class Categoria extends Model
         return $this->hasManyThrough(Producto::class, Subcategoria::class);
     }
 
+    public function imagenes()
+    {
+        return $this->morphMany(Imagen::class, "imagenable");
+    }
+
     //URl amigables
     public function getRouteKeyName()
     {
