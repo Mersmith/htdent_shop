@@ -20,6 +20,7 @@ use App\Http\Livewire\Administrador\Orden\PaginaOrdenesEditarAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaEditarProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaTodosProductoAdministrador;
+use App\Http\Livewire\Administrador\Slider\PaginaSliderAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -73,3 +74,4 @@ Route::get('distritos/{provincia}', ProvinciaComponente::class)->name('provincia
 Route::get('ordenes', PaginaOrdenesAdministrador::class)->name('ordenes.index');
 Route::get('ordenes/{orden}/editar', PaginaOrdenesEditarAdministrador::class)->name('ordenes.editar');
 
+Route::get('slider', PaginaSliderAdministrador::class)->name('slider.index');

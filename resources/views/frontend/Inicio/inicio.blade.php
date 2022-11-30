@@ -1,6 +1,8 @@
 <x-frontend-layout>
     @section('tituloPagina', 'Inicio')
-    @include('frontend.inicio.slider-principal')
+    @if ($sliders->count())
+        @include('frontend.inicio.slider-principal')
+    @endif
 
     @if ($productos->count())
         @livewire('frontend.productos.slider-producto', ['productos' => $productos])

@@ -120,6 +120,10 @@ class PaginaCategoriaAdministrador extends Component
 
         $categoria->marcas()->attach($this->crearFormulario['marcas']);
 
+        $categoria->imagenes()->create([
+            'imagen_ruta' => $imagen
+        ]);
+
         $this->aleatorio = rand();
 
         $this->traerCategorias();

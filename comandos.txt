@@ -671,3 +671,20 @@ git commit -m "Actualizar los estados de las ordenes"
 git push origin 35_Administrador_Ordenes_Actualizar
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+**************************30/11/22***************************************
+php artisan make:livewire Administrador/Slider/PaginaSliderAdministrador
+
+php artisan make:controller Api\SortSliderController
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 36_Administrador_Slider
+git branch
+git status
+
+git add .
+git commit -m "Slider de pagina Inicio desde el Administrador"
+git push origin 36_Administrador_Slider
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

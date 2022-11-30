@@ -73,5 +73,11 @@
     "nombrePrincipal": "Ordenes",
     "nombrePrincipalUrl": "administrador.ordenes.index",
     "subMenu1": []
+  },
+  {
+    "id": 9,
+    "nombrePrincipal": "Sliders",
+    "nombrePrincipalUrl": "administrador.slider.index",
+    "subMenu1": []
   }
 ]
