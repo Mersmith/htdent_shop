@@ -31,7 +31,7 @@
             </div>
             <!--Imagenes-->
             <div class="contenedor_1_elementos_imagen">
-                <label class="label_principal">
+                <label class="label_principal" for="imagenes">
                     <p class="estilo_nombre_input">Imagenes: </p>
                     <div class="contenedor_subir_imagen_sola" style="width: 100px; height: 100px;">
                         <img style="width: 100px; height: 100px;"
@@ -40,19 +40,27 @@
                             Subir <i class="fa-solid fa-camera"></i>
                         </div>
                     </div>
-                    <div class="contenedor_imagenes_subir">
-                        @if ($imagenes)
-                            @foreach ($imagenes as $imagen)
-                                <img style="width: 100px; height: 100px; object-fit: cover;"
-                                    src="{{ $imagen->temporaryUrl() }}">
-                            @endforeach
-                        @endif
-                        <input type="file" wire:model="imagenes" multiple style="display: none" id="imagenes">
-                    </div>
-                    @error('imagenes.*')
-                        <span>{{ $message }} </span>
-                    @enderror
                 </label>
+                <div class="contenedor_imagenes_subir" id="sortableimagenes">
+                    @if ($imagenes)
+                        @foreach ($imagenes as $key => $imagen)
+                            <div wire:key="{{ $loop->index }}" data-id="{{ $key }}"
+                                style="position: relative;">
+                                <img class="handle2 cursor-grab" style="width: 100px; height: 100px; object-fit: cover;"
+                                    src="{{ $imagen->temporaryUrl() }}">
+                                <p wire:click="eliminarImagen({{ $loop->index }})">
+                                    <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                </p>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                @error('imagenes.*')
+                    <span>{{ $message }} </span>
+                @enderror
+
+                <input type="file" wire:model="imagenes" multiple style="display: none" id="imagenes">
+
             </div>
             <!--Dos input-->
             <div class="contenedor_2_elementos">
@@ -287,3 +295,25 @@
         </form>
     </div>
 </div>
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+        //https://sortablejs.github.io/Sortable/
+        new Sortable(sortableimagenes, {
+            handle: '.handle2',
+            animation: 150,
+            ghostClass: 'bg-blue-100',
+            store: {
+                set: function(sortable) {
+                    const sorts = sortable.toArray();
+                    //console.log(sorts);
+                    /*Livewire.emitTo('administrador.producto.pagina-crear-producto-administrador',
+                        'cambiarPosicionImagenes', sorts);*/
+                },
+                onStart: function(evt) {
+                    console.log(evt.oldIndex);
+                },
+            }
+        });
+    </script>
+@endpush
