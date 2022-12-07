@@ -688,3 +688,14 @@ git commit -m "Slider de pagina Inicio desde el Administrador"
 git push origin 36_Administrador_Slider
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 37_Cambiar_Posicion_1
+git branch
+git status
+
+git add .
+git commit -m "Intentando cambiar posicion de imagenes"
+git push origin 37_Cambiar_Posicion_1
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -16,6 +16,10 @@ class PaginaCrearProductoAdministrador extends Component
 {
     use WithFileUploads;
 
+    //Los detectores de eventos
+    protected $listeners = ['cambiarPosicionImagenes'];
+
+
     public $categorias, $subcategorias = [], $marcas = [], $imagenes = [];
 
     public $categoria_id = "",  $subcategoria_id = "", $marca_id = "";
@@ -109,6 +113,19 @@ class PaginaCrearProductoAdministrador extends Component
     public function getSubcategoriaProperty()
     {
         return Subcategoria::find($this->subcategoria_id);
+    }
+
+    public function eliminarImagen($index)
+    {
+        array_splice($this->imagenes, $index, 1);
+    }
+
+    //Propiedad computada
+    public function cambiarPosicionImagenes($sorts)
+    {
+       
+
+        //return dd($sorts);
     }
 
     public function crearProducto()
