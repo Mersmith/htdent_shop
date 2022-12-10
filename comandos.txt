@@ -699,3 +699,15 @@ git commit -m "Intentando cambiar posicion de imagenes"
 git push origin 37_Cambiar_Posicion_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************09/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 38_Produccion_1
+git branch
+git status
+
+git add .
+git commit -m "Produccion 1"
+git push origin 38_Produccion_1
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
