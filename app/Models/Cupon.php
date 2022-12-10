@@ -10,4 +10,7 @@ class Cupon extends Model
     use HasFactory;
 
     protected $table = "cupons";
+
+    const FIJO = "fijo";
+    const PORCENTAJE = "porcentaje";
 }
