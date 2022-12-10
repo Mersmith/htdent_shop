@@ -757,4 +757,15 @@ git add .
 git commit -m "Produccion 5, controller inicio"
 git push origin 42_Produccion_5
 ->Click en boton Merge pull request
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git mv public/administrador/Inicio inicio
+
+git checkout -b 43_Produccion_6
+git branch
+git status
+
+git add .
+git commit -m "Produccion 5, administrador inicio"
+git push origin 43_Produccion_6
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
