@@ -711,3 +711,14 @@ git commit -m "Produccion 1"
 git push origin 38_Produccion_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 39_Produccion_2
+git branch
+git status
+
+git add .
+git commit -m "Produccion 2, Git Ignore"
+git push origin 39_Produccion_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
