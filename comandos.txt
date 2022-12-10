@@ -722,3 +722,14 @@ git commit -m "Produccion 2, Git Ignore"
 git push origin 39_Produccion_2
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 40_Produccion_3
+git branch
+git status
+
+git add .
+git commit -m "Produccion 2, npm run build"
+git push origin 40_Produccion_3
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
