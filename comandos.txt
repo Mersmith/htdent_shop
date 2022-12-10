@@ -744,3 +744,17 @@ git commit -m "Produccion 2, controller inicio"
 git push origin 41_Produccion_4
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->git mv resources/views/frontend/Inicio inicio 
+
+git checkout -b 42_Produccion_5
+git branch
+git status
+
+git add .
+git commit -m "Produccion 5, controller inicio"
+git push origin 42_Produccion_5
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
