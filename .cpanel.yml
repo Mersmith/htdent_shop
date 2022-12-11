@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/q0216l9awiwc/public_html/htdentprueba.patriciasotopolitica.com
+    - /bin/cp * $DEPLOYPATH
