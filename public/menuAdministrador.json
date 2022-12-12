@@ -79,5 +79,23 @@
     "nombrePrincipal": "Sliders",
     "nombrePrincipalUrl": "administrador.slider.index",
     "subMenu1": []
+  },
+  {
+    "id": 10,
+    "nombrePrincipal": "Fortalezas",
+    "nombrePrincipalUrl": "administrador.fortalezas",
+    "subMenu1": []
+  },
+  {
+    "id": 11,
+    "nombrePrincipal": "Testimonios",
+    "nombrePrincipalUrl": "administrador.testimonios",
+    "subMenu1": []
+  },
+  {
+    "id": 11,
+    "nombrePrincipal": "Medios de pago",
+    "nombrePrincipalUrl": "administrador.medios.pago",
+    "subMenu1": []
   }
 ]
