@@ -14,9 +14,13 @@
         @livewire('frontend.productos.slider-producto2', ['productos' => $productos])
     @endif
 
-    @include('frontend.inicio.slider-iconos')
+    @if ($fortalezas->count())
+        @include('frontend.inicio.slider-iconos')
+    @endif
 
-    @include('frontend.inicio.slider-testimonio')
+    @if ($testimonios->count())
+        @include('frontend.inicio.slider-testimonio')
+    @endif
 
     @include('frontend.inicio.slider-metodo-pago')
 </x-frontend-layout>

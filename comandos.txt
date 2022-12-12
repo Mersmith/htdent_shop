@@ -780,3 +780,26 @@ git commit -m "Agregar cpanel yml"
 git push origin 44_Produccion_Cpanel
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+**************************12/12/22***************************************
+
+php artisan make:livewire Administrador/Fortaleza/PaginaFortalezaAdministrador
+php artisan make:model Fortaleza -ms
+
+php artisan make:livewire Administrador/Testimonio/PaginaTestimonioAdministrador
+php artisan make:model Testimonio -ms
+
+php artisan migrate:rollback
+
+php artisan make:livewire Administrador/MediosPago/PaginaMediosPagoAdministrador
+php artisan make:model MediosPago -ms
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git checkout -b 45_Fortaleza_Testimonio
+git branch
+git status
+
+git add .
+git commit -m "CRUD Fortaleza y Testimonio"
+git push origin 45_Fortaleza_Testimonio
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->

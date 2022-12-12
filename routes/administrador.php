@@ -13,14 +13,17 @@ use App\Http\Livewire\Administrador\Cupon\MostrarCupones;
 use App\Http\Livewire\Administrador\Departamento\DepartamentoComponente;
 use App\Http\Livewire\Administrador\Departamento\MostrarDepartamento;
 use App\Http\Livewire\Administrador\Departamento\ProvinciaComponente;
+use App\Http\Livewire\Administrador\Fortaleza\PaginaFortalezaAdministrador;
 use App\Http\Livewire\Administrador\Subcategoria\PaginaSubcategoriaAdministrador;
 use App\Http\Livewire\Administrador\Marca\PaginaMarcaAdministrador;
+use App\Http\Livewire\Administrador\MediosPago\PaginaMediosPagoAdministrador;
 use App\Http\Livewire\Administrador\Orden\PaginaOrdenesAdministrador;
 use App\Http\Livewire\Administrador\Orden\PaginaOrdenesEditarAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaCrearProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaEditarProductoAdministrador;
 use App\Http\Livewire\Administrador\Producto\PaginaTodosProductoAdministrador;
 use App\Http\Livewire\Administrador\Slider\PaginaSliderAdministrador;
+use App\Http\Livewire\Administrador\Testimonio\PaginaTestimonioAdministrador;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'administrador/perfil');
@@ -75,3 +78,9 @@ Route::get('ordenes', PaginaOrdenesAdministrador::class)->name('ordenes.index');
 Route::get('ordenes/{orden}/editar', PaginaOrdenesEditarAdministrador::class)->name('ordenes.editar');
 
 Route::get('slider', PaginaSliderAdministrador::class)->name('slider.index');
+
+Route::get('fortalezas', PaginaFortalezaAdministrador::class)->name('fortalezas');
+
+Route::get('testimonios', PaginaTestimonioAdministrador::class)->name('testimonios');
+
+Route::get('medios-de-pago', PaginaMediosPagoAdministrador::class)->name('medios.pago');
