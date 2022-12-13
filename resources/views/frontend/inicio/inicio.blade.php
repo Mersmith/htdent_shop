@@ -22,5 +22,7 @@
         @include('frontend.inicio.slider-testimonio')
     @endif
 
-    @include('frontend.inicio.slider-metodo-pago')
+    @if ($medios->count())
+        @include('frontend.inicio.slider-metodo-pago')
+    @endif
 </x-frontend-layout>

@@ -814,3 +814,15 @@ git commit -m "Medios de pago"
 git push origin 46_Medio_Pago
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+
+**************************13/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git checkout -b 47_Incio_Administrable
+git branch
+git status
+
+git add .
+git commit -m "Inicio administrable sliders y cambiar posicion imagenes crear producto y build"
+git push origin 47_Incio_Administrable
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
