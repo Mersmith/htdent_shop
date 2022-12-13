@@ -125,7 +125,7 @@ class PaginaCrearProductoAdministrador extends Component
     {
        
 
-        //return dd($sorts);
+        return dd($sorts);
     }
 
     public function crearProducto()

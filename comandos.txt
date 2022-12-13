@@ -803,3 +803,14 @@ git commit -m "CRUD Fortaleza y Testimonio"
 git push origin 45_Fortaleza_Testimonio
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git checkout -b 46_Medio_Pago
+git branch
+git status
+
+git add .
+git commit -m "Medios de pago"
+git push origin 46_Medio_Pago
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->

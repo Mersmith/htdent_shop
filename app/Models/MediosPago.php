@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class MediosPago extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['posicion'];
+
+    public function imagenes()
+    {
+        return $this->morphMany(Imagen::class, "imagenable");
+    }
+
 }
