@@ -307,8 +307,8 @@
                 set: function(sortable) {
                     const sorts = sortable.toArray();
                     //console.log(sorts);
-                    /*Livewire.emitTo('administrador.producto.pagina-crear-producto-administrador',
-                        'cambiarPosicionImagenes', sorts);*/
+                    Livewire.emitTo('administrador.producto.pagina-crear-producto-administrador',
+                        'cambiarPosicionImagenes', sorts);
                 },
                 onStart: function(evt) {
                     console.log(evt.oldIndex);
