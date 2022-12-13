@@ -123,9 +123,14 @@ class PaginaCrearProductoAdministrador extends Component
     //Propiedad computada
     public function cambiarPosicionImagenes($sorts)
     {
-       
+        $sorted = [];
 
-        return dd($sorts);
+        foreach ($sorts as  $position) {           
+            $existe = $this->imagenes[$position];      
+            array_push($sorted, $existe);
+        }
+
+        $this->imagenes = $sorted;
     }
 
     public function crearProducto()
