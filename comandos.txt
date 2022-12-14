@@ -826,3 +826,15 @@ git commit -m "Inicio administrable sliders y cambiar posicion imagenes crear pr
 git push origin 47_Incio_Administrable
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+
+**************************1743/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git checkout -b 48_Cambiar_Posicion_2
+git branch
+git status
+
+git add .
+git commit -m "Cambiar posición imagenes en editar y crear de producto"
+git push origin 48_Cambiar_Posicion_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->

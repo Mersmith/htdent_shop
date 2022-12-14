@@ -23,7 +23,7 @@ class PaginaCrearProductoAdministrador extends Component
     public $categorias, $subcategorias = [], $marcas = [], $imagenes = [];
 
     public $categoria_id = "",  $subcategoria_id = "", $marca_id = "";
-    public $nombre = null, $slug = null,  $sku = null,  $precio = 1, $precio_real = 1, $descripcion = null,
+    public $nombre = null, $slug = null, $link_video = null, $sku = null,  $precio = 1, $precio_real = 1, $descripcion = null,
         $informacion = null, $puntos_ganar = 0, $puntos_tope = 0,
         $tiene_detalle = false, $detalle = null,  $stock_total = 0, $estado = 1;
 
@@ -120,13 +120,12 @@ class PaginaCrearProductoAdministrador extends Component
         array_splice($this->imagenes, $index, 1);
     }
 
-    //Propiedad computada
     public function cambiarPosicionImagenes($sorts)
     {
         $sorted = [];
 
-        foreach ($sorts as  $position) {           
-            $existe = $this->imagenes[$position];      
+        foreach ($sorts as  $position) {
+            $existe = $this->imagenes[$position];
             array_push($sorted, $existe);
         }
 
@@ -161,6 +160,7 @@ class PaginaCrearProductoAdministrador extends Component
         $producto->precio = $this->precio;
         $producto->precio_real = $this->precio_real;
         $producto->descripcion = $this->descripcion;
+        $producto->link_video = $this->link_video;
         $producto->informacion = $this->informacion;
         $producto->puntos_ganar = $this->puntos_ganar;
         $producto->puntos_tope = $this->puntos_tope;
@@ -180,11 +180,12 @@ class PaginaCrearProductoAdministrador extends Component
             'imagenes.*' => 'image|max:1024',
         ]);
 
-        foreach ($this->imagenes as $imagen) {
+        foreach ($this->imagenes as $key => $imagen) {
             $urlImagen = Storage::put('productos', $imagen);
 
             $producto->imagenes()->create([
-                'imagen_ruta' => $urlImagen
+                'imagen_ruta' => $urlImagen,
+                'posicion' => $key + 1,
             ]);
         }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('imagen_ruta');
             $table->unsignedBigInteger('imagenable_id');
             $table->string('imagenable_type');
+            $table->integer('posicion')->nullable();
 
             $table->timestamps();
         });
