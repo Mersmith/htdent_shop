@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class PaginaEditarProductoAdministrador extends Component
 {
-    protected $listeners = ['dropImagenes', 'eliminarProducto', 'editarProducto'];
+    protected $listeners = ['dropImagenes', 'eliminarProducto', 'editarProducto', 'cambiarPosicionImagenes'];
 
-    public $producto, $categorias, $subcategorias, $marcas, $slug, $sku, $tiene_detalle, $detalle, $stock_total;
+    public $producto, $categorias, $subcategorias, $link_video, $marcas, $slug, $sku, $tiene_detalle, $detalle, $stock_total;
     public $categoria_id;
 
     //toma y sincroniza los valores de $producto
@@ -94,6 +94,7 @@ class PaginaEditarProductoAdministrador extends Component
         $this->sku = $this->producto->sku;
         $this->tiene_detalle = $this->producto->tiene_detalle;
         $this->detalle = $this->producto->detalle;
+        $this->link_video = $this->producto->link_video;
         $this->stock_total = $this->producto->stock_total;
 
         $this->marcas = Marca::whereHas('categorias', function (Builder $query) {
@@ -129,6 +130,22 @@ class PaginaEditarProductoAdministrador extends Component
         $this->producto = $this->producto->fresh();
     }
 
+    public function cambiarPosicionImagenes($sorts)
+    {
+        $posicion = 1;
+
+        foreach ($sorts as $sort) {
+
+            $slider = Imagen::find($sort);
+            $slider->posicion = $posicion;
+            $slider->save();
+
+            $posicion++;
+        }
+
+        $this->dropImagenes();
+    }
+
     public function editarProducto()
     {
         $rules = $this->rules;
@@ -155,6 +172,7 @@ class PaginaEditarProductoAdministrador extends Component
         $this->producto->slug = $this->slug;
         $this->producto->sku = $this->sku;
         $this->producto->detalle = $this->detalle;
+        $this->producto->link_video = $this->link_video;
 
         $this->producto->save();
 

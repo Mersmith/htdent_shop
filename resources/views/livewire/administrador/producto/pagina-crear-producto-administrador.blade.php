@@ -186,6 +186,16 @@
                     @enderror
                 </label>
             </div>
+            <!--Link Video-->
+            <div class="contenedor_1_elementos_100">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Link video youtube embed: </p>
+                    <textarea rows="3" wire:model="link_video"></textarea>
+                    @error('link_video')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
+            </div>
             <!--Informacion-->
             <div class="contenedor_1_elementos_100" wire:ignore>
                 <label class="label_principal">

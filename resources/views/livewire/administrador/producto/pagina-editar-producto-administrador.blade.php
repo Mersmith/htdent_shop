@@ -22,10 +22,11 @@
             <div class="contenedor_1_elementos_imagen">
                 <label class="label_principal">
                     <p class="estilo_nombre_input">Imagenes: </p>
-                    <div class="contenedor_imagenes_subir">
-                        @foreach ($producto->imagenes as $imagen)
-                            <div wire:key="imagen-{{ $imagen->id }}" style="position: relative;">
-                                <img style="width: 100px; height: 100px; object-fit: cover;"
+                    <div class="contenedor_imagenes_subir" id="sortableimagenes">
+                        @foreach ($producto->imagenes->sortBy('posicion') as $key => $imagen)
+                            <div wire:key="imagen-{{ $imagen->id }}" style="position: relative;"
+                                data-id="{{ $imagen->id }}">
+                                <img class="handle2 cursor-grab" style="width: 100px; height: 100px; object-fit: cover;"
                                     src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
                                 <button wire:click="eliminarImagen({{ $imagen->id }})" wire:loading.attr="disabled"
                                     wire:target="eliminarImagen({{ $imagen->id }})">
@@ -168,6 +169,16 @@
                     @enderror
                 </label>
             </div>
+            <!--Link Video-->
+            <div class="contenedor_1_elementos_100">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">Link video youtube embed: </p>
+                    <textarea rows="3" wire:model="link_video"></textarea>
+                    @error('link_video')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
+            </div>
             <!--Informacion-->
             <div class="contenedor_1_elementos_100" wire:ignore>
                 <label class="label_principal">
@@ -266,14 +277,14 @@
                         <label class="label_principal">
                             <p class="estilo_nombre_input">Stock: </p>
                             <input type="number" wire:model="stock_total" step="1">
-                            
+
                         </label>
                     </div>
                 @endif
             @endif
             @error('stock_total')
-                                <span>{{ $message }}</span>
-                            @enderror
+                <span>{{ $message }}</span>
+            @enderror
             <!--Enviar-->
             <div class="contenedor_1_elementos">
                 <!--<input type="submit" value="Actualizar Producto">-->
@@ -301,6 +312,27 @@
         @endif
     </div>
     @push('script')
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script>
+            //https://sortablejs.github.io/Sortable/
+            new Sortable(sortableimagenes, {
+                handle: '.handle2',
+                animation: 150,
+                ghostClass: 'bg-blue-100',
+                store: {
+                    set: function(sortable) {
+                        const sorts = sortable.toArray();
+                        //console.log(sorts);
+                        Livewire.emitTo('administrador.producto.pagina-editar-producto-administrador',
+                            'cambiarPosicionImagenes', sorts);
+                    },
+                    onStart: function(evt) {
+                        console.log(evt.oldIndex);
+                    },
+                }
+            });
+        </script>
+
         <script>
             Dropzone.options.myAwesomeDropzone = {
                 headers: {

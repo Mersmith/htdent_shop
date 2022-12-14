@@ -18,7 +18,8 @@ class ProductoController extends Controller
         $urlImagen = Storage::put('productos', $request->file('file'));
 
         $producto->imagenes()->create([
-            'imagen_ruta' => $urlImagen
+            'imagen_ruta' => $urlImagen,
+            'posicion' => $producto->imagenes()->count() + 1,
         ]);
     }
 }
