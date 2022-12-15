@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrador\AdministradorController;
+use App\Http\Controllers\Administrador\Ckeditor5Controller;
 use App\Http\Controllers\Administrador\PermisoController;
 use App\Http\Controllers\Administrador\ProductoController;
 use App\Http\Controllers\Administrador\RolController;
@@ -65,6 +66,7 @@ Route::get('producto', PaginaTodosProductoAdministrador::class)->name('producto.
 Route::get('producto/crear', PaginaCrearProductoAdministrador::class)->name('producto.crear');
 Route::get('producto/{producto}/editar', PaginaEditarProductoAdministrador::class)->name('producto.editar');
 Route::post('producto/{producto}/files', [ProductoController::class, 'files'])->name('producto.files');
+Route::post('ckeditor-upload', [Ckeditor5Controller::class, 'upload'])->name('ckeditor.upload');
 
 Route::get('cupones', MostrarCupones::class)->name('cupones.index');
 Route::get('cupones/crear', AgregarCupones::class)->name('cupones.crear');

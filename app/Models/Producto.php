@@ -67,6 +67,11 @@ class Producto extends Model
         return $this->morphMany(Imagen::class, "imagenable");
     }
 
+    public function ckeditors()
+    {
+        return $this->morphMany(Ckeditor::class, "ckeditorable");
+    }
+
     //URl amigables
     public function getRouteKeyName()
     {
