@@ -827,7 +827,7 @@ git push origin 47_Incio_Administrable
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
 
-**************************1743/12/22***************************************
+**************************14/12/22***************************************
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
 git checkout -b 48_Cambiar_Posicion_2
 git branch
@@ -838,3 +838,27 @@ git commit -m "Cambiar posición imagenes en editar y crear de producto"
 git push origin 48_Cambiar_Posicion_2
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+
+**************************15/12/22***************************************
+->Build de ckeditor5
+->Cambiar el cd por el build
+->Crear ruta ckeditor5
+
+php artisan make:controller Administrador/Ckeditor5Controller
+
+php artisan make:model Ckeditor -mf
+
+php artisan migrate
+
+->Crear Tareas en el kernel schedule
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++->
+git checkout -b 49_Ckeditor_Imagen
+git branch
+git status
+
+git add .
+git commit -m "Subir imagenes a ckeditor5"
+git push origin 49_Ckeditor_Imagen
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-> 

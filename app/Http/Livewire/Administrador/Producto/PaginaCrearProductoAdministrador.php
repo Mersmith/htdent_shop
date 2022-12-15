@@ -189,6 +189,18 @@ class PaginaCrearProductoAdministrador extends Component
             ]);
         }
 
+        $re_extractImages = '/src=["\']([^ ^"^\']*)["\']/ims';
+        preg_match_all($re_extractImages, $this->informacion, $matches);
+        $imagenesCkeditors = $matches[1];
+
+        foreach ($imagenesCkeditors as  $imgckeditor) {
+            $urlImagenCkeditor = 'ckeditor/' . pathinfo($imgckeditor, PATHINFO_BASENAME);
+
+            $producto->ckeditors()->create([
+                'imagen_ruta' => $urlImagenCkeditor
+            ]);
+        }
+
         $this->emit('mensajeCreado', "El producto fué creado.");
 
         return redirect()->route('administrador.producto.editar', $producto);

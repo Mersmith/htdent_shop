@@ -174,7 +174,32 @@ class PaginaEditarProductoAdministrador extends Component
         $this->producto->detalle = $this->detalle;
         $this->producto->link_video = $this->link_video;
 
-        $this->producto->save();
+        $this->producto->update();
+
+        $imagenes_antiguas = $this->producto->ckeditors->pluck('imagen_ruta')->toArray();
+
+        $re_extractImages = '/src=["\']([^ ^"^\']*)["\']/ims';
+        preg_match_all($re_extractImages, $this->producto->informacion, $matches);
+        $imagenesCkeditors_nuevas = $matches[1];
+
+        foreach ($imagenesCkeditors_nuevas as  $imgckeditor) {
+            $urlImagenCkeditor = 'ckeditor/' . pathinfo($imgckeditor, PATHINFO_BASENAME);
+
+            $clave = array_search($urlImagenCkeditor, $imagenes_antiguas);
+
+            if ($clave === false) {
+                $this->producto->ckeditors()->create([
+                    'imagen_ruta' => $urlImagenCkeditor
+                ]);
+            } else {
+                unset($imagenes_antiguas[$clave]);
+            }
+        }
+        foreach ($imagenes_antiguas as  $imagen_antigua) {
+            Storage::delete($imagen_antigua);
+            $this->producto->ckeditors()->where('imagen_ruta', $imagen_antigua)->delete();
+        }
+
 
         $this->emit('mensajeActualizado', "El producto ha sido actualizado.");
     }

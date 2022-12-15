@@ -190,7 +190,7 @@
             <div class="contenedor_1_elementos_100">
                 <label class="label_principal">
                     <p class="estilo_nombre_input">Link video youtube embed: </p>
-                    <textarea rows="3" wire:model="link_video"></textarea>
+                    <textarea rows="2" wire:model="link_video"></textarea>
                     @error('link_video')
                         <span>{{ $message }}</span>
                     @enderror
@@ -201,7 +201,10 @@
                 <label class="label_principal">
                     <p class="estilo_nombre_input">Información: </p>
                     <textarea rows="3" wire:model="informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
-                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList']
+                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList', 'uploadImage'],
+                            simpleUpload: {
+                                uploadUrl: '{{ route('administrador.ckeditor.upload') }}'
+                            }
                         })
                         .then(function(editor) {
                             editor.model.document.on('change:data', () => {
@@ -217,6 +220,7 @@
             @error('informacion')
                 <span>{{ $message }}</span>
             @enderror
+            </textarea>
             <!--Dos input-->
             <div class="contenedor_2_elementos">
                 <!--Puntos a ganar-->

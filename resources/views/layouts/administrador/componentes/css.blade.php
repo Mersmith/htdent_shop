@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="{{ asset('frontend/carrito/carrito.css') }}">
 
 
-<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<!--<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>-->
+<script src="{{asset('vendor/ckeditor5-build-classic/build/ckeditor.js')}}"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
     integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />

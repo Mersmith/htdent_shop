@@ -184,7 +184,10 @@
                 <label class="label_principal">
                     <p class="estilo_nombre_input">Información: </p>
                     <textarea rows="3" wire:model="producto.informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
-                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList']
+                            toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList', 'uploadImage'],
+                            simpleUpload: {
+                                uploadUrl: '{{ route('administrador.ckeditor.upload') }}'
+                            }
                         })
                         .then(function(editor) {
                             editor.model.document.on('change:data', () => {
