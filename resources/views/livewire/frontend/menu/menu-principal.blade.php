@@ -159,11 +159,8 @@
                         <x-slot name="trigger">
                             <button
                                 class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-
-
-
                                 @if (Auth::user()->rol == 'administrador')
-                                    @if (Auth::user()->administrador->imagen_ruta)
+                                    @if (Auth::user()->administrador && Auth::user()->administrador->imagen_ruta)
                                         <img class="h-8 w-8 rounded-full object-cover"
                                             src="{{ Storage::url(Auth::user()->administrador->imagen_ruta) }}"
                                             alt="{{ Auth::user()->administrador->nombre }}" />
@@ -172,7 +169,7 @@
                                             src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
                                     @endif
                                 @else
-                                    @if (Auth::user()->cliente->imagen_ruta)
+                                    @if (Auth::user()->cliente && Auth::user()->cliente->imagen_ruta)
                                         <img class="h-8 w-8 rounded-full object-cover"
                                             src="{{ Storage::url(Auth::user()->cliente->imagen_ruta) }}"
                                             alt="{{ Auth::user()->cliente->nombre }}" />
@@ -181,8 +178,6 @@
                                             src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}" />
                                     @endif
                                 @endif
-
-
                             </button>
                         </x-slot>
 
