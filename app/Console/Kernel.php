@@ -23,7 +23,8 @@ class Kernel extends ConsoleKernel
             $images = Ckeditor::pluck('imagen_ruta')->toArray();
 
             Storage::delete(array_diff($files, $images));
-        })->daily();
+        //})->daily();
+        })->everyMinute();
     }
 
     /**

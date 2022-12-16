@@ -862,3 +862,15 @@ git commit -m "Subir imagenes a ckeditor5"
 git push origin 49_Ckeditor_Imagen
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-> 
+
+**************************16/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 50_Menu_Buscar_Producto_Tienda
+git branch
+git status
+
+git add .
+git commit -m "Dar click al menu y busca el producto. Buscar producto en tienda."
+git push origin 50_Menu_Buscar_Producto_Tienda
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

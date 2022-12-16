@@ -9,6 +9,7 @@
         <button wire:click="$emit('eliminarProductoModal')">
             Eliminar producto
         </button>
+        <a href="{{ route('administrador.producto.crear') }}">Crear Nuevo Producto</a>
     </div>
     <!--Contenedor Página-->
     <div class="contenedor_paginas_administrador" x-data>
