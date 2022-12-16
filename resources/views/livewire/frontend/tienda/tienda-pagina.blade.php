@@ -1,5 +1,15 @@
 <div class="contenedor_pagina_tienda">
     <div class="contenedor_filtro_tienda">
+        <!--Buscador-->
+        <div style="border-bottom: 1.5px solid #cfd3d9; margin: 10px;">
+            <div class="titulo_filtro" style="margin-bottom: 15px;">
+                <h2>BUSCAR PRODUCTO:</h2>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <input style="width: 100%;" type="text" wire:model="buscarProducto"
+                    placeholder="Nombre del producto....">
+            </div>
+        </div>
         <!--Rango de Precio-->
         <div style="border-bottom: 1.5px solid #cfd3d9; margin: 10px;">
             <div class="titulo_filtro" style="margin-bottom: 15px;">
@@ -101,15 +111,15 @@
                     @endforeach
                 </ul>
             </div>
-            <!--Eliminar filtros-->
-            <div style="display: flex;justify-content: center;">
-                <button wire:click="limpiarFiltro">
-                    Eliminar Filtros
-                </button>
-            </div>
         @endif
+        <!--Eliminar filtros-->
+        <div style="display: flex;justify-content: center;">
+            <button wire:click="limpiarFiltro">
+                Eliminar Filtros
+            </button>
+        </div>
     </div>
-    <div class="contenedor_filtro_productos" >
+    <div class="contenedor_filtro_productos">
         <div class="col-span-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 @forelse ($productos as $producto)
@@ -148,7 +158,7 @@
                 @endforelse
             </div>
         </div>
-        <div style="padding: 10px 0px;">{{ $productos->links() }} </div>
+        <div style="padding: 10px 0px;">{{ $productos->links('pagination::tailwind') }} </div>
     </div>
 </div>
 @push('script')
@@ -156,9 +166,9 @@
         function range() {
             return {
                 minprice: 0, //Minimo inicio
-                maxprice: 7000, //Máximo inicio
+                maxprice: 200000, //Máximo inicio //7000
                 min: 0, //Salto
-                max: 700000, //Máximo fin
+                max: 200000, //Máximo fin
                 minthumb: 0,
                 maxthumb: 0,
 

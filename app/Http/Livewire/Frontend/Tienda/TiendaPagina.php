@@ -13,23 +13,29 @@ use Illuminate\Database\Eloquent\Builder;
 class TiendaPagina extends Component
 {
     use WithPagination;
+    public $search;
+    public $buscarProducto;
     public $categorias, $subcategorias, $marcas;
     public $categoria, $subcategoria, $marca;
     public $vista = "grid";
-    public $minimo = 0, $maximo=7000;
+    public $minimo = 0, $maximo = 200000; //7000
 
-
-    protected $queryString = ['categoria', 'subcategoria', 'marca'];
+    protected $queryString = ['categoria', 'subcategoria', 'marca', 'search'];
 
     public function mount()
     {
         $this->categorias = Categoria::all();
-        //$this->categoria = $this->categorias->first()->id;
+        //$this->categoria = $this->categorias->first()->id;        
     }
-    
+
+    public function updatingBuscarProducto()
+    {
+        $this->resetPage();
+    }
+
     public function updatedCategoria()
     {
-        $this->reset(['subcategoria', 'marca', 'page', 'minimo']);
+        $this->reset(['subcategoria', 'marca', 'page', 'minimo', 'search']);
     }
 
     public function updatedSubcategoria()
@@ -47,15 +53,26 @@ class TiendaPagina extends Component
     //Page campo de WithPagination 
     public function limpiarFiltro()
     {
-        $this->reset(['categoria', 'subcategoria', 'marca', 'page']);
+        $this->reset(['categoria', 'subcategoria', 'marca', 'page', 'search', 'buscarProducto']);
     }
 
     public function render()
-    {
+    {       
         $productosQuery = Producto::query();
 
-        if ($this->categoria) {
+        if ($this->search) {            
+            $porciones = explode("-", $this->search);
+            $primera_letra= $porciones[0];
+            $url_sin_guiones = str_replace("-"," ",$this->search);
 
+            $productosQuery = $productosQuery->where('nombre', 'like', '%' . $primera_letra . '%');
+        }
+
+        if ($this->buscarProducto) {            
+            $productosQuery = $productosQuery->where('nombre', 'like', '%' . $this->buscarProducto . '%');
+        }
+
+        if ($this->categoria) {
             $productosQuery = $productosQuery->whereHas('subcategoria.categoria', function (Builder $query) {
                 $query->where('id', $this->categoria);
             });
@@ -79,7 +96,7 @@ class TiendaPagina extends Component
             });
         }
 
-        $productos = $productosQuery->whereBetween('precio', [$this->minimo, $this->maximo])->paginate(20);
+        $productos = $productosQuery->whereBetween('precio', [$this->minimo, $this->maximo])->paginate(10);
 
         return view('livewire.frontend.tienda.tienda-pagina', compact('productos'))->layout('layouts.frontend.frontend');
     }

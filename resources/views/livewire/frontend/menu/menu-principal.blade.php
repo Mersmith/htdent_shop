@@ -33,7 +33,7 @@
                                 <i class="fa-solid fa-sort-down"></i>
                             @else
                                 <a class="menu_nombre"
-                                    href={{ $menu['nombrePrincipalUrl'] }}>{{ $menu['nombrePrincipal'] }}</a>
+                                    href={{ route('tienda') . '?search=1' }}>{{ $menu['nombrePrincipal'] }}</a>
                             @endif
                         </div>
                         <!--SubMenu1-->
@@ -53,7 +53,7 @@
                                                 <i class="fa-solid fa-sort-down"></i>
                                             @else
                                                 <a class="submenu_nombre"
-                                                    href={{ $subMenu1['nombreSubMenu1Url'] }}>{{ $subMenu1['nombreSubMenu1'] }}</a>
+                                                    href={{ route('tienda') . '?search=' . $subMenu1['nombreSubMenu1Url'] }}>{{ $subMenu1['nombreSubMenu1'] }}</a>
                                             @endif
                                         </div>
 
@@ -78,7 +78,7 @@
                                                                 <i class="fa-solid fa-sort-down"></i>
                                                             @else
                                                                 <a class="submenu_nombre"
-                                                                    href={{ $subMenu2['nombreSubMenu2Url'] }}>{{ $subMenu2['nombreSubMenu2'] }}</a>
+                                                                    href={{ route('tienda') . '?search=' . $subMenu2['nombreSubMenu2Url'] }}>{{ $subMenu2['nombreSubMenu2'] }}</a>
                                                             @endif
                                                         </div>
 
@@ -106,7 +106,7 @@
                                                                                 <i class="fa-solid fa-sort-down"></i>
                                                                             @else
                                                                                 <a class="submenu_nombre"
-                                                                                    href={{ $subMenu3['nombreSubMenu3Url'] }}>{{ $subMenu3['nombreSubMenu3'] }}</a>
+                                                                                    href={{ route('tienda') . '?search=' . $subMenu3['nombreSubMenu3Url'] }}>{{ $subMenu3['nombreSubMenu3'] }}</a>
                                                                             @endif
 
                                                                         </div>
@@ -123,7 +123,7 @@
                                                                                     <div
                                                                                         class="menu_icono menu_icono_submenu">
                                                                                         <a class="submenu_nombre"
-                                                                                            href={{ $subMenu4['nombreSubMenu4Url'] }}>{{ $subMenu4['nombreSubMenu4'] }}</a>
+                                                                                            href={{ route('tienda') . '?search=' . $subMenu4['nombreSubMenu4Url'] }}>{{ $subMenu4['nombreSubMenu4'] }}</a>
                                                                                     </div>
                                                                                 @endforeach
                                                                             @endif
