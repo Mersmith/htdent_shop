@@ -30,11 +30,13 @@
             <div class="contenedor_centrar_pagina">
                 <div class="grid_layout_cliente">
                     <div class="contenedor_cliente_menu">
-                        <a href="{{ route('cliente.orden.index') }}"s><i class="fas fa-truck"></i><span>Pedidos</span></a>
+                        <a href="{{ route('cliente.orden.index') }}"s><i
+                                class="fas fa-truck"></i><span>Pedidos</span></a>
                         <a href="{{ route('cliente.puntos.crd') }}"><i
                                 class="fa-solid fa-arrows-to-circle"></i><span>CRD Puntos</span></a>
                         <a><i class="fa-solid fa-comments"></i><span>Reseñas</span></a>
-                        <a href="{{ route('cliente.cupon.index') }}"><i class="fa-solid fa-clipboard-check"></i><span>Cupones</span></a>
+                        <a href="{{ route('cliente.cupon.index') }}"><i
+                                class="fa-solid fa-clipboard-check"></i><span>Cupones</span></a>
                         <hr>
                         <a href="{{ route('cliente.perfil') }}"><i class="fa-solid fa-user-pen"></i><span>Datos
                                 personales</span></a>
@@ -47,7 +49,13 @@
                         <hr>
                         <a><i class="fa-solid fa-heart-circle-plus"></i><span>CDR Plus</span></a>
                         <hr>
-                        <a><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></a>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+
+                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar
+                                    sesión</span></a>
+                        </form>
+
                         <hr>
                     </div>
                     <div class="contenedor_cliente_paginas">

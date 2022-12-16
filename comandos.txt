@@ -874,3 +874,14 @@ git commit -m "Dar click al menu y busca el producto. Buscar producto en tienda.
 git push origin 50_Menu_Buscar_Producto_Tienda
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 51_Solucion_Imagen_Perfil
+git branch
+git status
+
+git add .
+git commit -m "Solución imagen perfil."
+git push origin 51_Solucion_Imagen_Perfil
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
