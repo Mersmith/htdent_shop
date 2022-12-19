@@ -902,3 +902,16 @@ git commit -m "Email de contacto."
 git push origin 52_Email_Contacto
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Frontend/Menu/MenuFavoritos
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 53_Favorito_1
+git branch
+git status
+
+git add .
+git commit -m "Agregar Favorito, Listar Favorito"
+git push origin 53_Favorito_1
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

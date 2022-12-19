@@ -229,7 +229,8 @@
                     </x-slot>
                 </x-jet-dropdown>
             @endauth
-            <i class="fa-solid fa-heart" style="color: #ffa03d;"></i>
+            @livewire('frontend.menu.menu-favoritos')
+            
             @livewire('frontend.menu.menu-carrito')
         </div>
     </nav>
