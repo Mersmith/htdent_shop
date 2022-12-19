@@ -37,5 +37,8 @@ return [
     'paypal' => [
         'cliente' => env('PP_CLIENTE_ID'),
         'secret' => env('PP_SECRET'),
+    ],
+    'gmail' => [
+        'email' => env('MAIL_FROM_ADDRESS'),
     ]
 ];

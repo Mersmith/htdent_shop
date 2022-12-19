@@ -15,9 +15,9 @@ class AgregarCarritoSinVariacion extends Component
 
     public function mount()
     {
-        $this->stockProducto = calculandoProductosDisponibles($this->producto->id);    
-        
-        $this->opciones["imagen"] = $this->producto->imagenes->count()  ? Storage::url($this->producto->imagenes->first()->imagen_ruta) : asset('imagenes/producto/sin_foto_producto.png') ;
+        $this->stockProducto = calculandoProductosDisponibles($this->producto->id);
+
+        $this->opciones["imagen"] = $this->producto->imagenes->count()  ? Storage::url($this->producto->imagenes->first()->imagen_ruta) : asset('imagenes/producto/sin_foto_producto.png');
         $this->opciones["puntos_ganar"] = $this->producto->puntos_ganar;
         $this->opciones["puntos_tope"] = $this->producto->puntos_tope;
         $this->opciones["cantidad"] = $this->producto->stock_total;
@@ -51,6 +51,21 @@ class AgregarCarritoSinVariacion extends Component
 
         $this->emitTo('frontend.menu.menu-carrito', 'render');
     }
+
+    public function agregarFavorito()
+    {
+        Cart::instance('wishlist')->add([
+            'id' => $this->producto->id,
+            'name' => $this->producto->nombre,
+            'qty' => $this->cantidadCarrito,
+            'price' => $this->producto->precio,
+            'weight' => 550,
+            'options' => $this->opciones,
+        ]);
+
+        $this->emitTo('frontend.menu.menu-favoritos', 'render');
+    }
+
 
     public function render()
     {
