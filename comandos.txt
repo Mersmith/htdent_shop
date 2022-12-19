@@ -885,3 +885,20 @@ git commit -m "Solución imagen perfil."
 git push origin 51_Solucion_Imagen_Perfil
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************19/12/22***************************************
+->Configurar el env de correo electronico
+->google contraseñas de aplicaciones bhsjohnjwqqrcvyc, ordenador email
+php artisan make:controller Frontend/EmailContacto
+php artisan make:mail ContactoEmail
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 52_Email_Contacto
+git branch
+git status
+
+git add .
+git commit -m "Email de contacto."
+git push origin 52_Email_Contacto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

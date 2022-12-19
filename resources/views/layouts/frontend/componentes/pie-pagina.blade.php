@@ -5,16 +5,33 @@
             <h2>con nosotros</h2>
         </div>
         <div class="contenedor_contacto">
-            <form action="">
+            <form action="{{ route('email.contacto') }}" method="POST">
+                @csrf
+                @if (Session::has('email-contacto-correcto'))
+                    <span style="color: white;">{{Session::get('email-contacto-correcto')}}</span>
+                @endif
                 <div>
-                    <input type="text" placeholder=" Nombre" required>
+                    <input type="text" name="nombre" placeholder=" Nombre" required>
+                    @error('nombre')
+                        <span>{{ $message }}</span>
+                    @enderror
+
                 </div>
                 <div class="contenedor_inputs_dos">
-                    <input type="email" placeholder=" Correo electrónico" required>
-                    <input type="tel" placeholder="Celular" required>
+                    <input type="email" name="email" placeholder=" Correo electrónico" required>
+                    @error('email')
+                        <span>{{ $message }}</span>
+                    @enderror
+                    <input type="tel" name="celular" placeholder="Celular" required>
+                    @error('celular')
+                        <span>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div>
-                    <textarea rows="8" placeholder="Escribe aquí"></textarea>
+                    <textarea rows="8" name="mensaje" placeholder="Escribe aquí"></textarea>
+                    @error('mensaje')
+                        <span>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div>
                     <button type="submit">Enviar</button>

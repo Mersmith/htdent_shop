@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\CategoriaController;
+use App\Http\Controllers\Frontend\EmailContacto;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\InicioController;
 use App\Http\Controllers\Frontend\ProductoController;
@@ -33,6 +34,8 @@ Route::post('resenas/{producto}', [ResenaController::class, 'store'])->name('res
 Route::post('resenas/{producto}/{comentario}', [ResenaController::class, 'respuesta'])->name('resenas.respuesta');
 
 Route::get('tienda', TiendaPagina::class)->name('tienda');
+
+Route::post('email-contacto', [EmailContacto::class, 'enviar'])->name('email.contacto');
 
 
 /*Route::middleware([

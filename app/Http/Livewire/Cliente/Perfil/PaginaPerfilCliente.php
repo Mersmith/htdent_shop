@@ -44,6 +44,7 @@ class PaginaPerfilCliente extends Component
                 'imagen_ruta' => $this->nueva_imagen_ruta ? $imagenNombre  : $this->imagen_ruta,
             ]
         );
+        $this->emitTo('frontend.menu.menu-principal', 'render');
     }
     public function render()
     {
