@@ -22,7 +22,7 @@ class PaginaCategoriaAdministrador extends Component
     public $crearFormulario = [
         'nombre' => null,
         'slug' => null,
-        'icono' => null,
+        /*'icono' => null,*/
         'imagen_ruta' => null,
         'marcas' => [],
     ];
@@ -31,7 +31,7 @@ class PaginaCategoriaAdministrador extends Component
         'abierto' => false,
         'nombre' => null,
         'slug' => null,
-        'icono' => null,
+        /*'icono' => null,*/
         'imagen_ruta' => null,
         'marcas' => [],
     ];
@@ -40,7 +40,7 @@ class PaginaCategoriaAdministrador extends Component
     protected $rules = [
         'crearFormulario.nombre' => 'required',
         'crearFormulario.slug' => 'required|unique:categorias,slug',
-        'crearFormulario.icono' => 'required',
+        /*'crearFormulario.icono' => 'required',*/
         'crearFormulario.imagen_ruta' => 'required|image|max:1024',
         'crearFormulario.marcas' => 'required',
     ];
@@ -49,13 +49,13 @@ class PaginaCategoriaAdministrador extends Component
     protected $validationAttributes = [
         'crearFormulario.nombre' => 'nombre de categoria',
         'crearFormulario.slug' => 'slug de categoria',
-        'crearFormulario.icono' => 'icono de categoria',
+        /*'crearFormulario.icono' => 'icono de categoria',*/
         'crearFormulario.imagen_ruta' => 'imagen de categoria',
         'crearFormulario.marcas' => 'marcas de categoria',
 
         'editarFormulario.nombre' => 'nombre de categoria',
         'editarFormulario.slug' => 'slug de categoria',
-        'editarFormulario.icono' => 'icono de categoria',
+        /*'editarFormulario.icono' => 'icono de categoria',*/
         'editarImagen' => 'imagen de categoria',
         'editarFormulario.marcas' => 'marcas de categoria',
     ];
@@ -63,13 +63,13 @@ class PaginaCategoriaAdministrador extends Component
     protected $messages = [
         'crearFormulario.nombre.required' => 'El :attribute es requerido.',
         'crearFormulario.slug.required' => 'El :attribute  requerido.',
-        'crearFormulario.icono.required' => 'El :attribute es requerido.',
+        /*'crearFormulario.icono.required' => 'El :attribute es requerido.',*/
         'crearFormulario.imagen_ruta.required' => 'La :attribute es requerido.',
         'crearFormulario.marcas.required' => 'La :attribute es requerido.',
 
         'editarFormulario.nombre.required' => 'El :attribute es requerido.',
         'editarFormulario.slug.required' => 'El :attribute es requerido.',
-        'editarFormulario.icono.required' => 'El :attribute es requerido.',
+        /*'editarFormulario.icono.required' => 'El :attribute es requerido.',*/
         'editarImagen.required' => 'La :attribute es requerido.',
         'editarFormulario.marcas.required' => 'La :attribute es requerido.',
     ];
@@ -114,7 +114,7 @@ class PaginaCategoriaAdministrador extends Component
         $categoria = Categoria::create([
             'nombre' => $this->crearFormulario['nombre'],
             'slug' => $this->crearFormulario['slug'],
-            'icono' => $this->crearFormulario['icono'],
+            'icono' => '<i class="fa-solid fa-box"></i>',
             'imagen_ruta' => $imagen
         ]);
 
@@ -145,7 +145,7 @@ class PaginaCategoriaAdministrador extends Component
         $this->editarFormulario['abierto'] = true;
         $this->editarFormulario['nombre'] = $categoria->nombre;
         $this->editarFormulario['slug'] = $categoria->slug;
-        $this->editarFormulario['icono'] = $categoria->icono;
+        /*$this->editarFormulario['icono'] = $categoria->icono;*/
         $this->editarFormulario['imagen_ruta'] = $categoria->imagen_ruta;
         $this->editarFormulario['marcas'] = $categoria->marcas->pluck('id');
     }
@@ -155,7 +155,7 @@ class PaginaCategoriaAdministrador extends Component
         $rules = [
             'editarFormulario.nombre' => 'required',
             'editarFormulario.slug' => 'required|unique:categorias,slug,' . $this->categoria->id,
-            'editarFormulario.icono' => 'required',
+            /*'editarFormulario.icono' => 'required',*/
             'editarFormulario.marcas' => 'required',
         ];
 

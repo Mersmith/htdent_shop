@@ -25,7 +25,7 @@
                 </label>
             </div>
             <!--Icono-->
-            <div class="contenedor_1_elementos_100">
+            {{--<div class="contenedor_1_elementos_100">
                 <label class="label_principal">
                     <p class="estilo_nombre_input">Icono: </p>
                     <code>
@@ -36,7 +36,7 @@
                         <span>{{ $message }}</span>
                     @enderror
                 </label>
-            </div>
+            </div>--}}
             <!--Marcas-->
             <div class="contenedor_1_elementos_100">
                 <label class="label_principal">
@@ -220,18 +220,16 @@
                     </label>
                 </div>
                 <!--Icono-->
-                <div class="contenedor_elemento_formulario">
+                {{--<div class="contenedor_elemento_formulario">
                     <label class="label_principal">
                         <p class="estilo_nombre_input">Icono: </p>
-                        {{-- <code>
-                        <?php print htmlentities('<i class="fa-brands fa-facebook"></i>'); ?>
-                    </code> --}}
+                        
                         <input type="text" wire:model="editarFormulario.icono">
                         @error('editarFormulario.icono')
                             <span>{{ $message }}</span>
                         @enderror
                     </label>
-                </div>
+                </div>--}}
                 <!--Marcas-->
                 <div class="contenedor_1_elementos_100">
                     <label class="label_principal">

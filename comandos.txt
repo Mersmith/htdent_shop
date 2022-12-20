@@ -928,3 +928,16 @@ git commit -m "Eliminar Favorito, Listar"
 git push origin 54_Favorito_2
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+php artisan key:generate
+
+**************************19/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 55_Ajustes_v2
+git branch
+git status
+
+git add .
+git commit -m "Modificar campos de producto y marca."
+git push origin 55_Ajustes_v2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

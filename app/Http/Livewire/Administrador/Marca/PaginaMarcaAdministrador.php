@@ -2,36 +2,48 @@
 
 namespace App\Http\Livewire\Administrador\Marca;
 
+use App\Models\Imagen;
 use Livewire\Component;
 use App\Models\Marca;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class PaginaMarcaAdministrador extends Component
 {
-    public $marcas, $marca;
+    use WithFileUploads;
+
+    public $marcas, $marca, $editarImagen;
 
     protected $listeners = ['eliminarMarca'];
 
     public $crearFormulario = [
-        'nombre' => null
+        'nombre' => null,
+        'imagen_ruta' => null,
     ];
 
     public $editarFormulario = [
         'abierto' => false,
-        'nombre' => null
+        'nombre' => null,
+        'imagen_ruta' => null,
     ];
 
     public $rules = [
-        'crearFormulario.nombre' => 'required'
+        'crearFormulario.nombre' => 'required',
+        'crearFormulario.imagen_ruta' => 'required|image|max:1024',
     ];
 
     protected $validationAttributes = [
         'crearFormulario.nombre' => 'nombre de la marca',
-        'editarFormulario.nombre' => 'nombre de la marca'
+        'crearFormulario.imagen_ruta' => 'imagen de la marca',
+        'editarFormulario.nombre' => 'nombre de la marca',
+        'editarFormulario.imagen_ruta' => 'imagen de la marca'
     ];
 
     protected $messages = [
         'crearFormulario.nombre.required' => 'El :attribute es requerido.',
+        'crearFormulario.imagen_ruta.required' => 'El :attribute es requerido.',
         'editarFormulario.nombre.required' => 'El :attribute es requerido.',
+        'editarFormulario.imagen_ruta.required' => 'El :attribute es requerido.',
     ];
 
     public function mount()
@@ -48,7 +60,16 @@ class PaginaMarcaAdministrador extends Component
     {
         $this->validate();
 
-        Marca::create($this->crearFormulario);
+        $imagen = $this->crearFormulario['imagen_ruta']->store('marcas');
+
+        $marcaNuevo = Marca::create([
+            'nombre' => $this->crearFormulario['nombre']
+        ]);
+
+        $marcaNuevo->imagenes()->create([
+            'imagen_ruta' => $imagen
+        ]);
+
         $this->traerMarcas();
 
         $this->emit('mensajeCreado', "Marca creada.");
@@ -56,10 +77,13 @@ class PaginaMarcaAdministrador extends Component
     }
     public function editarMarca(Marca $marca)
     {
+        $this->reset(['editarImagen']);
+
         $this->marca = $marca;
 
         $this->editarFormulario['abierto'] = true;
         $this->editarFormulario['nombre'] = $marca->nombre;
+        $this->editarFormulario['imagen_ruta'] = $marca->imagenes->first()->imagen_ruta;
     }
 
     public function actualizarMarca()
@@ -68,7 +92,28 @@ class PaginaMarcaAdministrador extends Component
             'editarFormulario.nombre' => 'required'
         ]);
 
-        $this->marca->update($this->editarFormulario);
+        if ($this->editarImagen) {
+            $rules['editarImagen'] = 'required|image|max:1024';
+        }
+
+        if ($this->editarImagen) {
+            Storage::delete([$this->marca->imagenes->first()->imagen_ruta]);
+
+            $imagenBusqueda = Imagen::find($this->marca->imagenes->first()->id);
+            $imagenBusqueda->delete();
+
+            $imagenNueva = $this->editarImagen->store('marcas');
+
+            $this->marca->imagenes()->create([
+                'imagen_ruta' => $imagenNueva
+            ]);
+        }
+
+        $this->marca->update(
+            [
+                'nombre' => $this->editarFormulario['nombre'],
+            ]
+        );
 
         $this->traerMarcas();
         $this->reset('editarFormulario');
