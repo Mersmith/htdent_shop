@@ -13,3 +13,4 @@
 
 <link rel="stylesheet" href="{{ asset('cliente/layout/layout.css') }}">
 <link rel="stylesheet" href="{{ asset('cliente/perfil/perfil.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/inicio/css/slider-producto-glider.css') }}">

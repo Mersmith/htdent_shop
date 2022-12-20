@@ -26,7 +26,6 @@
     </div>
     <br>
 
-
     @php
         $witems = Cart::instance('wishlist')
             ->content()
@@ -34,9 +33,9 @@
     @endphp
 
     @if ($witems->contains($producto->id))
-        <button wire:click="agregarFavorito" wire:loading.attr="disabled" wire:target="agregarFavorito"
+        <button wire:click="eliminarFavorito({{$producto->id}})" wire:loading.attr="disabled" wire:target="eliminarFavorito"
             style="background: blue;">
-            Agregar a favorito
+            No agregar a favorito
         </button>
     @else
         <button wire:click="agregarFavorito" wire:loading.attr="disabled" wire:target="agregarFavorito"
@@ -44,6 +43,5 @@
             Agregar a favorito
         </button>
     @endif
-
 
 </div>
