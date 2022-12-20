@@ -49,9 +49,20 @@
                 </div>
                 <!--Informacion-->
                 <div class="contenedor_producto_info">
+                    <img src="{{ Storage::url($producto->marca->imagenes->first()->imagen_ruta) }}" style="width: 80px;" alt="">
                     <h1>{{ $producto->nombre }} </h1>
                     <p class="producto_info_sku">SKU: {{ $producto->sku }} </p>
-                    <p class="producto_info_precio">$ {{ $producto->precio }}.00 <span style="text-decoration:line-through;">$ {{ $producto->precio_real }}.00</span></p>
+
+                    <p class="producto_info_precio">$ {{ $producto->precio }}.00
+                        @if ($producto->precio !== $producto->precio_real)
+                            <span>Antes<span style="text-decoration:line-through;"> $ {{ $producto->precio_real }}.00</span></span>
+                        @endif
+                    </p>
+
+                    @if ($producto->incluye_igv > 0)
+                        <p><strong>Incluye IGV </strong></p>
+                    @endif
+                   
 
                     @if ($producto->puntos_ganar > 0)
                         <p>Gana hasta {{ $producto->puntos_ganar }} CRD Puntos <span><i
@@ -108,8 +119,7 @@
                 <!--Video-->
                 @if ($producto->link_video)
                     <div class="contenedor_producto_video">
-                        <iframe src="{{$producto->link_video}}" title="YouTube video player"
-                            frameborder="0"
+                        <iframe src="{{ $producto->link_video }}" title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>

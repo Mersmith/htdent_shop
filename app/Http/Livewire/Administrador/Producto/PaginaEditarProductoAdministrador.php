@@ -16,7 +16,7 @@ class PaginaEditarProductoAdministrador extends Component
 {
     protected $listeners = ['dropImagenes', 'eliminarProducto', 'editarProducto', 'cambiarPosicionImagenes'];
 
-    public $producto, $categorias, $subcategorias, $link_video, $marcas, $slug, $sku, $tiene_detalle, $detalle, $stock_total;
+    public $producto, $categorias, $subcategorias, $link_video, $marcas, $slug, $sku, $tiene_detalle, $incluye_igv, $detalle, $stock_total;
     public $categoria_id;
 
     //toma y sincroniza los valores de $producto
@@ -35,6 +35,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar' => 'numeric',
         'producto.puntos_tope' => 'numeric',
         'producto.tiene_detalle' => 'required',
+        'producto.incluye_igv' => 'required',
         /*'producto.detalle' => 'required',*/
     ];
 
@@ -52,6 +53,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar' => 'puntos a ganar del producto',
         'producto.puntos_tope' => 'monto del carrito del producto',
         'producto.tiene_detalle' => 'detalle del producto',
+        'producto.incluye_igv' => 'igv del producto',
         'producto.detalle' => 'detalle del producto',
         'producto.stock_total' => 'stock del producto',
         'stock_total' => 'stock del producto',
@@ -73,6 +75,7 @@ class PaginaEditarProductoAdministrador extends Component
         'producto.puntos_ganar.required' => 'Los :attribute es requerido.',
         'producto.puntos_tope.required' => 'Los :attribute es requerido.',
         'producto.tiene_detalle.required' => 'El :attribute es requerido.',
+        'producto.incluye_igv.required' => 'El :attribute es requerido.',
         'producto.detalle.required' => 'El :attribute es requerido.',
         'producto.stock_total.required' => 'El :attribute es requerido.',
         'stock_total.required' => 'El :attribute es requerido.',
@@ -93,6 +96,7 @@ class PaginaEditarProductoAdministrador extends Component
         $this->slug = $this->producto->slug;
         $this->sku = $this->producto->sku;
         $this->tiene_detalle = $this->producto->tiene_detalle;
+        $this->incluye_igv = $this->producto->incluye_igv;
         $this->detalle = $this->producto->detalle;
         $this->link_video = $this->producto->link_video;
         $this->stock_total = $this->producto->stock_total;

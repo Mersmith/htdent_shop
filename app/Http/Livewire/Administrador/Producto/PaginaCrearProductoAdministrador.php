@@ -19,13 +19,12 @@ class PaginaCrearProductoAdministrador extends Component
     //Los detectores de eventos
     protected $listeners = ['cambiarPosicionImagenes'];
 
-
     public $categorias, $subcategorias = [], $marcas = [], $imagenes = [];
 
     public $categoria_id = "",  $subcategoria_id = "", $marca_id = "";
     public $nombre = null, $slug = null, $link_video = null, $sku = null,  $precio = 1, $precio_real = 1, $descripcion = null,
         $informacion = null, $puntos_ganar = 0, $puntos_tope = 0,
-        $tiene_detalle = false, $detalle = null,  $stock_total = 0, $estado = 1;
+        $tiene_detalle = false, $incluye_igv = false, $detalle = null,  $stock_total = 0, $estado = 1;
 
     protected $rules = [
         'categoria_id' => 'required',
@@ -41,6 +40,7 @@ class PaginaCrearProductoAdministrador extends Component
         'puntos_ganar' => 'required',
         'puntos_tope' => 'required',
         'tiene_detalle' => 'required',
+        'incluye_igv' => 'required',
         'estado' => 'required',
     ];
 
@@ -58,6 +58,7 @@ class PaginaCrearProductoAdministrador extends Component
         'puntos_ganar' => 'puntos a ganar del producto',
         'puntos_tope' => 'monto del carrito del producto',
         'tiene_detalle' => 'detalle del producto',
+        'incluye_igv' => 'igv del producto',
         'estado' => 'estado del producto',
         'stock_total' => 'stock del producto',
         'detalle' => 'detalle del producto',
@@ -77,6 +78,7 @@ class PaginaCrearProductoAdministrador extends Component
         'puntos_ganar.required' => 'Los :attribute es requerido.',
         'puntos_tope.required' => 'Los :attribute es requerido.',
         'tiene_detalle.required' => 'El :attribute es requerido.',
+        'incluye_igv.required' => 'El :attribute es requerido.',
         'estado.required' => 'El :attribute es requerido.',
         'stock_total.required' => 'El :attribute es requerido.',
         'detalle.required' => 'El :attribute es requerido.',
@@ -165,6 +167,7 @@ class PaginaCrearProductoAdministrador extends Component
         $producto->puntos_ganar = $this->puntos_ganar;
         $producto->puntos_tope = $this->puntos_tope;
         $producto->tiene_detalle = $this->tiene_detalle;
+        $producto->incluye_igv = $this->incluye_igv;
         $producto->detalle = $this->detalle;
         $producto->estado  = $this->estado;
 

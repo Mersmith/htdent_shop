@@ -218,13 +218,13 @@
                     @enderror
                 </label>
                 <!--Puntos tope canjeo-->
-                <label class="label_principal">
+                {{-- <label class="label_principal">
                     <p class="estilo_nombre_input">Monto carrito: </p>
                     <input type="number" wire:model="producto.puntos_tope" step="1">
                     @error('producto.puntos_tope')
                         <span>{{ $message }}</span>
                     @enderror
-                </label>
+                </label> --}}
             </div>
             <!--Tiene Detalle-->
             <div class="contenedor_1_elementos">
@@ -272,6 +272,27 @@
             @error('detalle')
                 <span>{{ $message }}</span>
             @enderror
+            <!--Tiene IGV-->
+            <div class="contenedor_1_elementos">
+                <label class="label_principal">
+                    <p class="estilo_nombre_input">¿Tiene IGV?: </p>
+                    <div>
+                        <label>
+                            <input type="radio" value="1" name="producto.incluye_igv"
+                                wire:model.defer="producto.incluye_igv" x-on:click="$wire.incluye_igv = 1">
+                            Si
+                        </label>
+                        <label>
+                            <input type="radio" value="0" name="producto.incluye_igv"
+                                wire:model.defer="producto.incluye_igv" x-on:click="$wire.incluye_igv = 0">
+                            No
+                        </label>
+                    </div>
+                    @error('producto.incluye_igv')
+                        <span>{{ $message }}</span>
+                    @enderror
+                </label>
+            </div>
             <!--Tipo de Subcategoria-->
             @if ($this->subcategoria)
                 <!--Propiedad computada-->
