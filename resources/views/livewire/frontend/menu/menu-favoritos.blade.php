@@ -36,7 +36,7 @@
             @endforelse
             @if (Cart::count())
                 <div class="contenedor_ir_carrito">
-                    <a href="{{ route('carrito-compras') }}">
+                    <a href="{{ route('cliente.favoritos') }}">
                         Ir favoritos
                     </a>
                 </div>

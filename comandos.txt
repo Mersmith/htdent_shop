@@ -915,3 +915,16 @@ git commit -m "Agregar Favorito, Listar Favorito"
 git push origin 53_Favorito_1
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Cliente/Favoritos/PaginaFavoritosCliente
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 54_Favorito_2
+git branch
+git status
+
+git add .
+git commit -m "Eliminar Favorito, Listar"
+git push origin 54_Favorito_2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

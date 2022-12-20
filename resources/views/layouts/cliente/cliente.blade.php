@@ -32,6 +32,8 @@
                     <div class="contenedor_cliente_menu">
                         <a href="{{ route('cliente.orden.index') }}"s><i
                                 class="fas fa-truck"></i><span>Pedidos</span></a>
+                        <a href="{{ route('cliente.favoritos') }}"s><i
+                                class="fas fa-truck"></i><span>Favoritos</span></a>
                         <a href="{{ route('cliente.puntos.crd') }}"><i
                                 class="fa-solid fa-arrows-to-circle"></i><span>CRD Puntos</span></a>
                         <a><i class="fa-solid fa-comments"></i><span>Reseñas</span></a>

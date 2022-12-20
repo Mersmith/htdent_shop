@@ -8,6 +8,7 @@ use App\Http\Livewire\Cliente\Perfil\PaginaPerfilCliente;
 use App\Http\Livewire\Cliente\Direccion\PaginaDireccionCliente;
 use App\Http\Livewire\Cliente\Direccion\PaginaCrearDireccionCliente;
 use App\Http\Livewire\Cliente\Direccion\PaginaEditarDireccionCliente;
+use App\Http\Livewire\Cliente\Favoritos\PaginaFavoritosCliente;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'cliente/datos-personales');
@@ -29,4 +30,6 @@ Route::get('puntos-crd', function () {
 })->name('puntos.crd');
 
 Route::get('mis-cupones', [CuponesController::class, 'index'])->name('cupon.index');
+
+Route::get('mis-favoritos', PaginaFavoritosCliente::class)->name('favoritos');
 
