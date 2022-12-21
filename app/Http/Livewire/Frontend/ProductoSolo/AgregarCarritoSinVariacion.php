@@ -52,30 +52,6 @@ class AgregarCarritoSinVariacion extends Component
         $this->emitTo('frontend.menu.menu-carrito', 'render');
     }
 
-    public function agregarFavorito()
-    {
-        Cart::instance('wishlist')->add([
-            'id' => $this->producto->id,
-            'name' => $this->producto->nombre,
-            'qty' => $this->cantidadCarrito,
-            'price' => $this->producto->precio,
-            'weight' => 550,
-            'options' => $this->opciones,
-        ]);
-
-        $this->emitTo('frontend.menu.menu-favoritos', 'render');
-    }
-
-    public function eliminarFavorito($productoId)
-    {
-        foreach (Cart::instance('wishlist')->content() as $witen) {
-            if ($witen->id == $productoId) {
-                Cart::instance('wishlist')->remove($witen->rowId);
-                $this->emitTo('frontend.menu.menu-favoritos', 'render');
-                return;
-            }
-        }
-    }
 
     public function render()
     {

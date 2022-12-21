@@ -24,24 +24,4 @@
             Agregar al carrito
         </button>
     </div>
-    <br>
-
-    @php
-        $witems = Cart::instance('wishlist')
-            ->content()
-            ->pluck('id');
-    @endphp
-
-    @if ($witems->contains($producto->id))
-        <button wire:click="eliminarFavorito({{$producto->id}})" wire:loading.attr="disabled" wire:target="eliminarFavorito"
-            style="background: blue;">
-            No agregar a favorito
-        </button>
-    @else
-        <button wire:click="agregarFavorito" wire:loading.attr="disabled" wire:target="agregarFavorito"
-            class="contenedor_producto_variacion_boton">
-            Agregar a favorito
-        </button>
-    @endif
-
 </div>
