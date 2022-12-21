@@ -984,6 +984,6 @@ git status
 
 git add .
 git commit -m "Cambiar imagen en producto solo"
-git push origin 55_Ajustes_v2
+git push origin 56_Ajustes_v3
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
