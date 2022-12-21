@@ -14,9 +14,8 @@
                                     <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
                                         x-show="current == {{ $key }}">
                                 @endforeach
-                                <span class="agregar_favorito"> <i class="fa-solid fa-heart"
-                                        style="color: #ffa03d; cursor: pointer;"></i>
-                                </span>
+
+                                @livewire('frontend.producto-solo.agregar-favorito-producto', ['producto' => $producto])
 
                                 <div class="contenedor_imagen_pie_controles contenedor_imagen_pie_izquierdo">
                                     <span @click="if(current >= 1){ current = current - 1}"><i
@@ -32,7 +31,8 @@
                             <div class="contenedor_imagen_producto_pie">
                                 <div class="contenedor_imagen_producto_item">
                                     @foreach ($producto->imagenes as $key => $imagen)
-                                        <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
+                                        <img @click="current = {{ $key }}"
+                                            src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
                                     @endforeach
                                 </div>
                             </div>
@@ -49,20 +49,22 @@
                 </div>
                 <!--Informacion-->
                 <div class="contenedor_producto_info">
-                    <img src="{{ Storage::url($producto->marca->imagenes->first()->imagen_ruta) }}" style="width: 80px;" alt="">
+                    <img src="{{ Storage::url($producto->marca->imagenes->first()->imagen_ruta) }}" style="width: 80px;"
+                        alt="">
                     <h1>{{ $producto->nombre }} </h1>
                     <p class="producto_info_sku">SKU: {{ $producto->sku }} </p>
 
                     <p class="producto_info_precio">$ {{ $producto->precio }}.00
                         @if ($producto->precio !== $producto->precio_real)
-                            <span>Antes<span style="text-decoration:line-through;"> $ {{ $producto->precio_real }}.00</span></span>
+                            <span>Antes<span style="text-decoration:line-through;"> $
+                                    {{ $producto->precio_real }}.00</span></span>
                         @endif
                     </p>
 
                     @if ($producto->incluye_igv > 0)
                         <p><strong>Incluye IGV </strong></p>
                     @endif
-                   
+
 
                     @if ($producto->puntos_ganar > 0)
                         <p>Gana hasta {{ $producto->puntos_ganar }} CRD Puntos <span><i

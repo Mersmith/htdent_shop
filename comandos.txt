@@ -930,7 +930,7 @@ git push origin 54_Favorito_2
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 php artisan key:generate
 
-**************************19/12/22***************************************
+**************************20/12/22***************************************
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 git checkout -b 55_Ajustes_v2
 git branch
@@ -939,5 +939,51 @@ git status
 git add .
 git commit -m "Modificar campos de producto y marca."
 git push origin 55_Ajustes_v2
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+->Configuraciones al subir a cpanel
+APP_URL=http://htdentshop.digident.com.pe
+DB_DATABASE=htdentshopdb
+DB_USERNAME=htdentshopdb
+DB_PASSWORD=htdentshopdb
+FILESYSTEM_DISK=local
+
+'local' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'throw' => false,
+        ],
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+'mysql' => [
+    ...
+    'engine' => 'InnoDB',
+]
+
+->Dar permisos a la carpeta storage
+chmod -R 777 storage/
+
+MAIL_MAILER=sendmail
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=587
+MAIL_USERNAME=mersmith14@gmail.com
+MAIL_PASSWORD=zwqanrymqfzrloji
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS="mersmith14@gmail.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+**************************21/12/22***************************************
+php artisan make:livewire Frontend/ProductoSolo/AgregarFavoritoProducto
+
+**************************21/12/22***************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 56_Ajustes_v3
+git branch
+git status
+
+git add .
+git commit -m "Cambiar imagen en producto solo"
+git push origin 56_Ajustes_v3
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

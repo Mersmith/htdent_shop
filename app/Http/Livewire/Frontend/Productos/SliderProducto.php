@@ -12,6 +12,11 @@ class SliderProducto extends Component
     public $productos;
     public $opciones = ['color_id' => null, 'medida_id' => null, 'cantidad' => null];
 
+    public function mount()
+    {
+        $this->emit('reloadClassCSs');
+    }
+
     public function agregarFavorito($producto)
     {
         $this->opciones["imagen"] = $producto['imagenes']  ? Storage::url($producto['imagenes'][0]['imagen_ruta']) : asset('imagenes/producto/sin_foto_producto.png');
@@ -27,6 +32,7 @@ class SliderProducto extends Component
 
         $this->productos = $this->productos->fresh();
         $this->emitTo('frontend.menu.menu-favoritos', 'render');
+        $this->emit('reloadClassCSs');
     }
 
     public function eliminarFavorito($productoId)
@@ -36,6 +42,7 @@ class SliderProducto extends Component
                 Cart::instance('wishlist')->remove($witen->rowId);
                 $this->productos = $this->productos->fresh();
                 $this->emitTo('frontend.menu.menu-favoritos', 'render');
+                $this->emit('reloadClassCSs');
                 return;
             }
         }
