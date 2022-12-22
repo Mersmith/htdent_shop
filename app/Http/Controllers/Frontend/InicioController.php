@@ -15,11 +15,11 @@ class InicioController extends Controller
     public function __invoke()
     {
         $sliders = Slider::where('estado', '0')->get();
-        $productos = Producto::limit(10)->get();
+        //$productos = Producto::limit(10)->get();
         $fortalezas = Fortaleza::all();
         $testimonios = Testimonio::all();
         $medios = MediosPago::all();
 
-        return view('frontend.inicio.inicio', compact('sliders', 'productos', 'fortalezas', 'testimonios', 'medios'));
+        return view('frontend.inicio.inicio', compact('sliders','fortalezas', 'testimonios', 'medios'));
     }
 }

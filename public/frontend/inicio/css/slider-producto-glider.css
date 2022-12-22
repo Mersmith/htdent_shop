@@ -53,6 +53,7 @@
   display: grid;
   place-items: center;
   align-content: space-between;
+  margin-bottom: 5px;
 }
 
 .item_slider_producto .slider_producto_imagen {
