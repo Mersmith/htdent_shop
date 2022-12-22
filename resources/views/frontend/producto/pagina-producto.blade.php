@@ -54,10 +54,10 @@
                     <h1>{{ $producto->nombre }} </h1>
                     <p class="producto_info_sku">SKU: {{ $producto->sku }} </p>
 
-                    <p class="producto_info_precio">$ {{ $producto->precio }}.00
+                    <p class="producto_info_precio">${{ number_format($producto->precio, 2, '.', ',') }}
                         @if ($producto->precio !== $producto->precio_real)
-                            <span>Antes<span style="text-decoration:line-through;"> $
-                                    {{ $producto->precio_real }}.00</span></span>
+                            <span>Antes<span style="text-decoration:line-through;">
+                                    ${{ number_format($producto->precio_real, 2, '.', ',') }}</span></span>
                         @endif
                     </p>
 
