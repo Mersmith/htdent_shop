@@ -1,0 +1,104 @@
+1. Programas necesarios: Instalación de programas
+
+2. Instalación de un nuevo proyecto: Crear nuevo proyecto de laravel con livewire
+
+3. Extensiones de VSC: Extensiones de V. Code.
+
+4. Maquetación de la bbdd: Maquetar la DB con MySQL Worckbench
+
+5. Maquetación de la bbdd 2: Maquetar la DB con MySQL Worckbench
+
+6. Modelo físico: Migraciones y relaciones en la tabla
+
+7. Generar relaciones Eloquent: Relaciones con los modelos, protected, guarded, hasMany, etc.
+Relacion polimorfico.
+
+8. Insertar registros en la tabla categories: Seeders y Factory. Imagenes Fackers, Storage.
+
+9. Insertar registros a la tabla subcategories: Seeders y Factory. Imagenes Fackers, Storage.
+
+10. Insertar registros en la tabla brands: Seeders y Factory de dos modelos y tablas.
+
+11. Insertar registros a la tabla products: Seeders y Factory de Producto. 
+
+12. Insertar registros en la tabla colors: Query builder, foreach de Seeders y Factory.
+
+13. Insertar registros de tallas: 
+
+44. Incluir plugin FlexSlider: Descargar el plugin de FlexSlider y Jquery
+
+45. Diseño vista detalle producto: Diseño de infoproducto y uso del plugin con fecha.
+
+46. Traducir fechas: Traducir fecha de ingles a español con otro paquete.
+
+47. Stock Productos: Diseño de agregar carrito con botones.
+
+48. Habilitar deshabilitar botones: Uso de alpine para sincronizar con livewire para bloquear botones en 1.
+Funcionalidad de aumentar y disminuir.
+
+49. Traer colores de productos: Agregar carrito con color.
+Relacion de producto con colores.
+
+50. Stock productos con color: Sincronizar color, stock por color.
+
+51. Agregar colores para producto con tallas: Sincronizar color con medida.
+
+52. Mostrar tallas y colores: Solo traer colores por tallas.
+
+53. Traducir nuestra aplicación: Traducir a otro idioma.
+
+54. Stock tallas: Traer el stock de las tallas.
+
+55. Instalar shoppingcart: Variable de sesión para agregar carrito e instalar plugin.
+
+56. Agregar items al carrito de compra: id, nombre, cantidad, precio, peso, array options.
+
+57. Mostrar item en el carrito de compras: Eliminar carrito, emitir a icono carrito.
+
+58. Mostrar item en el carrito de compras 2: Diseño items carrito, y mostrar total.
+
+59. Mostrar cantidad en el carrito de compras: Mostrar la cantidad en el icono.
+
+62. Helpers: Funciones definidas por nosotros mismos.
+
+!63. Dompautolad: Agregar el helper en el composer.json y refrescar: composer dumpautoload
+
+64. Utilizar los helpers: Utilizar en los livewires de agregar al carrito.
+Dismunir lo que se agrega con lo que existe en la cantidad del producto.
+Calcular el stock disponibles.
+
+65. Nuevos modelos: Crear nuevos modelos para relacionar con productos.
+
+!66. Mostrando stock de productos: Accesores para mostrar el stock de productos.
+En el modelo producto getStockAttribute() y se usa en la vista product->stock
+
+67. Diseñar buscador:
+
+!83. Generar eventos y oyentes: Guardar en la tabla shopingcart
+Ejecutar el comando.
+php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="migrations"
+
+Evento login y evento logout
+EventServideProvider.php
+php artisan event:generate
+
+84. Agregar lógica en los oyentes: Crear verificando los ids de los usuarios
+
+!111. Agregar políticas de acceso: Sin autenticar puedo entrar el detalle de la orden.
+Por eso eso debe mostrarse con las personas autenticadas.
+
+Se usa en OrderPolicy.php y en el OrderController.php
+y AothorizesRequests en el PaymetOrder.php
+
+!116. Avisar que tienes ordenes pendientes: Indicar un banner con jeststream que hay un ordenes pendientes a pagar.
+Agregarlo en la pagina de inicio, hacer la consuta en el contralador inicial.
+
+!119. Anular ordenes: Eliminar las ordenes que no se han pagado todavia.
+
+!120. 11. Programar tareas: Funcionar con Console, Kernel, Shedule.
+php artisan schedule:work
+
+!154. Eliminar datos sobrantes: Crear observadores para el producto.
+php artisan make:observer ProductoObserver
+EventServiceProvide.php
+ProductoObserver.php.

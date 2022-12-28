@@ -18,7 +18,6 @@ Route::get('categoria/{categoria}', [CategoriaController::class, 'mostrar'])->na
 
 Route::get('producto/{producto}', [ProductoController::class, 'mostrar'])->name('producto.index');
 
-
 Route::middleware(['auth'])->group(
     function () {
         Route::get('carrito-compras', CarritoCompras::class)->name('carrito-compras');
@@ -27,7 +26,33 @@ Route::middleware(['auth'])->group(
 
 //Eliminar el carrito
 Route::get('eliminar-carrito', function () {
-    Cart::destroy();
+    //Cart::destroy();
+    Cart::instance('shopping')->destroy();
+});
+
+Route::get('eliminar-favorito', function () {
+    Cart::instance('wishlist')->destroy();
+});
+
+Route::get('mostrar-carrito', function () {
+    /*if (Cart::count()) {
+        return Cart::content();
+    } else {
+        return "NO hay productos en el carrito";
+    }*/
+    if (Cart::instance('shopping')->count()) {
+        return Cart::instance('shopping')->content();
+    } else {
+        return "NO hay productos en el carrito";
+    }
+});
+
+Route::get('mostrar-favorito', function () {
+    if (Cart::instance('wishlist')->count()) {
+        return Cart::instance('wishlist')->content();
+    } else {
+        return "NO hay productos en el favorito";
+    }
 });
 
 Route::post('resenas/{producto}', [ResenaController::class, 'store'])->name('resenas.store');

@@ -13,7 +13,7 @@ class ActualizarCantidadVariacionColor extends Component
     //mount palabra reservada, al cargar la página.
     public function mount()
     {
-        $itemCarrito = Cart::get($this->rowId);
+        $itemCarrito = Cart::instance('shopping')->get($this->rowId);
         $this->cantidadCarrito = $itemCarrito->qty;
         //$color = Color::where('nombre', $itemCarrito->options->color)->first();
         //$this->stockProducto = calculandoProductosDisponibles($itemCarrito->id, $color->id);
@@ -23,7 +23,7 @@ class ActualizarCantidadVariacionColor extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito - 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         //Emite el render al CarritoCompras
         $this->emit('render');
@@ -33,7 +33,7 @@ class ActualizarCantidadVariacionColor extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito + 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         //Emite el render al CarritoCompras
         $this->emit('render');

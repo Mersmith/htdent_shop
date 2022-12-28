@@ -48,7 +48,7 @@ class AgregarCarritoVariacionMedida extends Component
 
     public function agregarProducto()
     {
-        Cart::add(
+        Cart::instance('shopping')->add(
             [
                 'id' => $this->producto->id,
                 'name' => $this->producto->nombre,

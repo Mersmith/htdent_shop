@@ -18,6 +18,7 @@ function calculandoStockProductos($producto_id, $color_id = null, $medida_id = n
 {
     $producto = Producto::find($producto_id);
 
+
     if ($medida_id) {
         $medida = Medida::find($medida_id);
         $cantidad = $medida->colores->find($color_id)->pivot->stock;
@@ -27,20 +28,23 @@ function calculandoStockProductos($producto_id, $color_id = null, $medida_id = n
     } else {
         $cantidad = $producto->stock_total;
     }
+    //dump("cantidad", $cantidad);
     return $cantidad;
 }
 
 //Calculamos la cantidad de productos agregados
 function calculandoProductosAgregados($producto_id, $color_id = null, $medida_id = null)
 {
-    $carrito = Cart::content();
+    $carrito = Cart::instance('shopping')->content();
     $item = $carrito->where('id', $producto_id)
         ->where('options.color_id', $color_id)
         ->where('options.medida_id', $medida_id)
         ->first();
     if ($item) {
+        //dump("item->qty", $item->qty);
         return $item->qty;
     } else {
+        //dump("0", 0);
         return 0;
     }
 }
@@ -48,6 +52,8 @@ function calculandoProductosAgregados($producto_id, $color_id = null, $medida_id
 //Calculamos la cantidad que aun puedo agregar al carrito
 function calculandoProductosDisponibles($producto_id, $color_id = null, $medida_id = null)
 {
+    //dump("producto_id", $producto_id);
+
     return calculandoStockProductos($producto_id, $color_id, $medida_id) - calculandoProductosAgregados($producto_id, $color_id, $medida_id);
 }
 

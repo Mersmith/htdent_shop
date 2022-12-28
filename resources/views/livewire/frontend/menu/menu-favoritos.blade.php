@@ -34,7 +34,7 @@
                     <p>No eligió ningún producto :( .</p>
                 </div>
             @endforelse
-            @if (Cart::count())
+            @if (Cart::instance('wishlist')->count())
                 <div class="contenedor_ir_carrito">
                     <a href="{{ route('cliente.favoritos') }}">
                         Ir favoritos

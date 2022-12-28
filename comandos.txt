@@ -1001,3 +1001,31 @@ git commit -m "Agregar Favoritos slider, decimales y grid."
 git push origin 57_Ajustes_v4
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************************23/12/22***************************************
+->Comentarios productos solo en entrega
+
+->Eventos y oyentes para la tabla shoppingcart
+->Antes de esos crear los eventos para que se cree solo los listeners
+php artisan event:generate
+
+->Tener 2 instancias de shoppingcart shopping y wishlist
+
+->No funciona el merge al iniciar sesión.
+
+php artisan vendor:publish --tag=jetstream-views
+No
+
+php artisan make:observer ProductoObserver
+EventServiceProvide.php
+ProductoObserver.php.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 58_Ajustes_v5
+git branch
+git status
+
+git add .
+git commit -m "Ajustes"
+git push origin 58_Ajustes_v5
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orden;
 use Illuminate\Support\Facades\Http;
-    
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class OrdenController extends Controller
 {
+    use AuthorizesRequests;
+
     //Mis Ordenes en total
     public function index()
     {
@@ -33,7 +36,7 @@ class OrdenController extends Controller
     //Mostrar un Orden
     public function mostrar(Orden $orden)
     {
-        // $this->authorize('autor', $orden);
+        $this->authorize('autor', $orden);
 
         $envio = json_decode($orden->envio);
         $productosCarrito = json_decode($orden->contenido);
@@ -44,7 +47,7 @@ class OrdenController extends Controller
     //Orden comprado
     public function comprarMercadoPago(Orden $orden, Request $request)
     {
-        //$this->authorize('autor', $orden);
+        $this->authorize('autor', $orden);
 
         $pago_id = $request->get('payment_id');
         $respuesta = Http::get("https://api.mercadopago.com/v1/payments/$pago_id" . "?access_token=APP_USR-8561333830862927-083023-1ec6a1be6d0f23e7f261f1bdf82eac53-1189431842");
@@ -60,6 +63,8 @@ class OrdenController extends Controller
 
     public function comprarPaypal(Orden $orden, Request $request)
     {
+        $this->authorize('autor', $orden);
+
         $orden->estado = 2;
         $orden->save();
         return redirect()->route('cliente.orden.mostrar', $orden);

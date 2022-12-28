@@ -230,7 +230,6 @@
                 </x-jet-dropdown>
             @endauth
             @livewire('frontend.menu.menu-favoritos')
-            
             @livewire('frontend.menu.menu-carrito')
         </div>
     </nav>

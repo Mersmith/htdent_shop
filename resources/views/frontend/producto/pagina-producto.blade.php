@@ -127,11 +127,10 @@
                     </div>
                 @endif
                 <!--Comentarios-->
-                @if ($producto->resenas->isNotEmpty())
-                    <div x-data="{ seleccionado: null }" class="contenedor_comentarios">
-                        <!--Dejar comentario-->
-                        @include('frontend.producto.formularioResena')
-
+                <div x-data="{ seleccionado: null }" class="contenedor_comentarios">
+                    <!--Dejar comentario-->
+                    @include('frontend.producto.formularioResena')
+                    @if ($producto->resenas->isNotEmpty())
                         <h2>Todas las Reseñas</h2>
                         @foreach ($producto->resenas as $key => $resena)
                             <div>
@@ -238,8 +237,8 @@
                                 @endif
                             </div>
                         @endforeach
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     </div>
