@@ -1,4 +1,6 @@
 <div x-data class="contenedor_producto_variacion_sin">
+    <p>Tiene {{ $producto->stock }} variedad de productos</p>
+
     <p>Seleccione color:</p>
     <select wire:model="color_id">
         <option value="" selected disabled>Seleccione color</option>
@@ -13,6 +15,7 @@
                     {{ $stockProducto }}
                 @else
                     0
+                    {{-- $producto->stock --}}
                 @endif
             </p>
         </div>

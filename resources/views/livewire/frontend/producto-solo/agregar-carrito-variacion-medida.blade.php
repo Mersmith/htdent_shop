@@ -1,4 +1,6 @@
 <div x-data class="contenedor_producto_variacion_sin">
+    <p>Tiene {{ $producto->stock }} variedad de productos</p>
+
     @if ($medida_id)
         <div>
             <p><strong>Stock disponible:</strong>
@@ -6,6 +8,7 @@
                     {{ $stockProducto }}
                 @else
                     0
+                    {{-- $producto->stock --}}
                 @endif
             </p>
         </div>

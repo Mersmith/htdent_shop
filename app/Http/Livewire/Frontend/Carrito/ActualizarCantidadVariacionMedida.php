@@ -14,7 +14,7 @@ class ActualizarCantidadVariacionMedida extends Component
     //mount palabra reservada, al cargar la página.
     public function mount()
     {
-        $itemCarrito = Cart::get($this->rowId);
+        $itemCarrito = Cart::instance('shopping')->get($this->rowId);
         $this->cantidadCarrito = $itemCarrito->qty;
         //$color = Color::where('nombre', $itemCarrito->options->color)->first();
         //$medida = Medida::where('nombre', $itemCarrito->options->medida)->first();
@@ -25,7 +25,7 @@ class ActualizarCantidadVariacionMedida extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito - 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         $this->emit('render');
     }
@@ -34,7 +34,7 @@ class ActualizarCantidadVariacionMedida extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito + 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         $this->emit('render');
     }

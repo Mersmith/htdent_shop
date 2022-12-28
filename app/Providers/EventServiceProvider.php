@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Producto;
+use App\Observers\ProductoObserver;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
+
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -18,6 +23,14 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        Login::class => [
+            "App\Listeners\MergeTheCartLogin"
+        ],
+
+        Logout::class => [
+            "App\Listeners\MergeTheCartLogout"
+        ]
     ];
 
     /**
@@ -27,7 +40,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Producto::observe(ProductoObserver::class);
     }
 
     /**
@@ -37,6 +50,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function shouldDiscoverEvents()
     {
+
         return false;
     }
 }

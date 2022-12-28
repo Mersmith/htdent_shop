@@ -71,13 +71,13 @@ class CarritoCompras extends Component
 
     public function eliminarCarritoCompras()
     {
-        Cart::destroy();
+        Cart::instance('shopping')->destroy();
         $this->emitTo('frontend.menu.menu-carrito', 'render');
     }
 
     public function eliminarProducto($rowId)
     {
-        Cart::remove($rowId);
+        Cart::instance('shopping')->remove($rowId);
         $this->emitTo('frontend.menu.menu-carrito', 'render');
     }
 
@@ -145,8 +145,8 @@ class CarritoCompras extends Component
         $orden->celular = $this->celular;
         $orden->tipo_envio = $this->tipo_envio;
         $orden->costo_envio = 0;
-        $orden->total = $this->costo_envio + Cart::subtotal(2, '.', '') - (float)$this->cupon_descuento - (float)$this->puntos_descuento;
-        $orden->contenido = Cart::content();
+        $orden->total = $this->costo_envio + Cart::instance('shopping')->subtotal(2, '.', '') - (float)$this->cupon_descuento - (float)$this->puntos_descuento;
+        $orden->contenido = Cart::instance('shopping')->content();
         $orden->cupon_descuento = $this->codigo_cupon;
         $orden->cupon_precio = $this->cupon_descuento;
         $orden->puntos_canjeados = $this->puntosCanje;
@@ -164,7 +164,7 @@ class CarritoCompras extends Component
 
         $orden->save();
 
-        Cart::destroy();
+        Cart::instance('shopping')->destroy();
 
         return redirect()->route('cliente.orden.pagar', $orden);
     }

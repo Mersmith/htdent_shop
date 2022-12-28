@@ -18,7 +18,7 @@ class AgregarFavoritoProducto extends Component
         $this->opciones["puntos_tope"] = $this->producto->puntos_tope;
         $this->opciones["cantidad"] = $this->producto->stock_total;
 
-                Cart::instance('wishlist')->add([
+        Cart::instance('wishlist')->add([
             'id' => $this->producto->id,
             'name' => $this->producto->nombre,
             'qty' => 1,

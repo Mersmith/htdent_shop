@@ -12,7 +12,7 @@ class ActualizarCantidadSinVariacion extends Component
     //mount palabra reservada, al cargar la página.
     public function mount()
     {
-        $itemCarrito = Cart::get($this->rowId);
+        $itemCarrito = Cart::instance('shopping')->get($this->rowId);
         $this->cantidadCarrito = $itemCarrito->qty;
         //$this->stockProducto = calculandoProductosDisponibles($itemCarrito->id);
     }
@@ -21,7 +21,7 @@ class ActualizarCantidadSinVariacion extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito - 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         $this->emit('render');
     }
@@ -30,7 +30,7 @@ class ActualizarCantidadSinVariacion extends Component
     {
         $this->cantidadCarrito = $this->cantidadCarrito + 1;
 
-        Cart::update($this->rowId, $this->cantidadCarrito);
+        Cart::instance('shopping')->update($this->rowId, $this->cantidadCarrito);
 
         $this->emit('render');
     }

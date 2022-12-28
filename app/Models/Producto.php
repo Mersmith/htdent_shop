@@ -27,7 +27,7 @@ class Producto extends Model
                 $query->where('id', $this->id);
             })->sum('stock');
         } else {
-            return $this->stock;
+            return $this->stock_total;
         }
     }
 

@@ -35,7 +35,8 @@ class AgregarCarritoSinVariacion extends Component
 
     public function agregarProducto()
     {
-        Cart::add(
+        //Cart::add(
+        Cart::instance('shopping')->add(
             [
                 'id' => $this->producto->id,
                 'name' => $this->producto->nombre,
@@ -51,7 +52,6 @@ class AgregarCarritoSinVariacion extends Component
 
         $this->emitTo('frontend.menu.menu-carrito', 'render');
     }
-
 
     public function render()
     {

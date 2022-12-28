@@ -2,7 +2,7 @@
     @section('tituloPagina', 'Carrito de Compra')
     <div class="contenedor_pagina_carrito">
         <div class="contenedor_centrar_pagina">
-            @if (Cart::count())
+            @if (Cart::instance('shopping')->count())
                 <div class="grid_carrito_compras">
                     <!--Carrito-->
                     <div class="grid_elementos_carrito">
@@ -31,7 +31,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (Cart::content() as $item)
+                                    @foreach (Cart::instance('shopping')->content() as $item)
                                         <tr>
                                             <td class="imagen_producto_datos_tabla">
                                                 <img src="{{ $item->options->imagen }}" alt="">
@@ -229,7 +229,7 @@
                             <!--SUBTOTAL-->
                             <div class="contenedor_pago">
                                 <div>SUBTOTAL: </div>
-                                <div>${{ Cart::subTotal(2, '.', '') }}</div>
+                                <div>${{ Cart::instance('shopping')->subTotal(2, '.', '') }}</div>
                             </div>
                             <!--ENVIO-->
                             <div class="contenedor_pago">
@@ -245,7 +245,7 @@
                             <hr>
 
                             @php
-                                $productosCarrito = json_decode(Cart::content(), true);
+                                $productosCarrito = json_decode(Cart::instance('shopping')->content(), true);
                                 
                                 //$cantidadElementos = array_sum(array_column($productosCarrito, 'id'));
                                 
@@ -352,12 +352,12 @@
                                 <div>
                                     @if ($tipo_envio == 1)
                                         @if ($tipoCupon == 'fijo')
-                                            ${{ number_format(Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento, 2) }}
+                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento, 2) }}
                                         @else
-                                            ${{ number_format(Cart::subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento - ($cupon_descuento * Cart::subtotal()) / 100, 2) }}
+                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento - ($cupon_descuento * Cart::instance('shopping')->subtotal()) / 100, 2) }}
                                         @endif
                                     @else
-                                        ${{ number_format(Cart::subtotal(2, '.', '') + $costo_envio - $cupon_descuento - $puntos_descuento, 2) }}
+                                        ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') + $costo_envio - $cupon_descuento - $puntos_descuento, 2) }}
                                     @endif
                                 </div>
                             </div>

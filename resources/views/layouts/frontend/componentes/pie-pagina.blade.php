@@ -8,7 +8,7 @@
             <form action="{{ route('email.contacto') }}" method="POST">
                 @csrf
                 @if (Session::has('email-contacto-correcto'))
-                    <span style="color: white;">{{Session::get('email-contacto-correcto')}}</span>
+                    <span style="color: white;">{{ Session::get('email-contacto-correcto') }}</span>
                 @endif
                 <div>
                     <input type="text" name="nombre" placeholder=" Nombre" required>
@@ -42,7 +42,7 @@
     <div class="contenedor_pie_informacion">
         <div class="contenedor_logo_telefono">
             <div class="contenedor_logo">
-                <img src="http://127.0.0.1:8000/imagenes/empresa/logo.png" alt="logo htdent">
+                <img src="{{ asset('imagenes/empresa/logo.png') }}" alt="" />
             </div>
             <div class="contenedor_numero_telefono">
                 <i class="fa-solid fa-phone-volume"></i>

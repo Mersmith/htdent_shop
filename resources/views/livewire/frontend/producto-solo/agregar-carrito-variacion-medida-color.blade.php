@@ -1,4 +1,6 @@
 <div x-data class="contenedor_producto_variacion_sin">
+
+    <p>Tiene {{ $producto->stock }} variedad de productos</p>
     <p>Seleccione medida:</p>
     <select wire:model="medida_id">
         <option value="" selected disabled>Seleccione medida</option>
@@ -21,6 +23,7 @@
                     {{ $stockProducto }}
                 @else
                     0
+                    {{-- $producto->stock --}}
                 @endif
             </p>
         </div>

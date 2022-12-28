@@ -2,17 +2,18 @@
     <x-jet-dropdown>
         <x-slot name="trigger">
             <div style="display: flex;">
-                <span class="monto_total">${{ Cart::subTotal(2, '.', '') }}</span>
+                <span class="monto_total">${{ Cart::instance('shopping')->subTotal(2, '.', '') }}</span>
                 <div style="position: relative;">
-                    @if (Cart::count())
-                        <p class="cantidad_carrito">{{ Cart::count() }} </p>
+                    {{-- @if (Cart::count()) --}}
+                    @if (Cart::instance('shopping')->count() > 0)
+                        <p class="cantidad_carrito">{{ /*Cart::count()*/ Cart::instance('shopping')->count() }} </p>
                     @endif
                     <i class="fa-solid fa-cart-shopping" style="color: #666666;"></i>
                 </div>
             </div>
         </x-slot>
         <x-slot name="content">
-            @forelse (Cart::content() as $item)
+            @forelse (Cart::instance('shopping')->content() as $item)
                 <div class="contenedor_modal_carrito">
                     <img class="object-cover mr-4" style="width: 50px;" src="{{ $item->options->imagen }}"
                         alt="">
@@ -35,9 +36,9 @@
                     <p>No eligió ningún producto :( .</p>
                 </div>
             @endforelse
-            @if (Cart::count())
+            @if (Cart::instance('shopping')->count())
                 <div class="contenedor_ir_carrito">
-                    <p><strong>Total: </strong> ${{ Cart::subtotal(2, '.', '') }} </p>
+                    <p><strong>Total: </strong> ${{ Cart::instance('shopping')->subtotal(2, '.', '') }} </p>
                     <a href="{{ route('carrito-compras') }}">
                         Ir al carrito
                     </a>

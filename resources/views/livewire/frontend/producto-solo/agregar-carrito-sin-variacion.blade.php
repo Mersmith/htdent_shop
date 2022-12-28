@@ -5,6 +5,7 @@
                 {{ $stockProducto }}
             @else
                 0
+                {{-- $producto->stock --}}
             @endif
         </p>
     </div>
