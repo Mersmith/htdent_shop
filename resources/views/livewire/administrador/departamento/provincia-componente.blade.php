@@ -1,7 +1,12 @@
 <div>
     @section('tituloPagina', 'Provincia | ' . $provincia->nombre)
     <!--Titulo-->
-    <h2 class="contenedor_paginas_titulo">{{ $provincia->nombre }}</h2>
+    <h2 class="contenedor_paginas_titulo">PROVINCIA: {{ $provincia->nombre }}</h2>
+    <!--Boton regresar-->
+    <div class="contenedor_boton_titulo">
+        <a href="{{ URL::previous() }}">
+            <i class="fa-solid fa-arrow-left-long"></i> Regresar</a>
+    </div>
     <!--Contenedor Página-->
     <div class="contenedor_paginas_administrador">
         <form wire:submit.prevent="crearDistrito" class="formulario">
@@ -20,7 +25,7 @@
                 <input type="submit" value="Crear distrito">
             </div>
         </form>
-        <h2 class="contenedor_paginas_titulo">PROVINCIAS</h2>
+        <h2 class="contenedor_paginas_titulo">DISTRITOS</h2>
         @if ($distritos->count())
             <div class="py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">

@@ -16,10 +16,9 @@
         "contenedor_producto_detalles contenedor_producto_info"
         "contenedor_producto_video contenedor_producto_video";
     grid-template-columns: 50% 50%;
-    grid-template-rows: auto 1fr  auto;
+    grid-template-rows: auto 1fr auto;
     grid-gap: 50px;
 }
-
 /*Estilos imagen*/
 .contenedor_producto_imagen {
     grid-area: contenedor_producto_imagen;
@@ -27,7 +26,6 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    align-self: start;
 }
 
 .contenedor_imagen_producto_principal {
@@ -174,6 +172,25 @@
 
 .informacion_producto {
     margin-top: 40px;
+}
+
+.informacion_producto ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.informacion_producto table td {
+    border: 1px solid #cfd3d9;
+    padding: 5px;
+}
+
+.informacion_producto figure {
+    display: flex;
+    flex-direction: column;
+}
+
+.informacion_producto figcaption {
+    text-align: center;
 }
 
 /*Estilos detalle*/

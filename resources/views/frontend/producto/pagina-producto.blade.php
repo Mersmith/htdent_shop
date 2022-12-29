@@ -5,32 +5,52 @@
             <div class="contenedor_info_producto">
                 <!--Imagen-->
                 <div class="contenedor_producto_imagen">
+                    @php
+                        $imagesOrdenadas = [];
+                        $imagenesGaleria = $producto->imagenes->sortBy('posicion');
+                        foreach ($imagenesGaleria as $item) {
+                            $imagesOrdenadas[] = $item;
+                        }
+                        $cantidadImagenes = count($imagesOrdenadas); //4
+                        //0, 1, 2, 3
+                    @endphp
+
                     @if ($producto->imagenes->count())
 
                         <div x-data="{ total: {{ $producto->imagenes->count() }}, current: 0, open: true }">
-
                             <div x-show="open" class="contenedor_imagen_producto_principal">
-                                @foreach ($producto->imagenes as $key => $imagen)
+                                @foreach ($imagesOrdenadas as $key2 => $imagen)
                                     <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
-                                        x-show="current == {{ $key }}">
+                                        x-show="current == {{ $key2 }}">
                                 @endforeach
 
                                 @livewire('frontend.producto-solo.agregar-favorito-producto', ['producto' => $producto])
 
-                                <div class="contenedor_imagen_pie_controles contenedor_imagen_pie_izquierdo">
-                                    <span @click="if(current >= 1){ current = current - 1}"><i
-                                            class="fa-solid fa-angle-left"></i></span>
+                                <div @click="
+                                if(current > 0){ 
+                                    current = current - 1;
+                                }else{ 
+                                    current = {{$cantidadImagenes - 1}};
+                                }
+                                "
+                                    class="contenedor_imagen_pie_controles contenedor_imagen_pie_izquierdo">
+                                    <span><i class="fa-solid fa-angle-left"></i></span>
                                 </div>
-                                <div class="contenedor_imagen_pie_controles contenedor_imagen_pie_derecho"
-                                    contenedor_imagen_pie_derecho>
-                                    <span @click="if(current < total-1){ current = current + 1}"><i
-                                            class="fa-solid fa-angle-right"></i></span>
+                                <div @click="
+                                if(current < total-1){ 
+                                    current = current + 1;
+                                }else{ 
+                                    current = 0;
+                                }
+                                "
+                                    class="contenedor_imagen_pie_controles contenedor_imagen_pie_derecho">
+                                    <span><i class="fa-solid fa-angle-right"></i></span>
                                 </div>
                             </div>
 
                             <div class="contenedor_imagen_producto_pie">
                                 <div class="contenedor_imagen_producto_item">
-                                    @foreach ($producto->imagenes as $key => $imagen)
+                                    @foreach ($imagesOrdenadas as $key => $imagen)
                                         <img @click="current = {{ $key }}"
                                             src="{{ Storage::url($imagen->imagen_ruta) }}" alt="">
                                     @endforeach
@@ -54,7 +74,7 @@
                     <h1>{{ $producto->nombre }} </h1>
                     <p class="producto_info_sku">SKU: {{ $producto->sku }} </p>
 
-                    <p class="producto_info_precio">${{ number_format($producto->precio, 2, '.', ',') }}
+                    <p class="producto_info_precio">$ {{ number_format($producto->precio, 2, '.', ',') }}
                         @if ($producto->precio !== $producto->precio_real)
                             <span>Antes<span style="text-decoration:line-through;">
                                     ${{ number_format($producto->precio_real, 2, '.', ',') }}</span></span>
@@ -250,7 +270,7 @@
         </div>
 -->
 
-    @push('script')
-        <script></script>
-    @endpush
+@push('script')
+<script></script>
+@endpush
 </x-frontend-layout>

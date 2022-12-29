@@ -20,7 +20,7 @@
 
 .contenedor_slider_testimonio_items {
   display: flex;
-  width: 300%;
+  /*width: 100%;*/
 }
 
 .slider_testimonio_item {

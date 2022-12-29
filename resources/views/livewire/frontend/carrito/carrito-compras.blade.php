@@ -64,7 +64,7 @@
 
                                             <td style="text-align: center;">
                                                 <div>
-                                                    <span>USD {{ number_format($item->price, 2) }}</span>
+                                                    <span>$ {{ number_format($item->price, 2) }}</span>
                                                 </div>
                                             </td>
                                             <td style="text-align: center;">
@@ -80,7 +80,7 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 <div>
-                                                    USD {{ number_format($item->price * $item->qty, 2) }}
+                                                    $ {{ number_format($item->price * $item->qty, 2) }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -229,7 +229,7 @@
                             <!--SUBTOTAL-->
                             <div class="contenedor_pago">
                                 <div>SUBTOTAL: </div>
-                                <div>${{ Cart::instance('shopping')->subTotal(2, '.', '') }}</div>
+                                <div>$ {{ Cart::instance('shopping')->subTotal(2, '.', ',') }}</div>
                             </div>
                             <!--ENVIO-->
                             <div class="contenedor_pago">
@@ -238,7 +238,7 @@
                                     @if ($tipo_envio == 1 || $costo_envio == 0)
                                         Gratis
                                     @else
-                                        ${{ number_format($costo_envio, 2) }}
+                                        $ {{ number_format($costo_envio, 2) }}
                                     @endif
                                 </div>
                             </div>

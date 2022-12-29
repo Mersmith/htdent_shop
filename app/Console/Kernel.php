@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
 
             Storage::delete(array_diff($files, $images));
             //})->daily();
+            //})->everyMinute();
         })->everyMinute();
 
         //Eliminar ordenes que no son pagadas
@@ -34,6 +35,7 @@ class Kernel extends ConsoleKernel
             $hora = now()->subMinute(10);
 
             $orders = Orden::where('estado', 1)->whereTime('created_at', '<=', $hora)->get();
+
 
             foreach ($orders as $order) {
 

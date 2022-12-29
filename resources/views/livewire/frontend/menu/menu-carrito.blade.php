@@ -2,7 +2,7 @@
     <x-jet-dropdown>
         <x-slot name="trigger">
             <div style="display: flex;">
-                <span class="monto_total">${{ Cart::instance('shopping')->subTotal(2, '.', '') }}</span>
+                <span class="monto_total">${{ Cart::instance('shopping')->subTotal(2, '.', ',') }}</span>
                 <div style="position: relative;">
                     {{-- @if (Cart::count()) --}}
                     @if (Cart::instance('shopping')->count() > 0)
@@ -38,7 +38,7 @@
             @endforelse
             @if (Cart::instance('shopping')->count())
                 <div class="contenedor_ir_carrito">
-                    <p><strong>Total: </strong> ${{ Cart::instance('shopping')->subtotal(2, '.', '') }} </p>
+                    <p><strong>Total: </strong> ${{ Cart::instance('shopping')->subtotal(2, '.', ',') }} </p>
                     <a href="{{ route('carrito-compras') }}">
                         Ir al carrito
                     </a>

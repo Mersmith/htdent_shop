@@ -68,17 +68,17 @@ function stockActualizar($itemCarrito)
         $medida = Medida::find($itemCarrito->options->medida_id);
         $medida->colores()->detach($itemCarrito->options->color_id);
         $medida->colores()->attach([
-            $itemCarrito->options->color_id => ['cantidad' => $calculandoProductosDisponibles]
+            $itemCarrito->options->color_id => ['stock' => $calculandoProductosDisponibles]
         ]);
     } elseif ($itemCarrito->options->color_id) {
 
         $producto->colores()->detach($itemCarrito->options->color_id);
         $producto->colores()->attach([
-            $itemCarrito->options->color_id => ['cantidad' => $calculandoProductosDisponibles]
+            $itemCarrito->options->color_id => ['stock' => $calculandoProductosDisponibles]
         ]);
     } else {
 
-        $producto->cantidad = $calculandoProductosDisponibles;
+        $producto->stock_total = $calculandoProductosDisponibles;
         $producto->save();
     }
 }
@@ -88,22 +88,22 @@ function anularOrden($itemCarrito)
 {
     $producto = Producto::find($itemCarrito->id);
     $calculandoStockProductos = calculandoStockProductos($itemCarrito->id, $itemCarrito->options->color_id, $itemCarrito->options->medida_id) + $itemCarrito->qty;
-
+    
     if ($itemCarrito->options->medida_id) {
 
         $medida = Medida::find($itemCarrito->options->medida_id);
         $medida->colores()->detach($itemCarrito->options->color_id);
         $medida->colores()->attach([
-            $itemCarrito->options->color_id => ['cantidad' => $calculandoStockProductos]
+            $itemCarrito->options->color_id => ['stock' => $calculandoStockProductos]
         ]);
     } elseif ($itemCarrito->options->color_id) {
 
         $producto->colores()->detach($itemCarrito->options->color_id);
         $producto->colores()->attach([
-            $itemCarrito->options->color_id => ['cantidad' => $calculandoStockProductos]
+            $itemCarrito->options->color_id => ['stock' => $calculandoStockProductos]
         ]);
     } else {
-        $producto->cantidad = $calculandoStockProductos;
+        $producto->stock_total = $calculandoStockProductos;
         $producto->save();
     }
 }
