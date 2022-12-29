@@ -9,28 +9,33 @@ class ProductoObserver
 {
     public function updated(Producto $producto)
     {
+        $tiene_detalle = $producto->tiene_detalle;
+
+        if ($tiene_detalle == 0) {
+            $producto->tiene_detalle = null;
+        }
+
+
         $subcategoria_id = $producto->subcategoria_id;
-        $subcategory = Subcategoria::find($subcategoria_id);
+        $subcategoria = Subcategoria::find($subcategoria_id);
 
-        if ($subcategory->size) {
-
-            if ($producto->colors->count()) {
-                $producto->colors()->detach();
+        if ($subcategoria->tiene_medida) {
+            if ($producto->colores->count()) {
+                $producto->colores()->detach();
             }
-        } elseif ($subcategory->color) {
-            if ($producto->sizes->count()) {
-                foreach ($producto->sizes as $size) {
-                    $size->delete();
+        } elseif ($subcategoria->tiene_color) {
+            if ($producto->medidas->count()) {
+                foreach ($producto->medidas as $medida) {
+                    $medida->delete();
                 }
             }
         } else {
-            if ($producto->colors->count()) {
-                $producto->colors()->detach();
+            if ($producto->colores->count()) {
+                $producto->colores()->detach();
             }
-
-            if ($producto->sizes->count()) {
-                foreach ($producto->sizes as $size) {
-                    $size->delete();
+            if ($producto->medidas->count()) {
+                foreach ($producto->medidas as $medida) {
+                    $medida->delete();
                 }
             }
         }

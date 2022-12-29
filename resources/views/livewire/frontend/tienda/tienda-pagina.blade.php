@@ -46,9 +46,9 @@
                     <!--Precios-->
                     <div class="flex justify-between items-center py-5">
                         <p class="px-3 py-2 border border-gray-200 rounded w-24 text-center">$<span
-                                x-text="minprice"></span></p>
+                                x-text="Number(parseFloat(minprice).toFixed(2)).toLocaleString('en')"></span></p>
                         <p class="px-3 py-2 border border-gray-200 rounded w-24 text-center">$<span
-                                x-text="maxprice"></span></p>
+                                x-text="Number(parseFloat(maxprice).toFixed(2)).toLocaleString('en')"></span></p>
                         {{-- <div>
                             <input disabled type="text" maxlength="5" x-on:input="mintrigger" x-model="minprice"
                                 class="px-3 py-2 border border-gray-200 rounded w-24 text-center">
@@ -131,15 +131,14 @@
                             @else
                                 <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                             @endif
-                            <span> <i class="fa-solid fa-heart" style="color: #ffa03d; cursor: pointer;"></i>
-                            </span>
+                            @livewire('frontend.producto-solo.agregar-favorito-producto', ['producto' => $producto], key('busqueda-producto-' . $producto->id))
                         </div>
                         <div style="text-align: center;">
                             <h2 class="slider_producto_nombre">{{ $producto->nombre }}</h2>
                             <p class="slider_producto_descripcion">{{ Str::limit($producto->descripcion, 35) }} </p>
                         </div>
                         <div style="text-align: center;">
-                            <p class="slider_producto_precio">${{ $producto->precio }}</p>
+                            <p class="slider_producto_precio">$ {{ number_format($producto->precio, 0, '.', ',') }}</p>
                             <button class="slider_producto_boton">
                                 <a href="{{ route('producto.index', $producto) }}">
                                     Ver más

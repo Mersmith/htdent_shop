@@ -4,9 +4,7 @@
         <div class="glider3">
             @foreach ($medios as $key => $medio)
                 <div class="item_slider_medios">
-                    <div class="slider_medio_imagen">
-                        <img src="{{ Storage::url($medio->imagenes->first()->imagen_ruta) }}" alt="" />
-                    </div>
+                    <img style="height: 50px !important;" src="{{ Storage::url($medio->imagenes->first()->imagen_ruta) }}" alt="" />
                 </div>
             @endforeach
         </div>

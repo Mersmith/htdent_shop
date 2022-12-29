@@ -21,14 +21,13 @@ class InicioController extends Controller
 
             if ($pendiente) {
 
-                //$html = "<a class='font-bold' href='" . route('cliente.orden.index') . "?estado=1'>Ir a pagar</a>";
-                $mensaje = "Usted tiene $pendiente ordenes pendientes. <a class='font-bold' href='" . route('cliente.orden.index') ."?estado=1'>Ir a pagar</a>";
+                $mensaje = "Usted tiene $pendiente ordenes pendientes. <a class='font-bold' href='" . route('cliente.orden.index') . "?estado=1'>Ir a pagar</a>";
 
                 session()->flash('flash.banner', $mensaje);
             }
         }
 
-        $sliders = Slider::where('estado', '0')->get();
+        $sliders = Slider::where('estado', '0')->orderBy('posicion', 'desc')->get();
         //$productos = Producto::limit(10)->get();
         $fortalezas = Fortaleza::all();
         $testimonios = Testimonio::all();

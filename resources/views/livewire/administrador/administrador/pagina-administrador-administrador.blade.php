@@ -27,6 +27,9 @@
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                     Correo</th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    Roles</th>
 
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
@@ -38,14 +41,19 @@
                             @foreach ($administradores as $key => $administrador)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $key + 1 }}
+                                        {{-- dump($administrador->roles) --}}
+                                        {{-- dump($administrador->administrador) --}}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $administrador->nombre }}</td>
+                                        {{ $administrador->administrador->nombre }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $administrador->correo }}</td>
+                                        {{ $administrador->email }}</td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        {{ $administrador->roles->count() > 0 ? implode(", ", $administrador->roles->pluck('name')->toArray()) : 'No tiene roles' }}
+                                    </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
                                         <a
-                                            href="{{ route('administrador.administrador.editar', $administrador->user_id) }}">
+                                            href="{{ route('administrador.administrador.editar', $administrador->administrador->user_id) }}">
                                             <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
                                             Editar
                                         </a>

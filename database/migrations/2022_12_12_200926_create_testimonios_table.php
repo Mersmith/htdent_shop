@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->string('nombre');
             $table->string('cargo');
-            $table->string('comentario');
+            $table->text('comentario');
             $table->integer('posicion');
             $table->string('imagen_ruta')->nullable();
 

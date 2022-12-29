@@ -22,7 +22,8 @@
                                 <p class="slider_producto_descripcion">{{ Str::limit($producto->descripcion, 35) }} </p>
                             </div>
                             <div style="text-align: center;">
-                                <p class="slider_producto_precio">${{ $producto->precio }}</p>
+                                <p class="slider_producto_precio">$ {{ number_format($producto->precio, 0, '.', ',') }}
+                                </p>
                                 <button class="slider_producto_boton">
                                     <a href="{{ route('producto.index', $producto) }}">
                                         Ver más

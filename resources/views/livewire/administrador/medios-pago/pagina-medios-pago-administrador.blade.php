@@ -29,7 +29,7 @@
             </div>
             <!--Enviar-->
             <div class="contenedor_1_elementos">
-                <input type="submit" value="Crear Testimonio">
+                <input type="submit" value="Crear medio de pago">
             </div>
         </form>
     </div>

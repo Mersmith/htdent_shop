@@ -1,7 +1,7 @@
 <div>
     @section('tituloPagina', 'Departamento | ' . $departamento->nombre)
     <!--Titulo-->
-    <h2 class="contenedor_paginas_titulo">{{ $departamento->nombre }}</h2>
+    <h2 class="contenedor_paginas_titulo">DEPARTAMENTO: {{ $departamento->nombre }}</h2>
     <!--Boton regresar-->
     <div class="contenedor_boton_titulo">
         <a href="{{ route('administrador.departamentos.index') }}">

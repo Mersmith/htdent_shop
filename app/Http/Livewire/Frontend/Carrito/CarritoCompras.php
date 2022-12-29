@@ -164,6 +164,10 @@ class CarritoCompras extends Component
 
         $orden->save();
 
+        foreach (Cart::instance('shopping')->content() as $item) {
+            stockActualizar($item);
+        }
+
         Cart::instance('shopping')->destroy();
 
         return redirect()->route('cliente.orden.pagar', $orden);

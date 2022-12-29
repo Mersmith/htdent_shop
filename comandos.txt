@@ -1029,3 +1029,16 @@ git commit -m "Ajustes"
 git push origin 58_Ajustes_v5
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************29/12/22***************************************
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 59_Ajustes_v6
+git branch
+git status
+
+git add .
+git commit -m "Ajustes"
+git push origin 59_Ajustes_v6
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
