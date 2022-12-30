@@ -110,7 +110,7 @@ class CarritoCompras extends Component
             $this->emit('mensajeCreado', "Puntos activado.");
             //1 punto = 1.5 soles
             //5 puntos = 5*1.5 soles = 7.5 soles
-            $this->puntos_descuento = $puntosEntero * 1.5;
+            $this->puntos_descuento = $puntosEntero * config('services.crd.puntos');
         } else {
             //session()->flash('puntos_mensaje', 'Puntos invalidos');
             $this->emit('mensajeEliminado', "Puntos inválido.");

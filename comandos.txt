@@ -1042,3 +1042,19 @@ git commit -m "Ajustes"
 git push origin 59_Ajustes_v6
 ->Click en boton Merge pull request
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**************************30/12/22***************************************
+
+php artisan make:controller Api\AuthController
+php artisan make:controller Crd\CrdController
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git checkout -b 60_Ajustes_v7
+git branch
+git status
+
+git add .
+git commit -m "Ajustes"
+git push origin 60_Ajustes_v7
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

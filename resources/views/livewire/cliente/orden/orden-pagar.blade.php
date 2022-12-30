@@ -169,7 +169,7 @@
                                         </td>
                                         <td style="text-align: center;">
                                             <div>
-                                                <span>USD {{ number_format($item->price, 2) }}</span>
+                                                <span>$ {{ number_format($item->price, 2) }}</span>
                                             </div>
                                         </td>
                                         <td style="text-align: center;">
@@ -180,7 +180,7 @@
                                         </td>
                                         <td style="text-align: center;">
                                             <div>
-                                                USD {{ number_format($item->price * $item->qty, 2) }}
+                                                $ {{ number_format($item->price * $item->qty, 2) }}
                                             </div>
                                         </td>
                                     </tr>
@@ -233,7 +233,7 @@
                         <div class="contenedor_pago">
                             <div>SUBTOTAL: </div>
                             <div>
-                                ${{ number_format($orden->total - $orden->costo_envio + (float) $orden->cupon_precio + (float) $orden->puntos_canjeados * 1.5, 2) }}
+                                ${{ number_format($orden->total - $orden->costo_envio + (float) $orden->cupon_precio + (float) $orden->puntos_canjeados * config('services.crd.puntos'), 2) }}
                             </div>
                         </div>
                         <!--ENVIO-->
@@ -261,16 +261,29 @@
                             <hr>
                         @endif
                         <!--PUNTOS-->
-                        @if ($orden->puntos_canjeados)
-                            <div class="contenedor_pago">
-                                <div>Puntos: </div>
-                                <div>
-                                    <span>
-                                        -${{ number_format($orden->puntos_canjeados * 1.5, 2) }}
-                                    </span>
+                        @php
+                            $totalPuntosProducto = 0;
+                            foreach ($productosCarrito as $producto) {
+                                $totalPuntosProducto += $producto->options->puntos_ganar * $producto->qty;
+                            }
+                            
+                        @endphp
+                        @if ($orden->puntos_canjeados <= Auth::user()->cliente->puntos)
+                            @if ($orden->puntos_canjeados)
+                                <div class="contenedor_pago">
+                                    <div>Puntos: <code>Estas ganando {{ $totalPuntosProducto }} puntos</code></div>
+                                    <div style="
+                                    text-align: end;
+                                ">
+                                        <span>
+                                            -${{ number_format($orden->puntos_canjeados * config('services.crd.puntos'), 2) }}
+                                        </span>
+                                        <br>
+                                        <span>{{$orden->puntos_canjeados}} puntos</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
+                                <hr>
+                            @endif
                         @endif
                         <!--TOTAL-->
                         <div class="contenedor_pago" style="font-size: 20px">
@@ -278,7 +291,11 @@
                                 <span style="font-weight: 600;">TOTAL:</span>
                             </div>
                             <div>
-                                {{ number_format($orden->total, 2) }}
+                                @if ($orden->puntos_canjeados <= Auth::user()->cliente->puntos)
+                                    ${{ number_format($orden->total, 2) }}
+                                @else
+                                    ${{ number_format($orden->total + $orden->puntos_canjeados * config('services.crd.puntos'), 2) }}
+                                @endif
                             </div>
                         </div>
                         <div class="contenedor_boton_pagar">
@@ -324,7 +341,9 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: "{{ $orden->total }}"
+                            value: "{{ $orden->puntos_canjeados <= Auth::user()->cliente->puntos ? $orden->total : $orden->total + $orden->puntos_canjeados * config('services.crd.puntos') }}"
+                            //value: "{{ $orden->total }}"
+                            //value: 1
                         }
                     }]
                 });

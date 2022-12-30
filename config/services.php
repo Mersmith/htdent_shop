@@ -40,5 +40,8 @@ return [
     ],
     'gmail' => [
         'email' => env('MAIL_FROM_ADDRESS'),
+    ],
+    'crd' => [
+        'puntos' => 1.5, //1 punto = 1.5 soles //5 puntos = 5*1.5 soles = 7.5 soles
     ]
 ];

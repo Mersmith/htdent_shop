@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Orden;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class OrdenController extends Controller
 {
@@ -21,7 +22,7 @@ class OrdenController extends Controller
             $ordenes->where('estado', request('estado'));
         }
 
-        $ordenes = $ordenes->paginate(5)->withQueryString();
+        $ordenes = $ordenes->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
         //$ordenes = $ordenes->get();
 
         $pendiente = Orden::where('estado', 1)->where('user_id', auth()->user()->id)->count();
@@ -63,7 +64,31 @@ class OrdenController extends Controller
 
     public function comprarPaypal(Orden $orden, Request $request)
     {
+        $productosCarrito = json_decode($orden->contenido);
+
+        $totalPuntosProducto = 0;
+        foreach ($productosCarrito as $producto) {
+            $totalPuntosProducto += $producto->options->puntos_ganar * $producto->qty;
+        }
+
         $this->authorize('autor', $orden);
+
+        if (Auth::user()->cliente->puntos <= $orden->puntos_canjeados) {
+            $orden->total = $orden->total + $orden->puntos_canjeados * config('services.crd.puntos');
+            $orden->puntos_canjeados = 0;
+
+            Auth::user()->cliente->update(
+                [
+                    'puntos' => Auth::user()->cliente->puntos  + $totalPuntosProducto,
+                ]
+            );
+        } else {
+            Auth::user()->cliente->update(
+                [
+                    'puntos' => Auth::user()->cliente->puntos - $orden->puntos_canjeados + $totalPuntosProducto,
+                ]
+            );
+        }
 
         $orden->estado = 2;
         $orden->save();
