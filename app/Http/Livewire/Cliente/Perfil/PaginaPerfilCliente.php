@@ -41,6 +41,7 @@ class PaginaPerfilCliente extends Component
                 'nombre' => $this->nombre,
                 'apellido' => $this->apellido,
                 'celular' => $this->celular,
+                'puntos' => 80,
                 'imagen_ruta' => $this->nueva_imagen_ruta ? $imagenNombre  : $this->imagen_ruta,
             ]
         );

@@ -333,7 +333,7 @@
                             @endif
                             @if ($puntos_descuento > 0)
                                 <div class="contenedor_pago">
-                                    <div>Puntos: </div>
+                                    <div>Puntos: <code>Estas ganando {{ $totalPuntosProducto }}</code> </div>
                                     <div>
                                         <span wire:click.prevent="eliminarPuntos"><i
                                                 class="fa-solid fa-xmark"></i></span>

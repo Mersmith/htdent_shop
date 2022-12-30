@@ -9,7 +9,7 @@ class Cliente extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'apellido', 'celular', 'imagen_ruta'];
+    protected $fillable = ['nombre', 'apellido', 'celular', 'imagen_ruta', 'puntos'];
 
     //Relación uno a muchos
     //Un Usuario tiene muchas ordenes

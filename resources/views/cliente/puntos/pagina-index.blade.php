@@ -17,7 +17,7 @@
             </label>
             <label class="label_principal">
                 <p class="estilo_nombre_input">Puntos acumulados: </p>
-                {{ Auth::user()->cliente->puntos }} puntos = S/. {{ Auth::user()->cliente->puntos * 1.5 }}
+                {{ Auth::user()->cliente->puntos }} puntos = S/. {{ Auth::user()->cliente->puntos *  config('services.crd.puntos')}}
             </label>
         </div>
         <br>

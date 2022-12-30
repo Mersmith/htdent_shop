@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Crd\CrdController;
 use App\Http\Controllers\Frontend\CategoriaController;
 use App\Http\Controllers\Frontend\EmailContacto;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,10 @@ Route::post('resenas/{producto}/{comentario}', [ResenaController::class, 'respue
 Route::get('tienda', TiendaPagina::class)->name('tienda');
 
 Route::post('email-contacto', [EmailContacto::class, 'enviar'])->name('email.contacto');
+
+Route::get('crd-dni', [CrdController::class, 'buscarDni'])->name('crd.dni');
+Route::get('crd-actualizar-puntos', [CrdController::class, 'actualizarPuntos'])->name('crd.actualizar');
+Route::get('crd-email', [CrdController::class, 'buscarEmail'])->name('crd.email');
 
 
 /*Route::middleware([
